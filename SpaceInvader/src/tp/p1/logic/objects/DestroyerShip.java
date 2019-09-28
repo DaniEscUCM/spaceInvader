@@ -1,38 +1,39 @@
 package tp.p1.logic.objects;
 
 public class DestroyerShip {
-	private int vida=1, dir=-1;//quitando, va en move
-	private int fila, columna, ciclo;
-	private final int ptos=10;
-	//el update inicializa con el tiempo en que se cambia y en 0 se mueve.
-	//falta el to string
-	//split(" ")...palabra a palabra?
-	// showUsage() -> error
+	private int health=1;
+	private int row, column;//creo que cicle ya no hará falta, iria en move?
+	private final int points=10;
+	
 	public void destroyerDeath() {
-		vida--;
+		health--;
 	}
-	public void iniFilaColum(int fil, int colum) {
-		fila=fil;
-		columna=colum;
-	}
-	
-	public void destroyermove(boolean border) {
-		if(border) {fila++;dir=-dir;}
-		else columna+=dir;
+	public void iniRowColum(int fil, int colum) {
+		row=fil;
+		column=colum;
 	}
 	
-	public int getVida() {
-		return vida;
+	public void destroyermove(boolean border, int dir) {//dir move
+		if(border) {row++;}
+		else column+=dir;
 	}
 	
-	public int getPtos() {
-		return ptos;
+	public int getHealth() {
+		return health;
 	}
-	public int getFila() {
-		return fila;
+	
+	public int getPoints() {
+		return points;
 	}
-	public int getColumna() {
-		return columna;
+	public int getRow() {
+		return row;
+	}
+	public int getColumn() {
+		return column;
+	}
+	
+	public String toStringDestructor() {
+		return "D["+health+"]";
 	}
 	
 }

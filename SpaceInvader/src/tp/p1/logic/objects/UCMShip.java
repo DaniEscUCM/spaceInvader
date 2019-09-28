@@ -1,32 +1,32 @@
 package tp.p1.logic.objects;
 
 public class UCMShip {
-		private int vida=3;
-		private int columna;
-		private boolean puede_disparar=true;
-		private final String dibujo= "^__^";
-		private final int fila=7;//nunca se mueve de la ultima fila
+		private int health=3;
+		private int column;
+		private boolean canShoot=true;
+		private final String draw= "^__^";
+		private final int row=7;//nunca se mueve de la ultima fila
 
 		public void move_UCMship (int steps, String direction) {//ver direccion, tal vez enumerado
 			if (direction == "righ" | direction=="r") {
-				columna+=steps;
+				column+=steps;
 			}
-			else columna-=steps;
+			else column-=steps;
 		}
 		
 		public void shoot () {
-			puede_disparar=false;
+			canShoot=false;
 		}
 		
 		public void hurt() {
-			vida--;
+			health--;
 		}
 		
-		public int getVida() {
-			return vida;
+		public int getHealth() {
+			return health;
 		}
 		
 		public String toStringUCM() {
-			return dibujo;
+			return draw;
 		}
 }
