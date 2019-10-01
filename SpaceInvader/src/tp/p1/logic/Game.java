@@ -44,6 +44,7 @@ public class Game {
 	public void update() {
 		
 	}
+	
 	public String toStringObjectAt(int i, int j) {
 		int pos=-1;
 		String draw=" ";
