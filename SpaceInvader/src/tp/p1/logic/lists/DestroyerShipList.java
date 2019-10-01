@@ -6,7 +6,7 @@ public class DestroyerShipList {
 		private DestroyerShip [] destroyerList; 
 		private int numDestroyer=0;
 		
-		public void inilist(int n) {
+		public void inilist(int n) {//mejor el nivel
 			int rowIni=3, columnIni=6;
 			for(int i=0;i<n;i++) {
 				addDestroyer(rowIni,columnIni);

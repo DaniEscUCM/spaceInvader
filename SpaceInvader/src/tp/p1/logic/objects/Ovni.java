@@ -26,4 +26,10 @@ public class Ovni {
 	public String toString() {
 		return draw + "["+ health + "]"; 
 	}
+	public int getRow() {
+		return fila;
+	}
+	public int getColumn() {
+		return columna;
+	}
 }
