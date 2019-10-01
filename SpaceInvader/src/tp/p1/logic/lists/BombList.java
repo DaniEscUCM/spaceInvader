@@ -5,13 +5,19 @@ import tp.p1.logic.objects.Bomb;
 
 public class BombList {
 	private Bomb [] list;
-	private int n;
+	private int max;
+	private int count = 0;
 	public BombList(int n) {
 		super();
-		this.n = n;
-		list = new Bomb[n];
+		this.max = n;
+		this.count = 0;
+		list = new Bomb[max];
 	}
 	
+	public int getCount() {
+		return count;
+	}
+
 	public int find(int row, int col) {
 		int index = -1;
 		int i = 0;
@@ -26,6 +32,7 @@ public class BombList {
 	public boolean insert(int row, int col) {
 		if (find(row,col) == -1) {
 			list[list.length] = new Bomb(row,col);
+			count++;
 			return true;
 			}
 		else {return false;

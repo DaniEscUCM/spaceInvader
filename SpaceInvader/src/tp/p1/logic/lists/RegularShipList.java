@@ -4,11 +4,13 @@ import tp.p1.logic.objects.RegularShip;
 
 public class RegularShipList {
 	private RegularShip[] list;
-	private int n;
+	private int max;
+	private int count;
 	
 	public RegularShipList(int n) {
-		this.n = n;
-		list = new RegularShip[n];
+		this.max = max;
+		this.count = 0;
+		list = new RegularShip[max];
 	}
 	public int find(int row, int col) {
 		int index = -1;
@@ -24,6 +26,7 @@ public class RegularShipList {
 	public boolean insert(int row, int col) {
 		if (find(row,col) == -1) {
 			list[list.length] = new RegularShip(row,col);
+			count++;
 			return true;
 			}
 		else {return false;
@@ -39,6 +42,10 @@ public class RegularShipList {
 		for(int i = index; i < list.length - 1; i++) {
 			list[i] = list[i + 1];
 		}
+	}
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return this.count;
 	}
 	
 	

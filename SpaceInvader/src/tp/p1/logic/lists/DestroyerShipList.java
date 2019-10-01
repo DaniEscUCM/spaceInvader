@@ -26,7 +26,7 @@ public class DestroyerShipList {
 			numDestroyer++;
 		}
 		
-		//devolverá la posición si lo consigue, sino devuelve -1
+		//devolverï¿½ la posiciï¿½n si lo consigue, sino devuelve -1
 		public int search(int rowS,int columnS) {
 			int pos=0;
 			boolean finded=false;
@@ -50,6 +50,11 @@ public class DestroyerShipList {
 		
 		public int getNumDestroyer() {
 			return numDestroyer;
+		}
+
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return this.numDestroyer;
 		}
 		
 		//NO SE ME OCURREN GETS...
