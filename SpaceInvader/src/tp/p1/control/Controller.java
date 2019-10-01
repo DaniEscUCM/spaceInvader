@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import tp.p1.logic.Game;
 
-public class Controller {
+public class Controller {//blah
 	private Game game;
 	private Scanner in;
 	

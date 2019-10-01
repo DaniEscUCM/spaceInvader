@@ -8,7 +8,7 @@ import tp.p1.logic.Game;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		Scanner in = new Scanner(System.in);
 		Game game = new Game();
 		Controller control = new Controller(game, in);
