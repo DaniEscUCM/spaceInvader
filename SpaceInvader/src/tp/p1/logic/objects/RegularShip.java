@@ -2,11 +2,12 @@ package tp.p1.logic.objects;
 
 public class RegularShip {
 
-	private int vida = 2;
+	private int health = 2;
 	private int row;
 	private int col;
 	private int puntos = 5;
 	private int harm = 0;
+	private final String draw = "C";
 	
 	public RegularShip(int row, int col) {
 		this.row = row;
@@ -43,6 +44,10 @@ public class RegularShip {
 	}
 	
 	private void hurt() {
-		vida--;
+		health--;
+	}
+	
+	public String toString(){
+		return "C[" + health + "]";
 	}
 }
