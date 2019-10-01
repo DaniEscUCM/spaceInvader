@@ -14,11 +14,11 @@ public class Ovni {
 	}
 	
 	private void hurt() {
-		vida--;
+		health--;
 	}
 	
 	private boolean shockWave() {
-		if(vida == 0)
+		if(health == 0)
 			return true;
 		else return false;
 	}

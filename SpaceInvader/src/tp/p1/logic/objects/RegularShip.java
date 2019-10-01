@@ -47,7 +47,7 @@ public class RegularShip {
 		health--;
 	}
 	
-	public String toString{
+	public String toString(){
 		return "C[" + health + "]";
 	}
 }

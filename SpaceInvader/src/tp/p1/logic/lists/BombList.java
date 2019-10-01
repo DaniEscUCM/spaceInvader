@@ -2,7 +2,6 @@ package tp.p1.logic.lists;
 //blah
 
 import tp.p1.logic.objects.Bomb;
-import tp.p1.logic.objects.RegularShip;
 
 public class BombList {
 	private Bomb [] list;
