@@ -23,14 +23,27 @@ public class Game {
 	private RegularShipList regularShipList;
 	private UCMShip ucmShip;
 	private UCMShipLaser ucmLaser;
-	private Ovni ovni; 
+	private Ovni ovni;
 	
+	private int cycles;
+	private int points;
+	private int remainingAliens;
+	private int row = 8;
+	private int col = 9;
+	
+	
+	public void initGame() {
+		this.cycles = 1;
+		this.points = 0;
+		this.destroyerShipList = new DestroyerShipList(); // seria pasarle tmbn row*col
+		this.regularShipList = new RegularShipList(row*col);
+		this.bombList = new BombList(row*col);
+		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
+	}
 	
 	public void update() {
 		
 	}
-	
-	
 	public String toStringObjectAt(int i, int j) {
 		int pos=-1;
 		String draw=" ";
