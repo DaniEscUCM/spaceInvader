@@ -21,5 +21,11 @@ public class UCMShipLaser {
 	public String toStringLaser() {
 		return draw;
 	}
+	public int getRow() {
+		return row;
+	}
+	public int getColumn() {
+		return column;
+	}
 	
 }

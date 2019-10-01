@@ -3,6 +3,9 @@ package tp.p1.logic;
 import tp.p1.logic.lists.BombList;
 import tp.p1.logic.lists.DestroyerShipList;
 import tp.p1.logic.lists.RegularShipList;
+import tp.p1.logic.objects.Ovni;
+import tp.p1.logic.objects.UCMShip;
+import tp.p1.logic.objects.UCMShipLaser;
 
 //el update inicializa con el tiempo en que se cambia y en 0 se mueve.
 	//split(" ")...palabra a palabra?
@@ -18,22 +21,27 @@ public class Game {
 	private BombList bombList;
 	private DestroyerShipList destroyerShipList;
 	private RegularShipList regularShipList;
+	private UCMShip ucmShip;
+	private UCMShipLaser ucmLaser;
+	private Ovni ovni; 
 	
 	
 	public void update() {
 		
 	}
 	
-	public void draw() {
+	
+	public String toStringObjectAt(int i, int j) {
+		int pos=-1;
+		String draw=" ";
 		
-	}
-	
-	
-	
-
-		public String toStringObjectAt(int i, int j) {
-			
-			
-			
-			return "vacio";}//busca en la posicion y devuelve el string
+		if(this.destroyerShipList.search(i, j)!=pos) {draw=this.destroyerShipList.toString();}
+		else if(this.bombList.find(i, j)!=pos){draw=this.bombList.toString();}
+		else if(this.regularShipList.find(i, j)!=pos) {draw=this.regularShipList.toString();}
+		else if(this.ucmShip.getRow()==i & this.ucmShip.getColumn()==j) {draw=this.ucmShip.toString();}//tal vez crear metodo para que compare directamente con las posiciones
+		else if(this.ucmLaser!=null & this.ucmLaser.getRow()==i & this.ucmLaser.getColumn()==j) {draw=this.ucmLaser.toStringLaser();}
+		else if(this.ovni!=null & this.ovni.getRow()==i & this.ovni.getColumn()==j) {draw=this.ovni.toString();}
+					
+		return draw;
+		}//busca en la posicion y devuelve el string
 }
