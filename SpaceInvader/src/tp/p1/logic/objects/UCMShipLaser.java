@@ -5,17 +5,17 @@ public class UCMShipLaser {
 	private final int harm=1;
 	private final String draw= "oo";
 	
+	public UCMShipLaser(int ucmColumn) {
+		row=6;
+		column=ucmColumn-1;
+	}
+	
 	public void move() {
 		row--;
 	}
 	
 	public int getHarm() {
 		return harm;
-	}
-	
-	public void inipos(int ucmRow, int ucmColumn) {
-		row=ucmRow;
-		column=ucmColumn-1;
 	}
 	
 	public String toStringLaser() {

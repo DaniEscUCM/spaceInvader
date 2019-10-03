@@ -3,21 +3,20 @@ package tp.p1.logic.objects;
 public class Ovni {
 	
 	private final int fila = 0;
-	private int columna;
+	private int columna=8;
 	int health = 1;
-	int puntos = 10;
-	private int harm = 0;
+	int puntos = 25;
 	private final String draw = "O";
 	
-	private void move (int steps) {
-		columna += steps;
+	private void move () {
+		columna --;
 	}
 	
 	private void hurt() {
 		health--;
 	}
 	
-	private boolean shockWave() {
+	private boolean shockWave() {//tal vez en otro lado??
 		if(health == 0)
 			return true;
 		else return false;

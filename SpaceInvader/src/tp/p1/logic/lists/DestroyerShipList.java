@@ -1,4 +1,5 @@
 package tp.p1.logic.lists;
+import tp.p1.logic.Level;
 import tp.p1.logic.objects.DestroyerShip;
 
 
@@ -6,8 +7,10 @@ public class DestroyerShipList {
 		private DestroyerShip [] destroyerList; 
 		private int numDestroyer=0;
 		
-		public void inilist(int n) {//mejor el nivel
+		public DestroyerShipList(int n, Level level) {//mejor el nivel
 			int rowIni=3, columnIni=6;
+			destroyerList= new DestroyerShip[n];
+			if(level==Level.HARD |level==Level.INSANE) {rowIni++;}
 			for(int i=0;i<n;i++) {
 				addDestroyer(rowIni,columnIni);
 				if(columnIni==7) {
@@ -21,12 +24,11 @@ public class DestroyerShipList {
 		}
 		
 		public void addDestroyer(int fila,int columna) {
-			destroyerList[numDestroyer]=new DestroyerShip();
-			destroyerList[numDestroyer].iniRowColum(fila,columna);
+			destroyerList[numDestroyer]=new DestroyerShip(fila, columna);
 			numDestroyer++;
 		}
 		
-		//devolver� la posici�n si lo consigue, sino devuelve -1
+		//devolveria la posicion si lo consigue, sino devuelve -1
 		public int search(int rowS,int columnS) {
 			int pos=0;
 			boolean finded=false;
@@ -40,20 +42,17 @@ public class DestroyerShipList {
 			return pos;
 		}
 		
-		public int destroyerhit(int pos) {
+		public void destroyerhit(int pos) {
 			for(int i=pos;i<numDestroyer-1;i++) {
 				destroyerList[i]=destroyerList[i+1];
 			}
-			numDestroyer--;
-			return 0;
-		}
+			numDestroyer--;		}
 		
 		public int getNumDestroyer() {
 			return numDestroyer;
 		}
 
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return this.numDestroyer;
 		}
 		

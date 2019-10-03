@@ -6,10 +6,13 @@ import tp.p1.logic.objects.Bomb;
 public class BombList {
 	private Bomb [] list;
 	private int max;
+	private double frec;
 	private int count = 0;
-	public BombList(int n) {
+	
+	public BombList(double n) {//maximo de disparo??, sería siempre igual
 		super();
-		this.max = n;
+		//this.max = n;
+		frec=n;
 		this.count = 0;
 		list = new Bomb[max];
 	}

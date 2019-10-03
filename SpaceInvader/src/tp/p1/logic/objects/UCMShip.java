@@ -4,9 +4,10 @@ import tp.p1.logic.Move;
 
 public class UCMShip {
 		private int health=3;
-		private int column;
+		private int column=4;
 		private final String draw= "^__^";
 		private final int row=7;//nunca se mueve de la ultima fila
+		
 
 		public void move_UCMship (int steps, Move direction) {//ver direccion, tal vez enumerado
 			if (direction == Move.RIGHT) {

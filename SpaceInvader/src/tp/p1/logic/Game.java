@@ -25,24 +25,30 @@ public class Game {
 	private UCMShipLaser ucmLaser;
 	private Ovni ovni;
 	
-	private int cycles;
-	private int points;
+	private int cycles=0;
+	private int points=0;
 	private int remainingAliens;
 	private int row = 8;
 	private int col = 9;
 	
 	
-	public void initGame() {
-		this.cycles = 1;
-		this.points = 0;
-		this.destroyerShipList = new DestroyerShipList(); // seria pasarle tmbn row*col
-		this.regularShipList = new RegularShipList(row*col);
-		this.bombList = new BombList(row*col);
+	public void initGame(Level level) {
+		int n;
+		n=level.getNumDestroyers();
+		this.destroyerShipList = new DestroyerShipList(n,level); // seria pasarle tmbn row*col
+		n=level.getNumRegular();
+		this.regularShipList = new RegularShipList(n);
+		double f=level.getFrecShoot();
+		this.bombList = new BombList(f);//el nivel da la frecuencia de disparo
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
 	}
 	
 	public void update() {
 		
+		if(remainingAliens!=0) {
+			this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
+		}
+		else {}//se acaba el juego y gana el jugador
 	}
 	
 	public String toStringObjectAt(int i, int j) {
