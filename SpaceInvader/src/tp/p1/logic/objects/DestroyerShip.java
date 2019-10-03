@@ -7,9 +7,9 @@ public class DestroyerShip {
 	private int row, column;
 	private final int points=10;
 	
-	public DestroyerShip(int row0, int col) {
-		row=row0;
-		column=col;
+	public DestroyerShip(int row, int col) {
+		this.row=row;
+		this.column=col;
 	}
 	
 	public void destroyerDeath() {

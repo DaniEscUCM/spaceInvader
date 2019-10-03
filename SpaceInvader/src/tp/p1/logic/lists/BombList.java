@@ -48,9 +48,10 @@ public class BombList {
 		 *if (index != -1){  // a lo mejor no hace falta comprobarlo si se da x hecho que existe
 		 * for....
 		 * */
-		for(int i = index; i < list.length - 1; i++) {
+		for(int i = index; i <count- 1; i++) {//con el lenght no va a funcionar cuando se empiecen a eleminar
 			list[i] = list[i + 1];
 		}
+		count--;
 	}
 	
 }
