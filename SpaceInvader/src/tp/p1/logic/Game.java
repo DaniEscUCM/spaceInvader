@@ -45,7 +45,7 @@ public class Game {
 	
 	public void update() {
 		
-		if(remainingAliens!=0) {
+		if(remainingAliens!=0) {//mal
 			this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
 		}
 		else {}//se acaba el juego y gana el jugador

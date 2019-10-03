@@ -6,7 +6,7 @@ public class RegularShip {
 	private int row;
 	private int col;
 	private int puntos = 5;
-	private int harm = 0;
+	private int harm = 0;//what
 	private final String draw = "C";
 	
 	public RegularShip(int row, int col) {
@@ -31,11 +31,11 @@ public class RegularShip {
 	}
 
 	public int getHarm() {
-		return harm;
+		return harm;//what
 	}
 
 	public void setHarm(int harm) {
-		this.harm = harm;
+		this.harm = harm;//what
 	}
 
 	private void move(int row, int col) {
