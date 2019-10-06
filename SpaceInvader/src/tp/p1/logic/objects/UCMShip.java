@@ -7,13 +7,26 @@ public class UCMShip {
 		private int column=4;
 		private final String draw= "^__^";
 		private final int row=7;//nunca se mueve de la ultima fila
-		
+		public UCMShipLaser laser=null;//no se si va aqui, ni si es publico
 
 		public void move_UCMship (int steps, Move direction) {//ver direccion, tal vez enumerado
 			if (direction == Move.RIGHT) {
 				column+=steps;
 			}
 			else column-=steps;
+		}
+		public boolean getCanShoot() {
+			return this.laser!=null;
+		}
+		
+		public void shoot() {//si puede disparar, dispara
+			if(this.getCanShoot()) {
+				this.laser= new UCMShipLaser(this.column);
+			}
+		}
+		
+		public void laserDestroyed() {
+			this.laser=null;
 		}
 		
 		public void hurt() {

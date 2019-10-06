@@ -16,10 +16,12 @@ public class DestroyerShip {
 		health--;
 	}
 	
-	public void destroyermove(boolean border, Move dir) {//dir move
-		if(border) {row++;}
-		else if(dir==Move.RIGHT) {column++;}
-		else {column--;}
+	public void destroyermove( Move dir) {//dir move
+		switch (dir){
+		case DOWN:row++;
+		case RIGHT:column++;
+		default: column--;
+		}
 	}
 	
 	public int getHealth() {

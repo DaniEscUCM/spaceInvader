@@ -3,7 +3,7 @@ import tp.p1.logic.Level;
 import tp.p1.logic.objects.DestroyerShip;
 
 
-public class DestroyerShipList {
+public class DestroyerShipList {//hay que hacer el comando move, no se como verificar si estan en el borde, igual con regular
 		private DestroyerShip [] destroyerList; 
 		private int numDestroyer=0;
 		

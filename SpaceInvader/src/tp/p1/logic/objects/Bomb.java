@@ -6,6 +6,12 @@ public class Bomb {
 	private int harm = 1;
 	private final String draw = ".";
 
+	public Bomb(int row, int col) {
+		super();//??
+		this.row = row;
+		this.col = col;
+	}
+
 	public int getRow() {
 		return row;
 	}
@@ -36,16 +42,8 @@ public class Bomb {
 	}
 
 
-	public Bomb(int row, int col) {
-		super();
-		this.row = row;
-		this.col = col;
-	}
-
-
-	private void move(int fila, int col) {
-		this.row = fila;
-		this.col = col;
+	public void move() {
+		this.row ++;
 	}
 	
 	public String toString() {

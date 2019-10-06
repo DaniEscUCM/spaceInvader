@@ -22,7 +22,6 @@ public class Game {
 	private DestroyerShipList destroyerShipList;
 	private RegularShipList regularShipList;
 	private UCMShip ucmShip;
-	private UCMShipLaser ucmLaser;
 	private Ovni ovni;
 	
 	private int cycles=0;
@@ -34,21 +33,30 @@ public class Game {
 	
 	public void initGame(Level level) {
 		int n;
+		this.ucmShip=new UCMShip();
 		n=level.getNumDestroyers();
 		this.destroyerShipList = new DestroyerShipList(n,level); // seria pasarle tmbn row*col
 		n=level.getNumRegular();
 		this.regularShipList = new RegularShipList(n);
 		double f=level.getFrecShoot();
-		this.bombList = new BombList(f);//el nivel da la frecuencia de disparo
+		this.bombList = new BombList(f,level.getNumDestroyers());//el nivel da la frecuencia de disparo
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
 	}
 	
 	public void update() {
+		if (!this.ucmShip.getCanShoot()) {this.ucmShip.laser.move();}
+		if (this.bombList.getCount()!=0) {this.bombList.move();}
 		
-		if(remainingAliens!=0) {//mal
-			this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
-		}
-		else {}//se acaba el juego y gana el jugador
+		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();//final del juego
+		if(this.remainingAliens==0) {}//jugador gana
+		else if (this.ucmShip.getHealth()==0){}//jugador pierde
+		else {this.cycles++;}
+		
+	}
+	public void commands() {//lo hago en el laboratorio
+		String comman;
+		
+		
 	}
 	
 	public String toStringObjectAt(int i, int j) {
@@ -59,7 +67,7 @@ public class Game {
 		else if(this.bombList.find(i, j)!=pos){draw=this.bombList.toString();}
 		else if(this.regularShipList.find(i, j)!=pos) {draw=this.regularShipList.toString();}
 		else if(this.ucmShip.getRow()==i & this.ucmShip.getColumn()==j) {draw=this.ucmShip.toString();}//tal vez crear metodo para que compare directamente con las posiciones
-		else if(this.ucmLaser!=null & this.ucmLaser.getRow()==i & this.ucmLaser.getColumn()==j) {draw=this.ucmLaser.toStringLaser();}
+		else if(!this.ucmShip.getCanShoot() & (this.ucmShip.laser.getRow()==i & this.ucmShip.laser.getColumn()==j)) {draw=this.ucmShip.laser.toStringLaser();}
 		else if(this.ovni!=null & this.ovni.getRow()==i & this.ovni.getColumn()==j) {draw=this.ovni.toString();}
 					
 		return draw;

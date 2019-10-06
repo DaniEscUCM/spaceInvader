@@ -9,9 +9,9 @@ public class BombList {
 	private double frec;
 	private int count = 0;
 	
-	public BombList(double n) {//maximo de disparo??, sería siempre igual
+	public BombList(double n, int maxn) {
 		super();
-		//this.max = n;
+		this.max = maxn;
 		frec=n;
 		this.count = 0;
 		list = new Bomb[max];
@@ -52,6 +52,12 @@ public class BombList {
 			list[i] = list[i + 1];
 		}
 		count--;
+	}
+	
+	public void move() {
+		for(int i=0; i<count;i++) {
+			this.list[i].move();
+		}
 	}
 	
 }
