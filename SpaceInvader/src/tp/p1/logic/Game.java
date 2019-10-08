@@ -1,5 +1,7 @@
 package tp.p1.logic;
 
+import java.util.Random;
+
 import tp.p1.logic.lists.BombList;
 import tp.p1.logic.lists.DestroyerShipList;
 import tp.p1.logic.lists.RegularShipList;
@@ -24,6 +26,9 @@ public class Game {
 	private UCMShip ucmShip;
 	private Ovni ovni;
 	
+	private Level level;
+	private Random rand;
+	
 	private int cycles=0;
 	private int points=0;
 	private int remainingAliens;
@@ -31,6 +36,12 @@ public class Game {
 	private int col = 9;
 	
 	
+	public Game(Level level, Random rand) {
+		// TODO Auto-generated constructor stub
+		this.level = level;
+		this.rand = rand;
+	}
+
 	public void initGame(Level level) {
 		int n;
 		this.ucmShip=new UCMShip();
