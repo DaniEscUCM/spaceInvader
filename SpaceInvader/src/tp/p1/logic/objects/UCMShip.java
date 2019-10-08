@@ -5,9 +5,9 @@ import tp.p1.logic.Move;
 public class UCMShip {
 		private int health=3;
 		private int column=4;
-		private final String draw= "^__^";
+		private String draw= "^__^";
 		private final int row=7;//nunca se mueve de la ultima fila
-		public UCMShipLaser laser=null;//no se si va aqui, ni si es publico
+		public UCMShipLaser laser=null;//no se si va aqui, ni si es publico<--preguntar
 
 		public void move_UCMship (int steps, Move direction) {//ver direccion, tal vez enumerado
 			if (direction == Move.RIGHT) {
@@ -45,5 +45,9 @@ public class UCMShip {
 		}
 		public int getColumn() {
 			return column;
+		}
+		
+		public void setDraw(String newD) {
+			this.draw=newD;
 		}
 }

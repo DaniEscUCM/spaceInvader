@@ -34,6 +34,8 @@ public class Game {
 	private int remainingAliens;
 	private int row = 8;
 	private int col = 9;
+	private boolean finish=false;
+	private int wins;//0 nadie gana,1 gana player y 2 gana aliens
 	
 	
 	public Game(Level level, Random rand) {
@@ -55,15 +57,56 @@ public class Game {
 	}
 	
 	public void update() {
-		if (!this.ucmShip.getCanShoot()) {this.ucmShip.laser.move();}
-		if (this.bombList.getCount()!=0) {this.bombList.move();}
+		int aux1,aux2,aux3;
+		if (!this.ucmShip.getCanShoot()) {
+			this.ucmShip.laser.move();
+			aux1=this.ucmShip.laser.getRow();
+			aux2=this.ucmShip.laser.getColumn();			
+			if(this.ucmShip.laser.getRow()<0|(this.destroyerShipList.destroyerhit(aux1,aux2))|(this.regularShipList.regularHit(aux1,aux2))) {
+				this.ucmShip.laser=null;
+			}	
+		}		
+		if (this.bombList.getCount()!=0) {
+			this.bombList.move();
+			aux3=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
+			if(aux3!=-1) {
+				this.ucmShip.hurt();
+				this.bombList.delete(aux3);
+			}
+		}
+		
+		//commandComputer()->mueve las naves alienigenas si hace falta
 		
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();//final del juego
-		if(this.remainingAliens==0) {}//jugador gana
-		else if (this.ucmShip.getHealth()==0){}//jugador pierde
-		else {this.cycles++;}
+		if(this.remainingAliens==0) {finish=true;wins=1;}//jugador gana
+		else if (this.ucmShip.getHealth()==0 | this.aliensWins()){
+			finish =true;
+			wins=2;
+			this.ucmShip.setDraw("!xx!");
+			}//jugador pierde, hacer metodo para ver si esta en borde
+		else {this.cycles++;}//continua
 		
 	}
+	
+	public boolean aliensWins() {
+		boolean resul=true;
+		int i=0,aux;
+		if (this.destroyerShipList.getCount()!=0) {
+			while(resul & i<(this.destroyerShipList.getCount())) {
+				aux=this.destroyerShipList.search(7,i);
+				resul=aux!=-1;
+			}
+		}
+			
+		if(this.regularShipList.getCount()!=0 & resul) {
+			while(resul & i<this.destroyerShipList.getCount()){
+				aux=this.regularShipList.find(7, i);
+				resul=aux!=-1;
+			}
+		}		
+		return resul;
+	}
+	
 	public void commands() {//lo hago en el laboratorio
 		String comman;
 		
@@ -83,4 +126,16 @@ public class Game {
 					
 		return draw;
 		}//busca en la posicion y devuelve el string
+	
+	public boolean getFinish() {
+		return this.finish;
+	}
+	
+	public int getWins() {
+		return this.wins;
+	}
+	
+	public void setFinish(boolean in) {
+		this.finish=in;
+	}
 }

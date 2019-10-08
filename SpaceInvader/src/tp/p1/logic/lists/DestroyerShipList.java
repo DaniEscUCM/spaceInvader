@@ -42,11 +42,17 @@ public class DestroyerShipList {//hay que hacer el comando move, no se como veri
 			return pos;
 		}
 		
-		public void destroyerhit(int pos) {
-			for(int i=pos;i<numDestroyer-1;i++) {
-				destroyerList[i]=destroyerList[i+1];
-			}
-			numDestroyer--;		}
+		public boolean destroyerhit(int rowl, int columnl) {
+			int pos=this.search(rowl, columnl);
+			boolean resul=pos!=1;
+			if(resul) {
+				for(int i=pos;i<numDestroyer-1;i++) {
+					destroyerList[i]=destroyerList[i+1];
+				}
+				numDestroyer--;	
+			}	
+			return resul;
+		}
 		
 		public int getNumDestroyer() {
 			return numDestroyer;
@@ -56,5 +62,5 @@ public class DestroyerShipList {//hay que hacer el comando move, no se como veri
 			return this.numDestroyer;
 		}
 		
-		//NO SE ME OCURREN GETS...
+		
 }

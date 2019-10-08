@@ -3,7 +3,7 @@ package tp.p1.logic.objects;
 public class Bomb {
 	private int row;
 	private int col;
-	private int harm = 1;
+	//private int harm = 1;
 	private final String draw = ".";
 
 	public Bomb(int row, int col) {
@@ -31,7 +31,7 @@ public class Bomb {
 		this.col = col;
 	}
 
-
+/*
 	public int getHarm() {
 		return harm;
 	}
@@ -39,7 +39,7 @@ public class Bomb {
 
 	public void setHarm(int harm) {
 		this.harm = harm;
-	}
+	}*/
 
 
 	public void move() {

@@ -21,7 +21,7 @@ public class RegularShipList {
 	public int find(int row, int col) {
 		int index = -1;
 		int i = 0;
-		while(i < list.length && index != -1) {
+		while(i < this.count && index != -1) {
 			if(list[i].getRow()== row && list[i].getCol() == col)
 				index = i;
 			i++;
@@ -43,6 +43,13 @@ public class RegularShipList {
 		for(int i = index; i < list.length - 1; i++) {
 			list[i] = list[i + 1];
 		}
+	}
+	
+	public boolean regularHit(int row, int col) {
+		int pos=this.find(row, col);
+		boolean resul=pos!=0;
+		if(resul) {delete(pos);}
+		return resul;
 	}
 	public int getCount() {
 		return this.count;

@@ -11,10 +11,10 @@ public class DestroyerShip {
 		this.row=row;
 		this.column=col;
 	}
-	
+	/*
 	public void destroyerDeath() {
 		health--;
-	}
+	}*/
 	
 	public void destroyermove( Move dir) {//dir move
 		switch (dir){

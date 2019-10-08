@@ -54,9 +54,15 @@ public class BombList {
 		count--;
 	}
 	
+	
 	public void move() {
-		for(int i=0; i<count;i++) {
-			this.list[i].move();
+		int i=0;
+		while (i<count) {
+			if(this.list[i].getRow()==8) {delete(i);}
+			else {
+				this.list[i].move();
+				i++;
+			}
 		}
 	}
 	
