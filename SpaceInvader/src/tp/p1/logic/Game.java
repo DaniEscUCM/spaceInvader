@@ -7,7 +7,7 @@ import tp.p1.logic.lists.DestroyerShipList;
 import tp.p1.logic.lists.RegularShipList;
 import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.UCMShip;
-import tp.p1.logic.objects.UCMShipLaser;
+//import tp.p1.logic.objects.UCMShipLaser;
 
 //el update inicializa con el tiempo en que se cambia y en 0 se mueve.
 	//split(" ")...palabra a palabra?
@@ -28,6 +28,7 @@ public class Game {
 	
 	private Level level;
 	private Random rand;
+	private GamePrinter gamePrinter;
 	
 	private int cycles=0;
 	private int points=0;
@@ -39,12 +40,13 @@ public class Game {
 	
 	
 	public Game(Level level, Random rand) {
-		// TODO Auto-generated constructor stub
 		this.level = level;
 		this.rand = rand;
+		this.initGame();
+		
 	}
 
-	public void initGame(Level level) {
+	public void initGame() {
 		int n;
 		this.ucmShip=new UCMShip();
 		n=level.getNumDestroyers();
@@ -54,6 +56,7 @@ public class Game {
 		double f=level.getFrecShoot();
 		this.bombList = new BombList(f,level.getNumDestroyers());//el nivel da la frecuencia de disparo
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
+		this.gamePrinter = new GamePrinter(this, row, col);// no estoy segura de esto
 	}
 	
 	public void update() {
