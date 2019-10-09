@@ -2,6 +2,7 @@ package tp.p1.logic;
 
 import java.util.Random;
 
+import tp.p1.control.Command;
 import tp.p1.logic.lists.BombList;
 import tp.p1.logic.lists.DestroyerShipList;
 import tp.p1.logic.lists.RegularShipList;
@@ -140,5 +141,10 @@ public class Game {
 	
 	public void setFinish(boolean in) {
 		this.finish=in;
+	}
+
+	public void commands(Command cm, Move move, int i) {
+		// Metodo que llama a funciones de game segun el comando; 
+		
 	}
 }

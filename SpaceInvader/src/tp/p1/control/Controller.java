@@ -19,7 +19,7 @@ public class Controller {
 	
 	public void run() {
 		Move move = null;
-		//Command cm = null;
+		Command cm = null;
 		int i = -1;
 		while(true /*game.getFinish()!= false*/) {
 			if(print) {
@@ -30,9 +30,8 @@ public class Controller {
 			// desarrollo del juego
 			
 			if(words.length == 3) { // comando move
-				print = false; // solo sera valido el comando completo.
 				if(words[0].equalsIgnoreCase("MOVE") || words[0].equalsIgnoreCase("M")) {
-					//cm = move;
+					cm = Command.MOVE;
 					if(words[1].equalsIgnoreCase("RIGHT")|| words[1].equalsIgnoreCase("R")) {
 						move = Move.RIGHT;
 					}
@@ -43,45 +42,50 @@ public class Controller {
 						i = Character.getNumericValue(words[2].charAt(3));
 						if(i >= 1 && i <= 2) {
 							// se mueve en esa direccion y esos pasos;
-							print = true;
 						}
 					}
 				}
-				//game.commands(cm, move, i);
 			}
 			else if(words.length == 1) { // cualquier comando 
-				print = true; // puede ser valido todos estos, si no, invalido
 				if(words[0].equalsIgnoreCase("SHOOT") || words[0].equalsIgnoreCase("S")) {
 					// DISPARA
+					cm = Command.SHOOT;
 				}
 				else if(words[0].equalsIgnoreCase("SHOCKWAVE") || words[0].equalsIgnoreCase("W")) {
 					// SHOCKWAVE = TRUE
 					//game.setShockwave(true);
+					cm = Command.SHOCKWAVE;
 				}
 				else if(words[0].equalsIgnoreCase("RESET") || words[0].equalsIgnoreCase("R")) {
 					//RESET
 					//game.reset();
+					cm = Command.RESET;
 				}
 				else if(words[0].equalsIgnoreCase("LIST") || words[0].equalsIgnoreCase("L")) {
 					//game.printList()
+					cm = Command.LIST;
 				}
 				else if(words[0].equalsIgnoreCase("EXIT") || words[0].equalsIgnoreCase("E")) {
 					//game.setFinish(true);
+					cm = Command.EXIT;
 				}
 				else if(words[0].equalsIgnoreCase("HELP") || words[0].equalsIgnoreCase("H")) {
 					//game.showHelp();
+					cm = Command.HELP;
 				}
 				else if(words[0].equalsIgnoreCase("") || words[0].equalsIgnoreCase("N")) {
 					print = true; // por poner algo
-				}
-				else {
-					print = false;
+					cm = Command.NONE;
 				}
 			}
-			if(!print) {
+			if(cm == null) {
 				System.out.println("Invalid command. View command 'Help' or 'H'");
+				print = false;
 			}	
-			else game.update();
+			else {
+				game.commands(cm, move, i);
+				game.update();
+			}
 		}
 		// si wins = true...gana jugador, si no, false.
 		/*
