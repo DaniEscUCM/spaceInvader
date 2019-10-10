@@ -14,11 +14,7 @@ import tp.p1.logic.objects.UCMShip;
 	//split(" ")...palabra a palabra?
 	// showUsage() -> error
 
-//update destroyer: ahi esta border y sus bombas
-//los aliens ganan si han llegado a la ultima fila
-//posicion inicial -> initgame
-//falta la clase move 
-//blah
+
 public class Game {
 	
 	private BombList bombList;
@@ -29,7 +25,7 @@ public class Game {
 	
 	private Level level;
 	private Random rand;
-	private GamePrinter gamePrinter;
+	private GamePrinter gamePrinter;//para que?
 	
 	private int cycles=0;
 	private int points=0;
@@ -49,26 +45,41 @@ public class Game {
 
 	public void initGame() {
 		int n;
+		this.ovni=null;
 		this.ucmShip=new UCMShip();
 		n=level.getNumDestroyers();
 		this.destroyerShipList = new DestroyerShipList(n,level); // seria pasarle tmbn row*col
 		n=level.getNumRegular();
 		this.regularShipList = new RegularShipList(n);
-		double f=level.getFrecShoot();
-		this.bombList = new BombList(f,level.getNumDestroyers());//el nivel da la frecuencia de disparo
+		this.bombList = new BombList(level.getNumDestroyers());
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
 		this.gamePrinter = new GamePrinter(this, row, col);// no estoy segura de esto
 	}
 	
 	public void update() {
 		int aux1,aux2,aux3;
+		
+		//commandComputer()->mueve las naves alienigenas si hace falta
+		
 		if (!this.ucmShip.getCanShoot()) {
 			this.ucmShip.laser.move();
 			aux1=this.ucmShip.laser.getRow();
 			aux2=this.ucmShip.laser.getColumn();			
-			if(this.ucmShip.laser.getRow()<0|(this.destroyerShipList.destroyerhit(aux1,aux2))|(this.regularShipList.regularHit(aux1,aux2))) {
+			if(this.ucmShip.laser.getRow()<0) {
 				this.ucmShip.laser=null;
-			}	
+			}
+			else if(this.destroyerShipList.destroyerhit(aux1,aux2)) {
+				this.points+=this.destroyerShipList.getPoints();
+				this.ucmShip.laser=null;
+			}
+			else if (this.regularShipList.regularHit(aux1,aux2)) {
+				this.points+=this.regularShipList.getPoints();
+				this.ucmShip.laser=null;
+			}
+			else if(this.ovni!=null&this.ovni.hurt(aux1,aux2)) {
+				this.points+=this.ovni.getPoint();
+				this.ucmShip.laser=null;
+			}
 		}		
 		if (this.bombList.getCount()!=0) {
 			this.bombList.move();
@@ -78,8 +89,9 @@ public class Game {
 				this.bombList.delete(aux3);
 			}
 		}
-		
-		//commandComputer()->mueve las naves alienigenas si hace falta
+		if (this.ovni!=null) {
+			
+		}
 		
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();//final del juego
 		if(this.remainingAliens==0) {finish=true;wins=1;}//jugador gana
@@ -87,7 +99,7 @@ public class Game {
 			finish =true;
 			wins=2;
 			this.ucmShip.setDraw("!xx!");
-			}//jugador pierde, hacer metodo para ver si esta en borde
+			}
 		else {this.cycles++;}//continua
 		
 	}
@@ -98,24 +110,19 @@ public class Game {
 		if (this.destroyerShipList.getCount()!=0) {
 			while(resul & i<(this.destroyerShipList.getCount())) {
 				aux=this.destroyerShipList.search(7,i);
-				resul=aux!=-1;
+				resul=aux==-1;
 			}
 		}
 			
 		if(this.regularShipList.getCount()!=0 & resul) {
 			while(resul & i<this.destroyerShipList.getCount()){
 				aux=this.regularShipList.find(7, i);
-				resul=aux!=-1;
+				resul=aux==-1;
 			}
 		}		
 		return resul;
 	}
-	
-	public void commands() {//lo hago en el laboratorio
-		String comman;
-		
-		
-	}
+
 	
 	public String toStringObjectAt(int i, int j) {
 		int pos=-1;
@@ -146,5 +153,27 @@ public class Game {
 	public void commands(Command cm, Move move, int i) {
 		// Metodo que llama a funciones de game segun el comando; 
 		
+	}
+	
+	public void computerAction() {
+		if(this.level.getSpeed()%this.cycles==0) {
+			if(this.destroyerShipList.isBorder()|this.regularShipList.isBorder()) {
+				this.destroyerShipList.move(Move.DOWN);
+				this.regularShipList.move(Move.DOWN);
+			}
+			else if (this.cycles%2==0) {
+				this.destroyerShipList.move(Move.RIGHT);
+				this.regularShipList.move(Move.RIGHT);
+			}
+			else {
+				this.destroyerShipList.move(Move.LEFT);
+				this.regularShipList.move(Move.LEFT);
+			}
+		}
+		//no se como es lo de random
+	}
+	
+	public int getPoints() {
+		return points;
 	}
 }

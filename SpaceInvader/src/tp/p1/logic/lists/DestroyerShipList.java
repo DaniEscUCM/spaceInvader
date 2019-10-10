@@ -1,11 +1,13 @@
 package tp.p1.logic.lists;
 import tp.p1.logic.Level;
+import tp.p1.logic.Move;
 import tp.p1.logic.objects.DestroyerShip;
 
 
 public class DestroyerShipList {//hay que hacer el comando move, no se como verificar si estan en el borde, igual con regular
 		private DestroyerShip [] destroyerList; 
 		private int numDestroyer=0;
+		private final int points=10;
 		
 		public DestroyerShipList(int n, Level level) {//mejor el nivel
 			int rowIni=3, columnIni=6;
@@ -21,6 +23,10 @@ public class DestroyerShipList {//hay que hacer el comando move, no se como veri
 					columnIni++;
 				}
 			}
+		}
+		
+		public int getPoints() {
+			return points;
 		}
 		
 		public void addDestroyer(int fila,int columna) {
@@ -60,6 +66,22 @@ public class DestroyerShipList {//hay que hacer el comando move, no se como veri
 
 		public int getCount() {
 			return this.numDestroyer;
+		}
+		
+		public boolean isBorder() {
+			int i=0;
+			boolean resul=false;
+			while(!resul & i<this.numDestroyer) {
+				resul=this.destroyerList[i].getColumn()==0 |this.destroyerList[i].getColumn()==8;
+			}
+			
+			return resul;
+		}
+		
+		public void move(Move dir) {
+			for(int i=0;i<this.numDestroyer;i++) {
+				this.destroyerList[i].destroyermove(dir);
+			}
 		}
 		
 		

@@ -1,11 +1,12 @@
 package tp.p1.logic.objects;
 
+import tp.p1.logic.Move;
+
 public class RegularShip {
 
 	private int health = 2;
 	private int row;
 	private int col;
-	private int puntos = 5;
 	private final String draw = "C";
 	
 	public RegularShip(int row, int col) {
@@ -28,18 +29,24 @@ public class RegularShip {
 	public void setCol(int col) {
 		this.col = col;
 	}
+	
+	public int getHealth() {
+		return this.health;
+	}
 
-
-	private void move(int row, int col) {
-		this.row = row;
-		this.col = col;
+	public void move(Move dir) {
+		switch (dir){
+		case DOWN:row++;
+		case RIGHT:col++;
+		default: col--;
+		}
 	}
 	
-	private void hurt() {
+	public void hurt() {
 		health--;
 	}
 	
 	public String toString(){
-		return "C[" + health + "]";
+		return this.draw+"[" + health + "]";
 	}
 }

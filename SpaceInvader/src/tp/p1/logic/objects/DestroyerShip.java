@@ -5,7 +5,7 @@ import tp.p1.logic.Move;
 public class DestroyerShip {
 	private int health=1;
 	private int row, column;
-	private final int points=10;
+	
 	
 	public DestroyerShip(int row, int col) {
 		this.row=row;
@@ -28,9 +28,7 @@ public class DestroyerShip {
 		return health;
 	}
 	
-	public int getPoints() {
-		return points;
-	}
+	
 	public int getRow() {
 		return row;
 	}

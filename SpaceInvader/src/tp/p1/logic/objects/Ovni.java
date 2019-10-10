@@ -8,15 +8,19 @@ public class Ovni {
 	int puntos = 25;
 	private final String draw = "O";
 	
-	private void move () {
+	public void move () {
 		columna --;
 	}
 	
-	private void hurt() {
-		health--;
+	public boolean hurt(int row,int col) {
+		boolean resul=false;
+		if(row==fila & col==columna) {
+			health--;
+		}
+		return resul;
 	}
 	
-	private boolean shockWave() {//tal vez en otro lado??
+	public boolean shockWave() {//tal vez en otro lado??
 		if(health == 0)
 			return true;
 		else return false;
@@ -30,5 +34,9 @@ public class Ovni {
 	}
 	public int getColumn() {
 		return columna;
+	}
+	
+	public int getPoint() {
+		return this.puntos;
 	}
 }

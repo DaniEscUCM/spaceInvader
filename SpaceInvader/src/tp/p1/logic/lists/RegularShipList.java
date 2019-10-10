@@ -1,10 +1,12 @@
 package tp.p1.logic.lists;
 
+import tp.p1.logic.Move;
 import tp.p1.logic.objects.RegularShip;
 
 public class RegularShipList {
 	private RegularShip[] list;
 	private int count=0;
+	private int puntos = 5;
 	
 	public RegularShipList(int n) {
 		int row=8, col=1;
@@ -18,6 +20,11 @@ public class RegularShipList {
 			}
 		}
 	}
+	
+	public int getPoints() {
+		return puntos;
+	}
+	
 	public int find(int row, int col) {
 		int index = -1;
 		int i = 0;
@@ -36,25 +43,41 @@ public class RegularShipList {
 		
 	
 	public void delete(int index) {
-		/*int index = find(row,col);
-		 *if (index != -1){  // a lo mejor no hace falta comprobarlo si se da x hecho que existe
-		 * for....
-		 * */
-		for(int i = index; i < list.length - 1; i++) {
-			list[i] = list[i + 1];
+		if (this.list[index].getHealth()==0) {
+			for(int i = index; i < list.length - 1; i++) {
+				list[i] = list[i + 1];
+			}
 		}
 	}
 	
 	public boolean regularHit(int row, int col) {
 		int pos=this.find(row, col);
 		boolean resul=pos!=0;
-		if(resul) {delete(pos);}
+		if(resul) {
+			this.list[pos].hurt();
+			this.delete(pos);
+		}
 		return resul;
 	}
+	
 	public int getCount() {
 		return this.count;
 	}
 	
+	public boolean isBorder() {
+		int i=0;
+		boolean resul=false;
+		while(!resul & i<this.count) {
+			resul=this.list[i].getCol()==0 |this.list[i].getCol()==8;
+		}
+		
+		return resul;
+	}
 	
+	public void move(Move dir) {
+		for(int i=0;i<this.count;i++) {
+			this.list[i].move(dir);
+		}
+	}
 
 }
