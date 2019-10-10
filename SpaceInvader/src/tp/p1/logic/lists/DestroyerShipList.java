@@ -84,5 +84,13 @@ public class DestroyerShipList {//hay que hacer el comando move, no se como veri
 			}
 		}
 		
+		public int getRow(int index) {
+			return this.destroyerList[index].getRow();
+		}
+		
+		public int getColumn(int index) {
+			return this.destroyerList[index].getColumn();
+		}
+		
 		
 }

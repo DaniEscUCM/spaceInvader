@@ -25,11 +25,12 @@ public class Game {
 	
 	private Level level;
 	private Random rand;
-	private GamePrinter gamePrinter;//para que?
+	private GamePrinter gamePrinter;
 	
 	private int cycles=0;
 	private int points=0;
 	private int remainingAliens;
+	private boolean shockWave=false;
 	private int row = 8;
 	private int col = 9;
 	private boolean finish=false;
@@ -57,31 +58,19 @@ public class Game {
 	}
 	
 	public void update() {
-		int aux1,aux2,aux3;
+		int aux3;
+		boolean aux;
 		
-		//commandComputer()->mueve las naves alienigenas si hace falta
+		computerAction();//->mueve las naves alienigenas si hace falta, revisar si mover todo
 		
 		if (!this.ucmShip.getCanShoot()) {
-			this.ucmShip.laser.move();
-			aux1=this.ucmShip.laser.getRow();
-			aux2=this.ucmShip.laser.getColumn();			
-			if(this.ucmShip.laser.getRow()<0) {
-				this.ucmShip.laser=null;
-			}
-			else if(this.destroyerShipList.destroyerhit(aux1,aux2)) {
-				this.points+=this.destroyerShipList.getPoints();
-				this.ucmShip.laser=null;
-			}
-			else if (this.regularShipList.regularHit(aux1,aux2)) {
-				this.points+=this.regularShipList.getPoints();
-				this.ucmShip.laser=null;
-			}
-			else if(this.ovni!=null&this.ovni.hurt(aux1,aux2)) {
-				this.points+=this.ovni.getPoint();
-				this.ucmShip.laser=null;
+			aux=this.Laserhits(this.ucmShip.laser.getRow(),this.ucmShip.laser.getColumn());	
+			if(!aux) {
+				this.ucmShip.laser.move();
+				this.Laserhits(this.ucmShip.laser.getRow(),this.ucmShip.laser.getColumn());			
 			}
 		}		
-		if (this.bombList.getCount()!=0) {
+		if (this.bombList.getCount()!=0) {//revisar si hacer como con la nave o dejar asi
 			this.bombList.move();
 			aux3=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
 			if(aux3!=-1) {
@@ -89,8 +78,11 @@ public class Game {
 				this.bombList.delete(aux3);
 			}
 		}
-		if (this.ovni!=null) {
-			
+		if (this.ovni!=null) {//si esta el alien lo mueve, si llega al final lo elimina
+			this.ovni.move();
+			if(this.ovni.getColumn()<0) {
+				ovni=null;
+			}
 		}
 		
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();//final del juego
@@ -104,7 +96,31 @@ public class Game {
 		
 	}
 	
-	public boolean aliensWins() {
+	private boolean Laserhits(int lrow, int lcol) {
+		boolean resul=false;
+		if(this.ucmShip.laser.getRow()<0) {
+			this.ucmShip.laser=null;
+			resul=true;
+		}
+		else if(this.destroyerShipList.destroyerhit(lrow,lcol)) {
+			this.points+=this.destroyerShipList.getPoints();
+			this.ucmShip.laser=null;
+			resul=true;
+		}
+		else if (this.regularShipList.regularHit(lrow,lcol)) {
+			this.points+=this.regularShipList.getPoints();
+			this.ucmShip.laser=null;
+			resul=true;
+		}
+		else if(this.ovni!=null&this.ovni.hurt(lrow,lcol)) {
+			this.points+=this.ovni.getPoint();
+			this.ucmShip.laser=null;
+			resul=true;
+		}
+		return resul;
+	}
+	
+	private boolean aliensWins() {
 		boolean resul=true;
 		int i=0,aux;
 		if (this.destroyerShipList.getCount()!=0) {
@@ -170,7 +186,39 @@ public class Game {
 				this.regularShipList.move(Move.LEFT);
 			}
 		}
-		//no se como es lo de random
+		double ayuda=this.rand.nextDouble();
+		if(this.ovni==null & this.level.getOvniProb()<ayuda) {
+			this.ovni= new Ovni();
+		}
+		aliensShoots();
+	}
+	
+	private void aliensShoots() {
+		double num;
+		for(int i=0;i<this.destroyerShipList.getCount();i++) {
+			num=this.rand.nextDouble();
+			if (num<this.level.getFrecShoot() & this.destroyerShipList.search(this.destroyerShipList.getRow(i)+1, this.destroyerShipList.getColumn(i))==-1) {
+				this.bombList.insert(this.destroyerShipList.getRow(i),this.destroyerShipList.getColumn(i));
+			}//se inicializa la bomba en la posicion de su nave, en update se mueve fuera de la nave
+		}
+	}
+	
+	public String toString() {
+		String draw="Life: "+this.ucmShip.getHealth()+"\n";
+		draw+="Number of cycles: "+this.cycles+"\n";
+		draw+="Points: "+this.points+"\n";
+		draw+="Remaining aliens: "+this.remainingAliens+"\n";
+		draw+="ShockWave: ";
+		if (shockWave) {draw+="SI\n";}
+		else draw+="NO\n";
+		draw+=this.gamePrinter.toString();
+		/*	Life:
+		 	Number of cycles: 
+			Points: 
+			Remaining aliens: 
+			shockWave:
+		  */
+		return draw;
 	}
 	
 	public int getPoints() {
