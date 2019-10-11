@@ -58,24 +58,29 @@ public class Game {
 	}
 	
 	public void update() {
-		int aux3;
-		boolean aux;
+		int auxn;
+		boolean auxb;		
 		
-		computerAction();//->mueve las naves alienigenas si hace falta, revisar si mover todo
+		enemyMoves();//mueve naves		
 		
 		if (!this.ucmShip.getCanShoot()) {
-			aux=this.Laserhits(this.ucmShip.laser.getRow(),this.ucmShip.laser.getColumn());	
-			if(!aux) {
+			auxb=this.Laserhits(this.ucmShip.laser.getRow(),this.ucmShip.laser.getColumn());	
+			if(!auxb) {
 				this.ucmShip.laser.move();
 				this.Laserhits(this.ucmShip.laser.getRow(),this.ucmShip.laser.getColumn());			
 			}
 		}		
-		if (this.bombList.getCount()!=0) {//revisar si hacer como con la nave o dejar asi
-			this.bombList.move();
-			aux3=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
-			if(aux3!=-1) {
+		if (this.bombList.getCount()!=0) {//para cada movimiento se verifica antes y despues si hay dano
+			auxn=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
+			if(auxn!=-1) {
 				this.ucmShip.hurt();
-				this.bombList.delete(aux3);
+				this.bombList.delete(auxn);
+			}
+			this.bombList.move();
+			auxn=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
+			if(auxn!=-1) {
+				this.ucmShip.hurt();
+				this.bombList.delete(auxn);
 			}
 		}
 		if (this.ovni!=null) {//si esta el alien lo mueve, si llega al final lo elimina
@@ -83,16 +88,19 @@ public class Game {
 			if(this.ovni.getColumn()<0) {
 				ovni=null;
 			}
-		}
+		}		
 		
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();//final del juego
 		if(this.remainingAliens==0) {finish=true;wins=1;}//jugador gana
-		else if (this.ucmShip.getHealth()==0 | this.aliensWins()){
+		else if (this.ucmShip.getHealth()==0 | this.aliensWins()){//jugador pierde
 			finish =true;
 			wins=2;
 			this.ucmShip.setDraw("!xx!");
 			}
-		else {this.cycles++;}//continua
+		else {//continua
+			this.cycles++;
+			computerAction();//ve si dispara y si sale ovni}
+		}
 		
 	}
 	
@@ -171,7 +179,7 @@ public class Game {
 		
 	}
 	
-	public void computerAction() {
+	private void enemyMoves() {
 		if(this.level.getSpeed()%this.cycles==0) {
 			if(this.destroyerShipList.isBorder()|this.regularShipList.isBorder()) {
 				this.destroyerShipList.move(Move.DOWN);
@@ -186,6 +194,10 @@ public class Game {
 				this.regularShipList.move(Move.LEFT);
 			}
 		}
+	}
+	
+	public void computerAction() {
+		
 		double ayuda=this.rand.nextDouble();
 		if(this.ovni==null & this.level.getOvniProb()<ayuda) {
 			this.ovni= new Ovni();

@@ -7,7 +7,7 @@ public class UCMShip {
 		private int column=4;
 		private String draw= "^__^";
 		private final int row=7;//nunca se mueve de la ultima fila
-		public UCMShipLaser laser=null;//no se si va aqui, ni si es publico<--preguntar
+		public UCMShipLaser laser=null;//no se si va aqui, ni si es publico<--preguntar, quiero quitarlo de aqui, revisar el martes
 
 		public void move_UCMship (int steps, Move direction) {//ver direccion, tal vez enumerado
 			if (direction == Move.RIGHT) {
