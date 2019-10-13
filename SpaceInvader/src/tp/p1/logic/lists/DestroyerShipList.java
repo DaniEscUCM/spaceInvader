@@ -4,12 +4,12 @@ import tp.p1.logic.Move;
 import tp.p1.logic.objects.DestroyerShip;
 
 
-public class DestroyerShipList {//hay que hacer el comando move, no se como verificar si estan en el borde, igual con regular
+public class DestroyerShipList {
 		private DestroyerShip [] destroyerList; 
 		private int numDestroyer=0;
 		private final int points=10;
 		
-		public DestroyerShipList(int n, Level level) {//mejor el nivel
+		public DestroyerShipList(int n, Level level) {
 			int rowIni=3, columnIni=6;
 			destroyerList= new DestroyerShip[n];
 			if(level==Level.HARD |level==Level.INSANE) {rowIni++;}
