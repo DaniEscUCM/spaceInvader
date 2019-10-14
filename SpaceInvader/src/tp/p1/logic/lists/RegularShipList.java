@@ -9,15 +9,16 @@ public class RegularShipList {
 	private int puntos = 5;
 	
 	public RegularShipList(int n) {
-		int row=8, col=1;
+		int row=1, col=8;
 		list = new RegularShip[n];
 		for(int i=0;i<n;i++) {
-			insert(row,col);
-			row--;
+			this.insert(row,col);
+			col--;
 			if(i==3) {//para los niveles hard e insane
 				row=8;
 				col=2;
 			}
+			
 		}
 	}
 	
@@ -28,9 +29,8 @@ public class RegularShipList {
 	public int find(int row, int col) {
 		int index = -1;
 		int i = 0;
-		while(i < this.count && index != -1) {
-			if(list[i].getRow()== row && list[i].getCol() == col)
-				index = i;
+		while(i < this.count && index == -1) {
+			if(list[i].getRow()== row && list[i].getCol() == col) {	index = i;	}
 			i++;
 		}
 		return index;
@@ -78,6 +78,10 @@ public class RegularShipList {
 		for(int i=0;i<this.count;i++) {
 			this.list[i].move(dir);
 		}
+	}
+	
+	public String toString(int pos) {
+		return this.list[pos].toString();
 	}
 
 }

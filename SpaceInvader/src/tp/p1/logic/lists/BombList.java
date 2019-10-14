@@ -64,4 +64,8 @@ public class BombList {
 		}
 	}
 	
+	public String toString(int pos) {
+		return this.list[pos].toString();
+	}
+	
 }

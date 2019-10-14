@@ -47,6 +47,6 @@ public class RegularShip {
 	}
 	
 	public String toString(){
-		return this.draw+"[" + health + "]";
+		return "C[" + health + "]";
 	}
 }

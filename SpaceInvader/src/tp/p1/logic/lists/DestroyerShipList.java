@@ -10,7 +10,7 @@ public class DestroyerShipList {
 		private final int points=10;
 		
 		public DestroyerShipList(int n, Level level) {
-			int rowIni=3, columnIni=6;
+			int rowIni=2, columnIni=6;
 			destroyerList= new DestroyerShip[n];
 			if(level==Level.HARD |level==Level.INSANE) {rowIni++;}
 			for(int i=0;i<n;i++) {
@@ -92,5 +92,8 @@ public class DestroyerShipList {
 			return this.destroyerList[index].getColumn();
 		}
 		
+		public String toString(int pos) {
+			return this.destroyerList[pos].toString();
+		}
 		
 }

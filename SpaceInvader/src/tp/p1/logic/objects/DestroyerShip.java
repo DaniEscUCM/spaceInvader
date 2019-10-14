@@ -36,7 +36,7 @@ public class DestroyerShip {
 		return column;
 	}
 	
-	public String toStringDestructor() {
+	public String toString() {
 		return "D["+health+"]";
 	}
 	

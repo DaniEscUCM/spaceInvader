@@ -16,7 +16,7 @@ public class UCMShip {
 			else column-=steps;
 		}
 		public boolean getCanShoot() {
-			return this.laser!=null;
+			return this.laser==null;
 		}
 		
 		public void shoot() {//si puede disparar, dispara
@@ -37,7 +37,7 @@ public class UCMShip {
 			return health;
 		}
 		
-		public String toStringUCM() {
+		public String toString() {
 			return draw;
 		}
 		public int getRow() {

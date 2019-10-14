@@ -23,7 +23,7 @@ public class Controller {
 		int i = -1;
 		while(game.getFinish()!= true) {
 			if(print) {
-				this.game.toString();
+				System.out.println(this.game.toString());
 			}
 			System.out.println(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
@@ -43,6 +43,7 @@ public class Controller {
 						if(i >= 1 && i <= 2) {
 							// se mueve en esa direccion y esos pasos;
 							game.commands(cm, move, i);
+							System.out.println(i);//borrar
 						}
 					}
 				}
@@ -78,16 +79,17 @@ public class Controller {
 					print = true; // por poner algo
 					cm = Command.NONE;
 				}
-				game.commands(cm, move, i);
-			}
-			if(cm == null) {
-				System.out.println("Invalid command. View command 'Help' or 'H'");
-				print = false;
-			}	
-			else {
-				game.commands(cm, move, i);
+				if(cm == null) {
+					System.out.println("Invalid command. View command 'Help' or 'H'");
+					print = false;
+				}	
+				else {
+					game.commands(cm, move, i);
+					
+				}
 				game.update();
 			}
+			
 		}
 		// si wins = true...gana jugador, si no, false.
 		if(game.getWins() == 1) {
