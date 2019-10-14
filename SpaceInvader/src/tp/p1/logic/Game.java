@@ -155,9 +155,9 @@ public class Game {
 		if(this.destroyerShipList.search(i, j)!=pos) {draw=this.destroyerShipList.toString();}
 		else if(this.bombList.find(i, j)!=pos){draw=this.bombList.toString();}
 		else if(this.regularShipList.find(i, j)!=pos) {draw=this.regularShipList.toString();}
-		else if(this.ucmShip.getRow()==i & this.ucmShip.getColumn()==j) {draw=this.ucmShip.toString();}//tal vez crear metodo para que compare directamente con las posiciones
-		else if(!this.ucmShip.getCanShoot() & (this.ucmShip.laser.getRow()==i & this.ucmShip.laser.getColumn()==j)) {draw=this.ucmShip.laser.toStringLaser();}
-		else if(this.ovni!=null & this.ovni.getRow()==i & this.ovni.getColumn()==j) {draw=this.ovni.toString();}
+		else if(this.ucmShip.getRow()==i && this.ucmShip.getColumn()==j) {draw=this.ucmShip.toString();}//tal vez crear metodo para que compare directamente con las posiciones
+		else if(this.ucmShip.getCanShoot() && (this.ucmShip.laser.getRow()==i && this.ucmShip.laser.getColumn()==j)) {draw=this.ucmShip.laser.toStringLaser();}
+		else if(this.ovni!=null && this.ovni.getRow()==i & this.ovni.getColumn()==j) {draw=this.ovni.toString();}
 					
 		return draw;
 		}//busca en la posicion y devuelve el string
@@ -176,6 +176,25 @@ public class Game {
 
 	public void commands(Command cm, Move move, int i) {
 		// Metodo que llama a funciones de game segun el comando; 
+		if(cm == Command.MOVE) {
+			this.ucmShip.move_UCMship(i, move);// aqui suo
+		}
+		else if(Command.EXIT) {
+			this.finish = true; this.wins = 0;
+		}
+		else if(Command.HELP) {
+			this.showHelp();
+		}
+		else if(Command.LIST) {
+			this.showList();
+		}
+		else if(Command.NONE) {
+			// ciclos++??
+		}
+		else if(Command.RESET) {
+			this.initGame();
+		}
+		else if(Command.SHOCKWAVE) {
 		
 	}
 	

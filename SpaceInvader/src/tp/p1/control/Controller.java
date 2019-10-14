@@ -21,7 +21,7 @@ public class Controller {
 		Move move = null;
 		Command cm = null;
 		int i = -1;
-		while(true /*game.getFinish()!= false*/) {
+		while(game.getFinish()!= true) {
 			if(print) {
 				this.game.toString();
 			}
@@ -42,6 +42,7 @@ public class Controller {
 						i = Character.getNumericValue(words[2].charAt(3));
 						if(i >= 1 && i <= 2) {
 							// se mueve en esa direccion y esos pasos;
+							game.commands(cm, move, i);
 						}
 					}
 				}
@@ -77,6 +78,7 @@ public class Controller {
 					print = true; // por poner algo
 					cm = Command.NONE;
 				}
+				game.commands(cm, move, i);
 			}
 			if(cm == null) {
 				System.out.println("Invalid command. View command 'Help' or 'H'");
@@ -88,17 +90,15 @@ public class Controller {
 			}
 		}
 		// si wins = true...gana jugador, si no, false.
-		/*
-		if(game.getWins == 1) {
+		if(game.getWins() == 1) {
 			System.out.println("Player wins");
 		}
-		else if(game.getWins == 2){
+		else if(game.getWins() == 2){
 			System.out.println("Aliens win");
 		}
 		else {
 			System.out.println("Game Over");
-		}
-			*/
+		}	
 	}
 
 }
