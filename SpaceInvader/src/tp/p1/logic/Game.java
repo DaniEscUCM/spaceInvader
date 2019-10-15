@@ -28,14 +28,15 @@ public class Game {
 	private Random rand;
 	private GamePrinter gamePrinter;
 	
-	private int cycles=0;
-	private int points=0;
+	private int cycles;
+	private int points;
 	private int remainingAliens;
 	private boolean shockWave=false;
 	private int row = 8;
 	private int col = 9;
 	private boolean finish=false;
 	private int wins;//0 nadie gana,1 gana player y 2 gana aliens
+	private boolean right = false;
 	
 	
 	public Game(Level level, Random rand) {
@@ -47,6 +48,10 @@ public class Game {
 
 	public void initGame() {
 		int n;
+		this.cycles = 0;
+		this.points = 0;
+		this.shockWave = false;
+		this.right = false;
 		this.ovni=null;
 		this.ucmShip=new UCMShip();
 		this.laser = null;
@@ -61,8 +66,13 @@ public class Game {
 	
 	public void update() {
 		this.cycles++;
+		enemyMoves();
+		 // 1. ovni
+		if(this.ovni!= null && !this.ovni.move())
+			this.ovni = null;
 		// 1. avanza proyectil
-		if(this.laser.move() == true) {
+		/*
+		if(this.laser!= null && this.laser.move() == true) {
 			// 1.1 si alcanza un alien decrementa su vida. comprobar destroyershiplist, regularshiplist y ovni si alcanza bomba
 			// elimina bomba y laser
 			if(ovni.getColumn()== laser.getColumn() && ovni.getRow() == laser.getRow()) {
@@ -74,36 +84,81 @@ public class Game {
 				this.laser = null;	
 		}
 		else this.laser = null;
+		*/
+		if (this.laser!=null) {
+			if(this.Laserhits(this.laser.getRow(),this.laser.getColumn())&&this.laser.move()) {
+				this.laser.move();
+				this.Laserhits(this.laser.getRow(),this.laser.getColumn());			
+			}
+		}
 		// 2. avanza proyectil:
-		this.bombList.update();
 		int i = bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
 		if(i!= -1) {
 			this.ucmShip.hurt();
+			//abria que desvincular esa bomba a destroyership correspodiente
+		}
+		this.bombList.move();
+		int k = bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
+		if(k!= -1) {
+			this.ucmShip.hurt();
+			//abria que desvincular esa bomba a destroyership correspodiente
 		}
 		
-		//3. comprobar si tiene vida ucmship y ovni
-		if(this.ovni.getLife() == 0) {
-			this.ovni = null;
-			this.shockWave = true;
-		}
-		if(this.ucmShip.getLife() == 0) {
-			this.ucmShip.setDraw("!XX?");
-			this.setFinish(true); 
-			this.setWins(2); // ganan los aliens
-		}
-		else if (this.destroyerShipList.getCount() == 0 && 
-				this.regularShipList.getCount() == 0 &&
-				this.bombList.getCount() == 0 && this.ovni.getLife() == 0) {
-			this.setFinish(true);
-			this.setWins(1); //gana el jugador
+		//3. comprobar si tiene vida ucmship 
+		
+		if(this.remainingAliens==0) {finish=true;wins=1;}//jugador gana
+		else if (this.ucmShip.getLife()==0 || this.aliensWins()){//jugador pierde
+			finish =true;
+			wins=2;
+			this.ucmShip.setDraw("!xx!");
+			}
+		else {//continua			
+			computerAction();//ve si dispara y si sale ovni}
 		}
 		
 	}
 	
-	private void setWins(int i) {
-		this.wins = i;
-		
+	private void enemyMoves() {
+		if(this.cycles!=0 && this.cycles%this.level.getSpeed()==0) {
+			if(this.destroyerShipList.isBorder(this.right)||this.regularShipList.isBorder(this.right)) {
+				this.destroyerShipList.move(Move.DOWN);
+				this.regularShipList.move(Move.DOWN);
+				this.right=!this.right;
+			}
+			else if (this.right) {
+				this.destroyerShipList.move(Move.RIGHT);
+				this.regularShipList.move(Move.RIGHT);
+			}
+			else if(!this.right) {
+				this.destroyerShipList.move(Move.LEFT);
+				this.regularShipList.move(Move.LEFT);
+			}
+		}
 	}
+	
+	private boolean Laserhits(int lrow, int lcol) {
+		boolean resul=false;
+		if(this.destroyerShipList.destroyerhit(lrow,lcol)) {
+			this.points+=this.destroyerShipList.getPoints();
+			this.laser=null;
+			resul=true;
+		}
+		else if (this.regularShipList.regularHit(lrow,lcol)) {
+			this.points+=this.regularShipList.getPoints();
+			this.laser=null;
+			resul=true;
+		}
+		else if(this.ovni!=null && this.ovni.hurt(lrow,lcol)) {
+			this.points+=this.ovni.getPoint();
+			this.laser=null;
+			this.ovni=null;
+			this.shockWave=true;
+			resul=true;
+		}
+
+		return resul;
+	}
+	
 
 	
 	public String toStringObjectAt(int i, int j) {
@@ -137,7 +192,6 @@ public class Game {
 		if(cm == Command.MOVE) {
 			this.ucmShip.move_UCMship(i, move);// aqui suo
 			this.computerAction();
-			this.update();
 		}
 		else if(cm == Command.EXIT) {
 			this.finish = true; this.wins = 0;
@@ -150,23 +204,29 @@ public class Game {
 		}
 		else if(cm == Command.NONE) {
 			this.computerAction();
-			this.update();
 		}
 		else if(cm == Command.RESET) {
 			this.initGame();
 		}
 		else if(cm == Command.SHOCKWAVE) {
 			//quita vida a todas las naves alienigenas
-			this.shockWave();//quitaria vida a todas las naves alienigenas
-			this.update();
+			this.shockWave();//quit
 		}
 		else if(cm == Command.SHOOT) {
 			//realiza disparo si puede
 			if(this.laser == null) this.laser = new UCMShipLaser(this.ucmShip.getRow());
-			this.update();
 		}
 		
 	}
+	
+	public void shockWave() {
+		if(this.shockWave == true) {
+			this.destroyerShipList.shokwave();
+			this.regularShipList.shockWave();
+			this.ovni.hurt();
+		}
+	}
+	
 	
 	private void showList() {
 		String s ="";
@@ -205,9 +265,26 @@ public class Game {
 		for(int i=0;i<this.destroyerShipList.getCount();i++) {
 			num=this.rand.nextDouble();
 			if (num<this.level.getFrecShoot() & this.destroyerShipList.find(this.destroyerShipList.getRow(i)+1, this.destroyerShipList.getColumn(i))==-1) {
-				this.bombList.insert(this.destroyerShipList.getRow(i),this.destroyerShipList.getColumn(i));
+				this.bombList.insert(this.destroyerShipList.getShip());
 			}//se inicializa la bomba en la posicion de su nave, en update se mueve fuera de la nave
 		}
+	}
+	
+	private boolean aliensWins() {//no hace que llega al borde
+		boolean resul=false;
+		int i=0,aux1=-1, aux2=-1;
+		if (this.destroyerShipList.getCount()!=0) {
+			while(resul & i<this.col) {
+				if(this.destroyerShipList.getNumDestroyer()!=0) {
+					aux1=this.destroyerShipList.find(7,i);
+				}
+				if(this.regularShipList.getCount()!=0) {
+					aux2=this.regularShipList.find(7, i);
+				}
+				resul=(aux1!=-1)||(aux2!=-1);
+			}
+		}	
+		return resul;
 	}
 	
 	public String toString() {
