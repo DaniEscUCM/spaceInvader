@@ -52,7 +52,7 @@ public class RegularShipList {
 	
 	public boolean regularHit(int row, int col) {
 		int pos=this.find(row, col);
-		boolean resul=pos!=0;
+		boolean resul=pos!=-1;
 		if(resul) {
 			this.list[pos].hurt();
 			this.delete(pos);
@@ -64,11 +64,12 @@ public class RegularShipList {
 		return this.count;
 	}
 	
-	public boolean isBorder() {
+	public boolean isBorder(boolean right) {
 		int i=0;
 		boolean resul=false;
 		while(!resul & i<this.count) {
-			resul=this.list[i].getCol()==0 |this.list[i].getCol()==8;
+			resul=(this.list[i].getCol()==0 && !right) ||(this.list[i].getCol()==8 && right);
+			i++;
 		}
 		
 		return resul;

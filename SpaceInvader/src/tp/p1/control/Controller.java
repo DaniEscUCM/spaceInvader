@@ -25,11 +25,10 @@ public class Controller {
 			if(print) {
 				System.out.println(this.game.toString());
 			}
-			System.out.println(this.promt);
+			System.out.print(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
 			// desarrollo del juego
-			
-			if(words.length == 3) { // comando move
+			if(words.length == 3) { // comando move				
 				if(words[0].equalsIgnoreCase("MOVE") || words[0].equalsIgnoreCase("M")) {
 					cm = Command.MOVE;
 					if(words[1].equalsIgnoreCase("RIGHT")|| words[1].equalsIgnoreCase("R")) {
@@ -39,11 +38,11 @@ public class Controller {
 						move = Move.LEFT;
 					}
 					if(Character.isDigit(words[2].charAt(0))) {
-						i = Character.getNumericValue(words[2].charAt(3));
+						i=Integer.parseInt(words[2]);
+						//i = Character.getNumericValue(words[2].charAt(3));
 						if(i >= 1 && i <= 2) {
 							// se mueve en esa direccion y esos pasos;
 							game.commands(cm, move, i);
-							System.out.println(i);//borrar
 						}
 					}
 				}
@@ -66,6 +65,7 @@ public class Controller {
 				else if(words[0].equalsIgnoreCase("LIST") || words[0].equalsIgnoreCase("L")) {
 					//game.printList()
 					cm = Command.LIST;
+					print=false;
 				}
 				else if(words[0].equalsIgnoreCase("EXIT") || words[0].equalsIgnoreCase("E")) {
 					//game.setFinish(true);
@@ -74,6 +74,7 @@ public class Controller {
 				else if(words[0].equalsIgnoreCase("HELP") || words[0].equalsIgnoreCase("H")) {
 					//game.showHelp();
 					cm = Command.HELP;
+					print=false;
 				}
 				else if(words[0].equalsIgnoreCase("") || words[0].equalsIgnoreCase("N")) {
 					print = true; // por poner algo
@@ -86,7 +87,12 @@ public class Controller {
 				else {
 					game.commands(cm, move, i);
 					
+					
 				}
+			}
+			if(cm==Command.MOVE||cm==Command.SHOCKWAVE||cm==Command.SHOOT||cm==Command.NONE) {
+				print=true;
+				
 				game.update();
 			}
 			

@@ -14,8 +14,9 @@ public class Ovni {
 	
 	public boolean hurt(int row,int col) {
 		boolean resul=false;
-		if(row==fila & col==columna) {
+		if(row==this.fila & col==this.columna) {
 			health--;
+			resul=true;
 		}
 		return resul;
 	}

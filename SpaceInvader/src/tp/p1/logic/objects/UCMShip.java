@@ -13,7 +13,7 @@ public class UCMShip {
 			if (direction == Move.RIGHT) {
 				column+=steps;
 			}
-			else column-=steps;
+			else {column-=steps;}
 		}
 		public boolean getCanShoot() {
 			return this.laser==null;

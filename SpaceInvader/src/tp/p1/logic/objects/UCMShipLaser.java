@@ -6,8 +6,8 @@ public class UCMShipLaser {
 	private final String draw= "oo";
 	
 	public UCMShipLaser(int ucmColumn) {
-		row=6;
-		column=ucmColumn-1;
+		row=7;
+		column=ucmColumn;
 	}
 	
 	public void move() {

@@ -30,14 +30,9 @@ public class BombList {
 		return index;
 	}
 	
-	public boolean insert(int row, int col) {
-		if (find(row,col) == -1) {
-			list[list.length] = new Bomb(row,col);
-			count++;
-			return true;
-			}
-		else {return false;
-		}
+	public void insert(Bomb bomb) {
+		list[count] = bomb;
+		count++;
 	}
 		
 	

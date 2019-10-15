@@ -50,7 +50,7 @@ public class DestroyerShipList {
 		
 		public boolean destroyerhit(int rowl, int columnl) {
 			int pos=this.search(rowl, columnl);
-			boolean resul=pos!=1;
+			boolean resul=pos!=-1;
 			if(resul) {
 				for(int i=pos;i<numDestroyer-1;i++) {
 					destroyerList[i]=destroyerList[i+1];
@@ -68,13 +68,13 @@ public class DestroyerShipList {
 			return this.numDestroyer;
 		}
 		
-		public boolean isBorder() {
+		public boolean isBorder(boolean lado) {
 			int i=0;
 			boolean resul=false;
 			while(!resul & i<this.numDestroyer) {
-				resul=this.destroyerList[i].getColumn()==0 |this.destroyerList[i].getColumn()==8;
-			}
-			
+				resul=(this.destroyerList[i].getColumn()==0 && !lado) ||(this.destroyerList[i].getColumn()==8 && lado);
+				i++;
+			}			
 			return resul;
 		}
 		
@@ -94,6 +94,20 @@ public class DestroyerShipList {
 		
 		public String toString(int pos) {
 			return this.destroyerList[pos].toString();
+		}
+		
+		public DestroyerShip getShip(int i) {
+			return this.destroyerList[i];
+		}
+		
+		public int destroyBomb() {
+			int pos=0;
+			boolean enc=false;
+			while(pos<this.numDestroyer && !enc) {
+				if (!this.destroyerList[pos].getCanShoot()) {enc =true;this.destroyerList[pos].nullBomb();}
+				else {pos++;}
+			}
+			return pos;
 		}
 		
 }

@@ -35,11 +35,9 @@ public class RegularShip {
 	}
 
 	public void move(Move dir) {
-		switch (dir){
-		case DOWN:row++;
-		case RIGHT:col++;
-		default: col--;
-		}
+		if(dir==Move.DOWN) {this.row++;}
+		else if(dir==Move.RIGHT) {this.col++;}
+		else if(dir==Move.LEFT) {this.col--;}
 	}
 	
 	public void hurt() {
