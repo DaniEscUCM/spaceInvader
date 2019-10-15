@@ -23,7 +23,7 @@ public class Controller {
 		int i = -1;
 		while(game.getFinish()!= true) {
 			if(print) {
-				this.game.toString();
+				System.out.println(this.game.toString());
 			}
 			System.out.println(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
@@ -64,21 +64,20 @@ public class Controller {
 				}
 				else if(words[0].equalsIgnoreCase("LIST") || words[0].equalsIgnoreCase("L")) {
 					//game.printList()
-					cm = Command.LIST;
+					cm = Command.LIST; print = false;
 				}
 				else if(words[0].equalsIgnoreCase("EXIT") || words[0].equalsIgnoreCase("E")) {
 					//game.setFinish(true);
-					cm = Command.EXIT;
+					cm = Command.EXIT; print = false;
 				}
 				else if(words[0].equalsIgnoreCase("HELP") || words[0].equalsIgnoreCase("H")) {
 					//game.showHelp();
-					cm = Command.HELP;
+					cm = Command.HELP; print = false;
 				}
 				else if(words[0].equalsIgnoreCase("") || words[0].equalsIgnoreCase("N")) {
 					print = true; // por poner algo
 					cm = Command.NONE;
 				}
-				game.commands(cm, move, i);
 			}
 			if(cm == null) {
 				System.out.println("Invalid command. View command 'Help' or 'H'");
@@ -86,7 +85,6 @@ public class Controller {
 			}	
 			else {
 				game.commands(cm, move, i);
-				game.update();
 			}
 		}
 		// si wins = true...gana jugador, si no, false.

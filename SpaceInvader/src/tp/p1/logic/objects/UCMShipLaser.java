@@ -7,11 +7,14 @@ public class UCMShipLaser {
 	
 	public UCMShipLaser(int ucmColumn) {
 		row=6;
-		column=ucmColumn-1;
+		column=ucmColumn;
 	}
 	
-	public void move() {
-		row--;
+	public boolean move() {
+		if(row > 0) {
+			row--; return true;
+		}
+		else return false;
 	}
 	
 	public int getHarm() {

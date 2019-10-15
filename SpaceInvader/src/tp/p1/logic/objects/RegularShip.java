@@ -4,7 +4,7 @@ import tp.p1.logic.Move;
 
 public class RegularShip {
 
-	private int health = 2;
+	private int life = 2;
 	private int row;
 	private int col;
 	private final String draw = "C";
@@ -30,8 +30,8 @@ public class RegularShip {
 		this.col = col;
 	}
 	
-	public int getHealth() {
-		return this.health;
+	public int getLife() {
+		return this.life;
 	}
 
 	public void move(Move dir) {
@@ -43,10 +43,10 @@ public class RegularShip {
 	}
 	
 	public void hurt() {
-		health--;
+		life--;
 	}
 	
 	public String toString(){
-		return this.draw+"[" + health + "]";
+		return this.draw+"[" + life + "]";
 	}
 }

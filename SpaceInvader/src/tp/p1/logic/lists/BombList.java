@@ -63,5 +63,25 @@ public class BombList {
 			}
 		}
 	}
+
+	public boolean hurt(int row, int col) {
+		int i = this.find(row, col);
+		if(i!= -1) {
+			delete(i);
+			return true;
+		}
+		else return false;
+	}
+
+	public void update() {
+		int i = 0;
+		while(i < this.count) {
+			if(this.list[i].move())
+				i++;
+			else {
+				this.delete(i);
+			}
+		}
+	}
 	
 }

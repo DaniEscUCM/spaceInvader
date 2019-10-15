@@ -4,7 +4,7 @@ public class Ovni {
 	
 	private final int fila = 0;
 	private int columna=8;
-	int health = 1;
+	int life = 1;
 	int puntos = 25;
 	private final String draw = "O";
 	
@@ -12,22 +12,15 @@ public class Ovni {
 		columna --;
 	}
 	
-	public boolean hurt(int row,int col) {
-		boolean resul=false;
-		if(row==fila & col==columna) {
-			health--;
-		}
-		return resul;
-	}
-	
-	public boolean shockWave() {//tal vez en otro lado??
-		if(health == 0)
-			return true;
-		else return false;
+	public void hurt() {
+		life--;
 	}
 	
 	public String toString() {
-		return draw + "["+ health + "]"; 
+		return draw + "["+ life + "]"; 
+	}
+	public int getLife() {
+		return life;
 	}
 	public int getRow() {
 		return fila;

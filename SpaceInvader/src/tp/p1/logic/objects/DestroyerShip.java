@@ -3,7 +3,7 @@ package tp.p1.logic.objects;
 import tp.p1.logic.Move;
 
 public class DestroyerShip {
-	private int health=1;
+	private int life=1;
 	private int row, column;
 	
 	
@@ -24,8 +24,12 @@ public class DestroyerShip {
 		}
 	}
 	
-	public int getHealth() {
-		return health;
+	public int getLife() {
+		return life;
+	}
+	
+	public void hurt() {
+		life--;
 	}
 	
 	
@@ -37,7 +41,7 @@ public class DestroyerShip {
 	}
 	
 	public String toStringDestructor() {
-		return "D["+health+"]";
+		return "D["+life+"]";
 	}
 	
 }

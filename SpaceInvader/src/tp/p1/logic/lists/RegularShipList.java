@@ -43,7 +43,7 @@ public class RegularShipList {
 		
 	
 	public void delete(int index) {
-		if (this.list[index].getHealth()==0) {
+		if (this.list[index].getLife()==0) {
 			for(int i = index; i < list.length - 1; i++) {
 				list[i] = list[i + 1];
 			}
@@ -78,6 +78,15 @@ public class RegularShipList {
 		for(int i=0;i<this.count;i++) {
 			this.list[i].move(dir);
 		}
+	}
+
+	public boolean hurt(int row, int col) {
+		int i = this.find(row, col);
+		if(i!= -1) {
+			delete(i);
+			return true;
+		}
+		else return false;
 	}
 
 }

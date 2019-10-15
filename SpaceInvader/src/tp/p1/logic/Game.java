@@ -8,7 +8,7 @@ import tp.p1.logic.lists.DestroyerShipList;
 import tp.p1.logic.lists.RegularShipList;
 import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.UCMShip;
-//import tp.p1.logic.objects.UCMShipLaser;
+import tp.p1.logic.objects.UCMShipLaser;
 
 //el update inicializa con el tiempo en que se cambia y en 0 se mueve.
 	//split(" ")...palabra a palabra?
@@ -22,6 +22,7 @@ public class Game {
 	private RegularShipList regularShipList;
 	private UCMShip ucmShip;
 	private Ovni ovni;
+	private UCMShipLaser laser;
 	
 	private Level level;
 	private Random rand;
@@ -48,6 +49,7 @@ public class Game {
 		int n;
 		this.ovni=null;
 		this.ucmShip=new UCMShip();
+		this.laser = null;
 		n=level.getNumDestroyers();
 		this.destroyerShipList = new DestroyerShipList(n,level); // seria pasarle tmbn row*col
 		n=level.getNumRegular();
@@ -58,93 +60,49 @@ public class Game {
 	}
 	
 	public void update() {
-		int auxn;
-		boolean auxb;		
-		
-		enemyMoves();//mueve naves		
-		
-		if (!this.ucmShip.getCanShoot()) {
-			auxb=this.Laserhits(this.ucmShip.laser.getRow(),this.ucmShip.laser.getColumn());	
-			if(!auxb) {
-				this.ucmShip.laser.move();
-				this.Laserhits(this.ucmShip.laser.getRow(),this.ucmShip.laser.getColumn());			
-			}
-		}		
-		if (this.bombList.getCount()!=0) {//para cada movimiento se verifica antes y despues si hay dano
-			auxn=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
-			if(auxn!=-1) {
-				this.ucmShip.hurt();
-				this.bombList.delete(auxn);
-			}
-			this.bombList.move();
-			auxn=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
-			if(auxn!=-1) {
-				this.ucmShip.hurt();
-				this.bombList.delete(auxn);
-			}
+		this.cycles++;
+		// 1. avanza proyectil
+		if(this.laser.move() == true) {
+			// 1.1 si alcanza un alien decrementa su vida. comprobar destroyershiplist, regularshiplist y ovni si alcanza bomba
+			// elimina bomba y laser
+			if(ovni.getColumn()== laser.getColumn() && ovni.getRow() == laser.getRow()) {
+				ovni.hurt(); this.laser = null;
+			}// destruye dentro de cada lista si le llega el laser
+			else if(this.regularShipList.hurt(laser.getRow(), laser.getColumn()) ||
+					this.destroyerShipList.hurt(laser.getRow(), laser.getColumn()) ||
+					this.bombList.hurt(laser.getRow(), laser.getColumn()))
+				this.laser = null;	
 		}
-		if (this.ovni!=null) {//si esta el alien lo mueve, si llega al final lo elimina
-			this.ovni.move();
-			if(this.ovni.getColumn()<0) {
-				ovni=null;
-			}
-		}		
+		else this.laser = null;
+		// 2. avanza proyectil:
+		this.bombList.update();
+		int i = bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
+		if(i!= -1) {
+			this.ucmShip.hurt();
+		}
 		
-		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();//final del juego
-		if(this.remainingAliens==0) {finish=true;wins=1;}//jugador gana
-		else if (this.ucmShip.getHealth()==0 | this.aliensWins()){//jugador pierde
-			finish =true;
-			wins=2;
-			this.ucmShip.setDraw("!xx!");
-			}
-		else {//continua
-			this.cycles++;
-			computerAction();//ve si dispara y si sale ovni}
+		//3. comprobar si tiene vida ucmship y ovni
+		if(this.ovni.getLife() == 0) {
+			this.ovni = null;
+			this.shockWave = true;
+		}
+		if(this.ucmShip.getLife() == 0) {
+			this.ucmShip.setDraw("!XX?");
+			this.setFinish(true); 
+			this.setWins(2); // ganan los aliens
+		}
+		else if (this.destroyerShipList.getCount() == 0 && 
+				this.regularShipList.getCount() == 0 &&
+				this.bombList.getCount() == 0 && this.ovni.getLife() == 0) {
+			this.setFinish(true);
+			this.setWins(1); //gana el jugador
 		}
 		
 	}
 	
-	private boolean Laserhits(int lrow, int lcol) {
-		boolean resul=false;
-		if(this.ucmShip.laser.getRow()<0) {
-			this.ucmShip.laser=null;
-			resul=true;
-		}
-		else if(this.destroyerShipList.destroyerhit(lrow,lcol)) {
-			this.points+=this.destroyerShipList.getPoints();
-			this.ucmShip.laser=null;
-			resul=true;
-		}
-		else if (this.regularShipList.regularHit(lrow,lcol)) {
-			this.points+=this.regularShipList.getPoints();
-			this.ucmShip.laser=null;
-			resul=true;
-		}
-		else if(this.ovni!=null&this.ovni.hurt(lrow,lcol)) {
-			this.points+=this.ovni.getPoint();
-			this.ucmShip.laser=null;
-			resul=true;
-		}
-		return resul;
-	}
-	
-	private boolean aliensWins() {
-		boolean resul=true;
-		int i=0,aux;
-		if (this.destroyerShipList.getCount()!=0) {
-			while(resul & i<(this.destroyerShipList.getCount())) {
-				aux=this.destroyerShipList.search(7,i);
-				resul=aux==-1;
-			}
-		}
-			
-		if(this.regularShipList.getCount()!=0 & resul) {
-			while(resul & i<this.destroyerShipList.getCount()){
-				aux=this.regularShipList.find(7, i);
-				resul=aux==-1;
-			}
-		}		
-		return resul;
+	private void setWins(int i) {
+		this.wins = i;
+		
 	}
 
 	
@@ -152,12 +110,12 @@ public class Game {
 		int pos=-1;
 		String draw=" ";
 		
-		if(this.destroyerShipList.search(i, j)!=pos) {draw=this.destroyerShipList.toString();}
+		if(this.destroyerShipList.find(i, j)!=pos) {draw=this.destroyerShipList.toString();}
 		else if(this.bombList.find(i, j)!=pos){draw=this.bombList.toString();}
 		else if(this.regularShipList.find(i, j)!=pos) {draw=this.regularShipList.toString();}
 		else if(this.ucmShip.getRow()==i && this.ucmShip.getColumn()==j) {draw=this.ucmShip.toString();}//tal vez crear metodo para que compare directamente con las posiciones
-		else if(this.ucmShip.getCanShoot() && (this.ucmShip.laser.getRow()==i && this.ucmShip.laser.getColumn()==j)) {draw=this.ucmShip.laser.toStringLaser();}
-		else if(this.ovni!=null && this.ovni.getRow()==i & this.ovni.getColumn()==j) {draw=this.ovni.toString();}
+		else if(this.laser!= null && this.laser.getRow()==i && this.laser.getColumn()== j) {draw=this.laser.toStringLaser();}
+		else if(this.ovni!=null && this.ovni.getRow()==i && this.ovni.getColumn()==j) {draw=this.ovni.toString();}
 					
 		return draw;
 		}//busca en la posicion y devuelve el string
@@ -178,41 +136,55 @@ public class Game {
 		// Metodo que llama a funciones de game segun el comando; 
 		if(cm == Command.MOVE) {
 			this.ucmShip.move_UCMship(i, move);// aqui suo
+			this.update();
 		}
-		else if(Command.EXIT) {
+		else if(cm == Command.EXIT) {
 			this.finish = true; this.wins = 0;
 		}
-		else if(Command.HELP) {
+		else if(cm == Command.HELP) {
 			this.showHelp();
 		}
-		else if(Command.LIST) {
+		else if(cm == Command.LIST) {
 			this.showList();
 		}
-		else if(Command.NONE) {
-			// ciclos++??
+		else if(cm == Command.NONE) {
+			this.update();
 		}
-		else if(Command.RESET) {
+		else if(cm == Command.RESET) {
 			this.initGame();
 		}
-		else if(Command.SHOCKWAVE) {
+		else if(cm == Command.SHOCKWAVE) {
+			//quita vida a todas las naves alienigenas
+			this.update();
+		}
+		else if(cm == Command.SHOOT) {
+			//realiza disparo si puede
+			this.update();
+		}
 		
 	}
 	
-	private void enemyMoves() {
-		if(this.level.getSpeed()%this.cycles==0) {
-			if(this.destroyerShipList.isBorder()|this.regularShipList.isBorder()) {
-				this.destroyerShipList.move(Move.DOWN);
-				this.regularShipList.move(Move.DOWN);
-			}
-			else if (this.cycles%2==0) {
-				this.destroyerShipList.move(Move.RIGHT);
-				this.regularShipList.move(Move.RIGHT);
-			}
-			else {
-				this.destroyerShipList.move(Move.LEFT);
-				this.regularShipList.move(Move.LEFT);
-			}
-		}
+	private void showList() {
+		String s ="";
+		s+= "[R]egular ship: Points: 5 - Harm: 0 - Shield: 2\n" +
+		"[D]estroyer ship: Points: 10 - Harm: 1 - Shield: 1|n" +
+		"[O]vni: Points: 25 - Harm: 0 - Shield: 1\n" +
+		"^__^: Harm: 1 - Shield: 3\n";
+		System.out.println(s);
+
+	}
+
+	private void showHelp() {
+		String s ="";
+		s+= "move <left|right><1|2>: Moves UCM-Ship to the indicated direction.\n" +
+		"shoot: UCM-Ship launches a missile.\n" +
+		"shockWave: UCM-Ship releases a shock wave.\n" +
+		"list: Prints the list of available ships.\n" +
+		"reset: Starts a new game.\n" +
+		"help: Prints this help message. \n" +
+		"exit: Terminates the program.\n" +
+		"[none]: Skips one cycle.\n";
+		System.out.println(s);
 	}
 	
 	public void computerAction() {
@@ -228,14 +200,14 @@ public class Game {
 		double num;
 		for(int i=0;i<this.destroyerShipList.getCount();i++) {
 			num=this.rand.nextDouble();
-			if (num<this.level.getFrecShoot() & this.destroyerShipList.search(this.destroyerShipList.getRow(i)+1, this.destroyerShipList.getColumn(i))==-1) {
+			if (num<this.level.getFrecShoot() & this.destroyerShipList.find(this.destroyerShipList.getRow(i)+1, this.destroyerShipList.getColumn(i))==-1) {
 				this.bombList.insert(this.destroyerShipList.getRow(i),this.destroyerShipList.getColumn(i));
 			}//se inicializa la bomba en la posicion de su nave, en update se mueve fuera de la nave
 		}
 	}
 	
 	public String toString() {
-		String draw="Life: "+this.ucmShip.getHealth()+"\n";
+		String draw="Life: "+this.ucmShip.getLife()+"\n";
 		draw+="Number of cycles: "+this.cycles+"\n";
 		draw+="Points: "+this.points+"\n";
 		draw+="Remaining aliens: "+this.remainingAliens+"\n";

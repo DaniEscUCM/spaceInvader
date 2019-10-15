@@ -35,21 +35,19 @@ public class DestroyerShipList {
 		}
 		
 		//devolveria la posicion si lo consigue, sino devuelve -1
-		public int search(int rowS,int columnS) {
-			int pos=0;
-			boolean finded=false;
-			while(!finded & pos<numDestroyer) {
-				if(destroyerList[pos].getRow()==rowS && destroyerList[pos].getColumn()==columnS) {
-					finded=true;
-				}
-				else pos++;
+		public int find(int row, int col) {
+			int index = -1;
+			int i = 0;
+			while(i < this.numDestroyer && index != -1) {
+				if(destroyerList[i].getRow()== row && destroyerList[i].getColumn() == col)
+					index = i;
+				i++;
 			}
-			if (!finded) {pos=-1;}
-			return pos;
+			return index;
 		}
 		
 		public boolean destroyerhit(int rowl, int columnl) {
-			int pos=this.search(rowl, columnl);
+			int pos=this.find(rowl, columnl);
 			boolean resul=pos!=1;
 			if(resul) {
 				for(int i=pos;i<numDestroyer-1;i++) {
@@ -91,6 +89,23 @@ public class DestroyerShipList {
 		public int getColumn(int index) {
 			return this.destroyerList[index].getColumn();
 		}
+
+		public boolean hurt(int row, int col) {
+		int i = this.find(row, col);
+		if(i!= -1) {
+			delete(i);
+			return true;
+		}
+		else return false;
+	}
+
+		public void delete(int index) {
+		if (this.destroyerList[index].getLife()==0) {
+			for(int i = index; i < destroyerList.length - 1; i++) {
+				destroyerList[i] = destroyerList[i + 1];
+			}
+		}
+	}
 		
 		
 }
