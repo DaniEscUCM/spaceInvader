@@ -35,21 +35,20 @@ public class DestroyerShipList {
 		}
 		
 		//devolveria la posicion si lo consigue, sino devuelve -1
-		public int search(int rowS,int columnS) {
-			int pos=0;
-			boolean finded=false;
-			while(!finded & pos<numDestroyer) {
-				if(destroyerList[pos].getRow()==rowS && destroyerList[pos].getColumn()==columnS) {
-					finded=true;
+		public int find(int row, int col) {
+			int index = -1;
+			int i = 0;
+			while(i < this.numDestroyer && index != -1) {
+				if(destroyerList[i].getRow()== row && destroyerList[i].getColumn() == col) {
+					index = i;					
 				}
-				else pos++;
+				i++;
 			}
-			if (!finded) {pos=-1;}
-			return pos;
+			return index;
 		}
 		
 		public boolean destroyerhit(int rowl, int columnl) {
-			int pos=this.search(rowl, columnl);
+			int pos=this.find(rowl, columnl);
 			boolean resul=pos!=-1;
 			if(resul) {
 				for(int i=pos;i<numDestroyer-1;i++) {
@@ -68,11 +67,11 @@ public class DestroyerShipList {
 			return this.numDestroyer;
 		}
 		
-		public boolean isBorder(boolean lado) {
+		public boolean isBorder(boolean right) {
 			int i=0;
 			boolean resul=false;
 			while(!resul & i<this.numDestroyer) {
-				resul=(this.destroyerList[i].getColumn()==0 && !lado) ||(this.destroyerList[i].getColumn()==8 && lado);
+				resul=(this.destroyerList[i].getColumn()==0 && !right) ||(this.destroyerList[i].getColumn()==8 && right);
 				i++;
 			}			
 			return resul;
@@ -80,7 +79,7 @@ public class DestroyerShipList {
 		
 		public void move(Move dir) {
 			for(int i=0;i<this.numDestroyer;i++) {
-				this.destroyerList[i].destroyermove(dir);
+				this.destroyerList[i].move(dir);
 			}
 		}
 		
@@ -100,11 +99,11 @@ public class DestroyerShipList {
 			return this.destroyerList[i];
 		}
 		
-		public int destroyBomb() {
+		public int destroyBomb() {//quitar?
 			int pos=0;
 			boolean enc=false;
-			while(pos<this.numDestroyer && !enc) {
-				if (!this.destroyerList[pos].getCanShoot()) {enc =true;this.destroyerList[pos].nullBomb();}
+			while(pos<this.numDestroyer && !enc) {//eliminar bomba ==
+				if (!this.destroyerList[pos].getCanShoot() ) {enc =true;this.destroyerList[pos].nullBomb();}
 				else {pos++;}
 			}
 			return pos;

@@ -10,15 +10,21 @@ public class UCMShipLaser {
 		column=ucmColumn;
 	}
 	
-	public void move() {
-		row--;
+	public boolean move() {
+		if(this.row==0) {
+			return false;
+		}
+		else {
+			row --;
+			return true;
+		}
 	}
 	
 	public int getHarm() {
 		return harm;
 	}
 	
-	public String toStringLaser() {
+	public String toString() {
 		return draw;
 	}
 	public int getRow() {

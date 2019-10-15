@@ -2,42 +2,49 @@ package tp.p1.logic.objects;
 
 public class Ovni {
 	
-	private final int fila = 0;
-	private int columna=8;
-	int health = 1;
-	int puntos = 25;
+	private final int row = 0;
+	private int column=8;
+	private int life = 1;
+	private int points = 25;
 	private final String draw = "O";
 	
-	public void move () {
-		columna --;
+	public boolean move () {
+		if(this.column==0) {
+			return false;
+		}
+		else {
+			column --;
+			return true;
+		}
+		
 	}
 	
 	public boolean hurt(int row,int col) {
 		boolean resul=false;
-		if(row==this.fila & col==this.columna) {
-			health--;
+		if(row==this.row & col==this.column) {
+			life--;
 			resul=true;
 		}
 		return resul;
 	}
-	
+	/*
 	public boolean shockWave() {//tal vez en otro lado??
-		if(health == 0)
+		if(live == 0)
 			return true;
 		else return false;
-	}
+	}*/
 	
 	public String toString() {
-		return draw + "["+ health + "]"; 
+		return draw + "["+ life + "]"; 
 	}
 	public int getRow() {
-		return fila;
+		return this.row;
 	}
 	public int getColumn() {
-		return columna;
+		return this.column;
 	}
 	
 	public int getPoint() {
-		return this.puntos;
+		return this.points;
 	}
 }

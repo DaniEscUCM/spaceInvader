@@ -43,7 +43,7 @@ public class RegularShipList {
 		
 	
 	public void delete(int index) {
-		if (this.list[index].getHealth()==0) {
+		if (this.list[index].getLife()==0) {
 			for(int i = index; i < list.length - 1; i++) {
 				list[i] = list[i + 1];
 			}
@@ -55,7 +55,9 @@ public class RegularShipList {
 		boolean resul=pos!=-1;
 		if(resul) {
 			this.list[pos].hurt();
-			this.delete(pos);
+			if(this.list[pos].getLife()==0) {
+				this.delete(pos);
+			}
 		}
 		return resul;
 	}
@@ -70,8 +72,7 @@ public class RegularShipList {
 		while(!resul & i<this.count) {
 			resul=(this.list[i].getCol()==0 && !right) ||(this.list[i].getCol()==8 && right);
 			i++;
-		}
-		
+		}		
 		return resul;
 	}
 	

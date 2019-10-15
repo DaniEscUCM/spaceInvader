@@ -7,7 +7,6 @@ public class Bomb {
 	private final String draw = ".";
 
 	public Bomb(int row, int col) {
-		super();//??
 		this.row = row;
 		this.col = col;
 	}
@@ -42,8 +41,11 @@ public class Bomb {
 	}*/
 
 
-	public void move() {
-		this.row ++;
+	public boolean move() {
+		if(this.row < 7) {
+			this.row ++; return true;
+		}
+		else return false;
 	}
 	
 	public String toString() {

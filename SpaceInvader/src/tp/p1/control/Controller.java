@@ -85,23 +85,23 @@ public class Controller {
 					print = false;
 				}	
 				else {
-					game.commands(cm, move, i);
-					
+					game.commands(cm, move, i);					
 					
 				}
 			}
 			if(cm==Command.MOVE||cm==Command.SHOCKWAVE||cm==Command.SHOOT||cm==Command.NONE) {
-				print=true;
-				
+				print=true;				
 				game.update();
 			}
 			
 		}
 		// si wins = true...gana jugador, si no, false.
 		if(game.getWins() == 1) {
+			System.out.println(this.game.toString());
 			System.out.println("Player wins");
 		}
 		else if(game.getWins() == 2){
+			System.out.println(this.game.toString());
 			System.out.println("Aliens win");
 		}
 		else {
