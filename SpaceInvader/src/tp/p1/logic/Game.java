@@ -108,7 +108,7 @@ public class Game {
 	
 	public String toStringObjectAt(int i, int j) {
 		int pos=-1;
-		String draw=" ";
+		String draw="";
 		
 		if(this.destroyerShipList.find(i, j)!=pos) {draw=this.destroyerShipList.toString();}
 		else if(this.bombList.find(i, j)!=pos){draw=this.bombList.toString();}
@@ -136,6 +136,7 @@ public class Game {
 		// Metodo que llama a funciones de game segun el comando; 
 		if(cm == Command.MOVE) {
 			this.ucmShip.move_UCMship(i, move);// aqui suo
+			this.computerAction();
 			this.update();
 		}
 		else if(cm == Command.EXIT) {
@@ -148,6 +149,7 @@ public class Game {
 			this.showList();
 		}
 		else if(cm == Command.NONE) {
+			this.computerAction();
 			this.update();
 		}
 		else if(cm == Command.RESET) {
@@ -155,10 +157,12 @@ public class Game {
 		}
 		else if(cm == Command.SHOCKWAVE) {
 			//quita vida a todas las naves alienigenas
+			this.shockWave();//quitaria vida a todas las naves alienigenas
 			this.update();
 		}
 		else if(cm == Command.SHOOT) {
 			//realiza disparo si puede
+			if(this.laser == null) this.laser = new UCMShipLaser(this.ucmShip.getRow());
 			this.update();
 		}
 		
