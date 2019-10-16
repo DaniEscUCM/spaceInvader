@@ -123,7 +123,7 @@ public class Game {
 			resul=true;
 		}
 		else if (this.regularShipList.regularHit(lrow,lcol)) {
-			this.points+=this.regularShipList.getPoints();
+			this.points+=this.regularShipList.getPoints();//solo si lo elimina, está mal
 			this.laser=null;
 			resul=true;
 		}

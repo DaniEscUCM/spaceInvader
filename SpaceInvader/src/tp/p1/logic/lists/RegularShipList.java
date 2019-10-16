@@ -7,6 +7,7 @@ public class RegularShipList {
 	private RegularShip[] list;
 	private int count=0;
 	private int puntos = 5;
+	private boolean darPuntos=false;
 	
 	public RegularShipList(int n) {
 		int row=1, col=8;
@@ -23,7 +24,13 @@ public class RegularShipList {
 	}
 	
 	public int getPoints() {
-		return puntos;
+		if(darPuntos) {
+			darPuntos=false;
+			return puntos;
+		}
+		else {
+			return 0;
+		}
 	}
 	
 	public int find(int row, int col) {
@@ -44,6 +51,7 @@ public class RegularShipList {
 	
 	public void delete(int index) {
 		if (this.list[index].getLife()==0) {
+			darPuntos=true;
 			for(int i = index; i < this.count - 1; i++) {
 				list[i] = list[i + 1];
 			}
@@ -57,7 +65,6 @@ public class RegularShipList {
 		if(resul) {
 			this.list[pos].hurt();
 			if(this.list[pos].getLife()==0) {
-			System.out.println(this.list[pos].getLife());
 				this.delete(pos);
 			}
 		}
