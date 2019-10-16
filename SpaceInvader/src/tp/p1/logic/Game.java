@@ -76,12 +76,15 @@ public class Game {
 				ovni=null;
 		}	
 		
-		if (this.laser!=null) {
-			if(this.Laserhits(this.laser.getRow(),this.laser.getColumn())&&this.laser.move()) {
-				this.laser.move();
+		if (this.laser!=null &&!this.Laserhits(this.laser.getRow(),this.laser.getColumn())) {
+			if (this.laser.move()) {
 				this.Laserhits(this.laser.getRow(),this.laser.getColumn());			
 			}
+			else {
+				this.laser=null;
+			}
 		}	
+		
 		if (this.bombList.getCount()!=0) {//para cada movimiento se verifica antes y despues si hay dano
 			int i=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
 			if(i!=-1) {
@@ -106,7 +109,7 @@ public class Game {
 			this.ucmShip.setDraw("!xx!");
 			}
 		else {//continua			
-			computerAction();//ve si dispara y si sale ovni}
+			computerAction();//ve si dispara y si sale ovni
 		}
 		
 	}
@@ -139,7 +142,7 @@ public class Game {
 		boolean resul=false;
 		int i=0,aux1=-1, aux2=-1;
 		if (this.destroyerShipList.getCount()!=0) {
-			while(resul & i<this.col) {
+			while(!resul & i<this.col) {
 				if(this.destroyerShipList.getNumDestroyer()!=0) {
 					aux1=this.destroyerShipList.find(7,i);
 				}
@@ -147,6 +150,7 @@ public class Game {
 					aux2=this.regularShipList.find(7, i);
 				}
 				resul=(aux1!=-1)||(aux2!=-1);
+				i++;
 			}
 		}	
 		return resul;
@@ -154,7 +158,7 @@ public class Game {
 
 	
 	public String toStringObjectAt(int i, int j) {
-		int pos=-1;//preguntar a la profesora para tal vez entrada salida u otra solucion
+		//int pos=-1;//preguntar a la profesora para tal vez entrada salida u otra solucion
 		String draw=" ";
 		
 		if(this.destroyerShipList.find(i, j)!=-1) {draw=this.destroyerShipList.toString(this.destroyerShipList.find(i, j));}
@@ -220,7 +224,7 @@ public class Game {
 			this.showList();
 		}
 		else if(cm == Command.NONE) {
-			this.computerAction();
+			//this.computerAction();
 		}
 		else if(cm == Command.RESET) {
 			this.initGame();
@@ -231,7 +235,7 @@ public class Game {
 		}
 		else if(cm == Command.SHOOT) {
 			//realiza disparo si puede
-			if(this.laser == null) {this.laser = new UCMShipLaser(this.ucmShip.getRow());}
+			if(this.laser == null) {this.laser = new UCMShipLaser(this.ucmShip.getColumn());}
 		}
 		
 	}

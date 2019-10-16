@@ -90,7 +90,7 @@ public class Controller {
 				}
 			}
 			if(cm==Command.MOVE||cm==Command.SHOCKWAVE||cm==Command.SHOOT||cm==Command.NONE) {
-				print=true;				
+				print=true;	
 				game.update();
 			}
 			

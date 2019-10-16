@@ -44,9 +44,10 @@ public class RegularShipList {
 	
 	public void delete(int index) {
 		if (this.list[index].getLife()==0) {
-			for(int i = index; i < list.length - 1; i++) {
+			for(int i = index; i < this.count - 1; i++) {
 				list[i] = list[i + 1];
 			}
+			this.count--;
 		}
 	}
 	
@@ -56,6 +57,7 @@ public class RegularShipList {
 		if(resul) {
 			this.list[pos].hurt();
 			if(this.list[pos].getLife()==0) {
+			System.out.println(this.list[pos].getLife());
 				this.delete(pos);
 			}
 		}

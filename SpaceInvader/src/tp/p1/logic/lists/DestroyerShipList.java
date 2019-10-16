@@ -38,7 +38,7 @@ public class DestroyerShipList {
 		public int find(int row, int col) {
 			int index = -1;
 			int i = 0;
-			while(i < this.numDestroyer && index != -1) {
+			while(i < this.numDestroyer && index == -1) {
 				if(destroyerList[i].getRow()== row && destroyerList[i].getColumn() == col) {
 					index = i;					
 				}
