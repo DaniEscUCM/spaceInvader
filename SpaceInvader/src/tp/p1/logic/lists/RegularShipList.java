@@ -16,8 +16,8 @@ public class RegularShipList {
 			this.insert(row,col);
 			col--;
 			if(i==3) {//para los niveles hard e insane
-				row=8;
-				col=2;
+				row=2;
+				col=8;
 			}
 			
 		}
@@ -94,20 +94,22 @@ public class RegularShipList {
 	public String toString(int pos) {
 		return this.list[pos].toString();
 	}
-	public void shockwave() {
+	public int shockwave() {
 		// en este caso elimina todas las naves destroyer porque tiene solo 1 vida
 		//igualmente es igual que regular para otras modificaciones posibles.
-		int i = 0;
+		int i = 0, resul=this.count*this.puntos;
 		while(i < this.count) {
 			this.list[i].hurt();
 			if(this.list[i].getLife() == 0){
-				for(int j=i;j<count-1;j++) {
-					list[j]=list[i + 1];
-				}
-				count--;	
+				for(int j =i; j < count-1; j++) {
+					list[j]=list[j + 1];
+				}	
+
+				count--;
 			}
 			else i++;
 		}
+		return resul;
 		
 	}
 

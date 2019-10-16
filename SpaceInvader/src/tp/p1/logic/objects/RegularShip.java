@@ -7,7 +7,7 @@ public class RegularShip {
 	private int life = 2;
 	private int row;
 	private int col;
-	private final String draw = "C";
+	private final String draw = "R";
 	
 	public RegularShip(int row, int col) {
 		this.row = row;

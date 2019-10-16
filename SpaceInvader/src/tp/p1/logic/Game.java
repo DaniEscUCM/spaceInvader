@@ -86,18 +86,9 @@ public class Game {
 		}	
 		
 		if (this.bombList.getCount()!=0) {//para cada movimiento se verifica antes y despues si hay dano
-			int i=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
-			if(i!=-1) {
-				this.ucmShip.hurt();
-				this.destroyerShipList.destroyBomb();//preguntare
-				this.bombList.delete(i);
-			}
-			this.bombList.move();
-			i=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn());
-			if(i!=-1) {
-				this.ucmShip.hurt();
-				this.bombList.delete(i);
-			}
+			this.bombscan();
+			this.bombList.move(this.destroyerShipList);
+			this.bombscan();
 		}
 		
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();//final del juego
@@ -110,13 +101,31 @@ public class Game {
 			}
 		else {//continua			
 			computerAction();//ve si dispara y si sale ovni
+			
 		}
 		
+	}
+	
+	private void bombscan() {
+		int i=this.bombList.find(this.ucmShip.getRow(), this.ucmShip.getColumn()),j=-1;
+		if(laser!=null) {j=this.bombList.find(this.laser.getRow(), this.laser.getColumn());}
+		if(i!=-1) {
+			this.ucmShip.hurt();
+			this.destroyerShipList.destroyBomb(this.bombList.getBomb(i));//preguntare
+			this.bombList.delete(i);
+		}
+		else if(j!=-1) {
+			this.destroyerShipList.destroyBomb(this.bombList.getBomb(j));//preguntare
+			this.bombList.delete(j);
+			laser=null;
+		}
 	}
 	
 	
 	private boolean Laserhits(int lrow, int lcol) {
 		boolean resul=false;
+		int i=this.bombList.find(this.laser.getRow(), this.laser.getColumn());
+		
 		if(this.destroyerShipList.destroyerhit(lrow,lcol)) {
 			this.points+=this.destroyerShipList.getPoints();
 			this.laser=null;
@@ -134,6 +143,12 @@ public class Game {
 			this.shockWave=true;
 			resul=true;
 		}
+		else if(i!=-1) {
+			this.destroyerShipList.destroyBomb(this.bombList.getBomb(i));//preguntare
+			this.bombList.delete(i);
+			this.laser=null;
+			resul=true;
+		}
 
 		return resul;
 	}
@@ -141,7 +156,7 @@ public class Game {
 	private boolean aliensWins() {//no hace que llega al borde
 		boolean resul=false;
 		int i=0,aux1=-1, aux2=-1;
-		if (this.destroyerShipList.getCount()!=0) {
+		if (this.destroyerShipList.getCount()!=0 || this.regularShipList.getCount()!=0) {
 			while(!resul & i<this.col) {
 				if(this.destroyerShipList.getNumDestroyer()!=0) {
 					aux1=this.destroyerShipList.find(7,i);
@@ -241,12 +256,11 @@ public class Game {
 	}
 	
 	private void shockWave() {
-		if (this.ovni!= null) this.ovni.hurt(ovni.getRow(), ovni.getColumn());
-		this.destroyerShipList.shockwave();
-		this.regularShipList.shockwave();
+		if (this.ovni!= null) {this.points+=this.ovni.getPoint();this.ovni=null;}
+		if(this.destroyerShipList.getCount() > 0) { this.points+=this.destroyerShipList.shockwave();}
+		if(this.regularShipList.getCount() > 0) {this.points+=this.regularShipList.shockwave();}
 		this.shockWave = false; //ha usado el poder
-	
-}
+	}
 
 	private void enemyMoves() {
 		if(this.cycles!=0 && this.cycles%this.level.getSpeed()==0) {
@@ -267,8 +281,8 @@ public class Game {
 	}
 	
 	public void computerAction() {		
-		double ayuda=this.rand.nextDouble();
-		if(this.ovni==null & this.level.getOvniProb()<ayuda) {
+		double num=this.rand.nextDouble();
+		if(this.ovni==null & this.level.getOvniProb()>num) {
 			this.ovni= new Ovni();
 		}
 		aliensShoots();
@@ -279,7 +293,8 @@ public class Game {
 		for(int i=0;i<this.destroyerShipList.getCount();i++) {
 			num=this.rand.nextDouble();
 			if (num<this.level.getFrecShoot() & this.destroyerShipList.getShip(i).getCanShoot()) {
-				//this.bombList.insert(this.destroyerShipList.getShip(i).shoot());//ahora bombas
+				this.bombList.insert(this.destroyerShipList.getShip(i).shoot());//ahora bombas
+				this.bombscan();
 			}//se inicializa la bomba en la posicion de su nave, en update se mueve fuera de la nave
 		}
 	}

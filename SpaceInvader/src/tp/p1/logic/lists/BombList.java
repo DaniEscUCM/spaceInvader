@@ -1,4 +1,5 @@
 package tp.p1.logic.lists;
+import tp.p1.logic.lists.DestroyerShipList;
 //blah
 
 import tp.p1.logic.objects.Bomb;
@@ -48,16 +49,22 @@ public class BombList {
 	}
 	
 	
-	public void move() {
+	public void move(DestroyerShipList dlist) {
 		int i=0;
 		while (i<count) {
 			if(this.list[i].move()) {i++;}
-			else {delete(i);}
+			else {
+				dlist.destroyBomb(this.list[i]);
+				delete(i);}
 		}
 	}
 	
 	public String toString(int pos) {
 		return this.list[pos].toString();
+	}
+	
+	public Bomb getBomb(int pos) {
+		return this.list[pos];
 	}
 	
 }

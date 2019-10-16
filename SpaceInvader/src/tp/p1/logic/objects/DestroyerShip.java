@@ -56,4 +56,8 @@ public class DestroyerShip {
 		life--;
 	}
 	
+	public boolean equalsbomb(Bomb bomb) {
+		return this.bomb==bomb;
+	}
+	
 }

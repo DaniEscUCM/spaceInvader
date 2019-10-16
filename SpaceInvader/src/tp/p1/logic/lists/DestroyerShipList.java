@@ -1,6 +1,7 @@
 package tp.p1.logic.lists;
 import tp.p1.logic.Level;
 import tp.p1.logic.Move;
+import tp.p1.logic.objects.Bomb;
 import tp.p1.logic.objects.DestroyerShip;
 
 
@@ -99,30 +100,34 @@ public class DestroyerShipList {
 			return this.destroyerList[i];
 		}
 		
-		public int destroyBomb() {//quitar?
+		public void destroyBomb(Bomb bomb) {//quitar?
 			int pos=0;
 			boolean enc=false;
 			while(pos<this.numDestroyer && !enc) {//eliminar bomba ==
-				if (!this.destroyerList[pos].getCanShoot() ) {enc =true;this.destroyerList[pos].nullBomb();}
+				if (!this.destroyerList[pos].getCanShoot() && this.equalsBomb(bomb, pos) ) {enc =true;this.destroyerList[pos].nullBomb();}
 				else {pos++;}
 			}
-			return pos;
+		}
+		
+		private boolean equalsBomb(Bomb bomb, int pos) {
+			return this.destroyerList[pos].equalsbomb(bomb);
 		}
 
-		public void shockwave() {
+		public int shockwave() {
 			// en este caso elimina todas las naves destroyer porque tiene solo 1 vida
 			//igualmente es igual que regular para otras modificaciones posibles.
-			int i = 0;
+			int i = 0, resul=this.numDestroyer*this.points;
 			while(i < this.numDestroyer) {
 				this.destroyerList[i].hurt();
 				if(this.destroyerList[i].getLife() == 0){
-					for(int j=i;i<numDestroyer-1;j++) {
-						destroyerList[j]=destroyerList[i+1];
+					for(int j=i;j<numDestroyer - 1;j++) {
+						destroyerList[j]=destroyerList[j + 1];	
 					}
 					numDestroyer--;	
 				}
 				else i++;
 			}
+			return resul;
 			
 		}
 		
