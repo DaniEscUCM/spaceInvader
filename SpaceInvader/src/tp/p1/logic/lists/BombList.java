@@ -22,7 +22,7 @@ public class BombList {
 	public int find(int row, int col) {
 		int index = -1;
 		int i = 0;
-		while(i < list.length && index != -1) {
+		while(i < this.count && index == -1) {
 			if(list[i].getRow()== row && list[i].getCol() == col)
 				index = i;
 			i++;
@@ -30,14 +30,9 @@ public class BombList {
 		return index;
 	}
 	
-	public boolean insert(int row, int col) {
-		if (find(row,col) == -1) {
-			list[list.length] = new Bomb(row,col);
-			count++;
-			return true;
-			}
-		else {return false;
-		}
+	public void insert(Bomb bomb) {
+		list[count] = bomb;
+		count++;
 	}
 		
 	
@@ -56,32 +51,13 @@ public class BombList {
 	public void move() {
 		int i=0;
 		while (i<count) {
-			if(this.list[i].getRow()==8) {delete(i);}
-			else {
-				this.list[i].move();
-				i++;
-			}
+			if(this.list[i].move()) {i++;}
+			else {delete(i);}
 		}
 	}
-
-	public boolean hurt(int row, int col) {
-		int i = this.find(row, col);
-		if(i!= -1) {
-			delete(i);
-			return true;
-		}
-		else return false;
-	}
-
-	public void update() {
-		int i = 0;
-		while(i < this.count) {
-			if(this.list[i].move())
-				i++;
-			else {
-				this.delete(i);
-			}
-		}
+	
+	public String toString(int pos) {
+		return this.list[pos].toString();
 	}
 	
 }

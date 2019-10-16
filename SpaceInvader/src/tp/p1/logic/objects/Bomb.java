@@ -7,7 +7,6 @@ public class Bomb {
 	private final String draw = ".";
 
 	public Bomb(int row, int col) {
-		super();//??
 		this.row = row;
 		this.col = col;
 	}

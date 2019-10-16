@@ -9,15 +9,16 @@ public class RegularShipList {
 	private int puntos = 5;
 	
 	public RegularShipList(int n) {
-		int row=8, col=1;
+		int row=1, col=8;
 		list = new RegularShip[n];
 		for(int i=0;i<n;i++) {
-			insert(row,col);
-			row--;
+			this.insert(row,col);
+			col--;
 			if(i==3) {//para los niveles hard e insane
 				row=8;
 				col=2;
 			}
+			
 		}
 	}
 	
@@ -28,9 +29,8 @@ public class RegularShipList {
 	public int find(int row, int col) {
 		int index = -1;
 		int i = 0;
-		while(i < this.count && index != -1) {
-			if(list[i].getRow()== row && list[i].getCol() == col)
-				index = i;
+		while(i < this.count && index == -1) {
+			if(list[i].getRow()== row && list[i].getCol() == col) {	index = i;	}
 			i++;
 		}
 		return index;
@@ -52,10 +52,12 @@ public class RegularShipList {
 	
 	public boolean regularHit(int row, int col) {
 		int pos=this.find(row, col);
-		boolean resul=pos!=0;
+		boolean resul=pos!=-1;
 		if(resul) {
 			this.list[pos].hurt();
-			this.delete(pos);
+			if(this.list[pos].getLife()==0) {
+				this.delete(pos);
+			}
 		}
 		return resul;
 	}
@@ -64,13 +66,13 @@ public class RegularShipList {
 		return this.count;
 	}
 	
-	public boolean isBorder() {
+	public boolean isBorder(boolean right) {
 		int i=0;
 		boolean resul=false;
 		while(!resul & i<this.count) {
-			resul=this.list[i].getCol()==0 |this.list[i].getCol()==8;
-		}
-		
+			resul=(this.list[i].getCol()==0 && !right) ||(this.list[i].getCol()==8 && right);
+			i++;
+		}		
 		return resul;
 	}
 	
@@ -79,14 +81,25 @@ public class RegularShipList {
 			this.list[i].move(dir);
 		}
 	}
-
-	public boolean hurt(int row, int col) {
-		int i = this.find(row, col);
-		if(i!= -1) {
-			delete(i);
-			return true;
+	
+	public String toString(int pos) {
+		return this.list[pos].toString();
+	}
+	public void shockwave() {
+		// en este caso elimina todas las naves destroyer porque tiene solo 1 vida
+		//igualmente es igual que regular para otras modificaciones posibles.
+		int i = 0;
+		while(i < this.count) {
+			this.list[i].hurt();
+			if(this.list[i].getLife() == 0){
+				for(int j=i;j<count-1;j++) {
+					list[j]=list[i + 1];
+				}
+				count--;	
+			}
+			else i++;
 		}
-		else return false;
+		
 	}
 
 }

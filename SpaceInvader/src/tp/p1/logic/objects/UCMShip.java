@@ -10,22 +10,27 @@ public class UCMShip {
 
 		public boolean move_UCMship (int steps, Move direction) {//ver direccion, tal vez enumerado
 			boolean ret = true;
-			if (direction == Move.RIGHT && column + steps <= 7) {
+			if (direction == Move.RIGHT && ((column + steps) < 8)) {
 				column+=steps;
 			}
-			else if (direction == Move.RIGHT && column + steps > 7) {
-				column = 7; 
+			else if (direction == Move.RIGHT && ((column + steps) >= 8)) {
+				column = 8; 
 			}
-			else if (direction == Move.LEFT && column - steps >= 0) {
-				column+=steps;
+			else if (direction == Move.LEFT && ((column - steps) > 0)) {
+				column-=steps;
 			}
-			else if (direction == Move.RIGHT && column + steps < 0) {
+			else if (direction == Move.LEFT && ((column - steps) < 0)) {
 				column = 0; 
 			}
 			else ret = false;
 			return ret;
 		}
-	
+		/*
+		public void shoot() {//si puede disparar, dispara
+			if(this.getCanShoot()) {
+				this.laser= new UCMShipLaser(this.column);
+			}
+		}*/
 		
 		public void hurt() {
 			life--;
@@ -35,7 +40,7 @@ public class UCMShip {
 			return life;
 		}
 		
-		public String toStringUCM() {
+		public String toString() {
 			return draw;
 		}
 		public int getRow() {

@@ -6,22 +6,25 @@ public class UCMShipLaser {
 	private final String draw= "oo";
 	
 	public UCMShipLaser(int ucmColumn) {
-		row=6;
+		row=7;
 		column=ucmColumn;
 	}
 	
 	public boolean move() {
-		if(row > 0) {
-			row--; return true;
+		if(this.row==0) {
+			return false;
 		}
-		else return false;
+		else {
+			row --;
+			return true;
+		}
 	}
 	
 	public int getHarm() {
 		return harm;
 	}
 	
-	public String toStringLaser() {
+	public String toString() {
 		return draw;
 	}
 	public int getRow() {
