@@ -23,7 +23,7 @@ public class DestroyerShip {
 		else if(dir==Move.LEFT) {this.column--;}
 	}
 	
-	public int getHealth() {
+	public int getLife() {
 		return life;
 	}
 	
@@ -50,6 +50,10 @@ public class DestroyerShip {
 	
 	public void nullBomb() {
 		this.bomb=null;
+	}
+	
+	public void hurt() {
+		life--;
 	}
 	
 }

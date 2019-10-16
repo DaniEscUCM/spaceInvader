@@ -108,5 +108,22 @@ public class DestroyerShipList {
 			}
 			return pos;
 		}
+
+		public void shockwave() {
+			// en este caso elimina todas las naves destroyer porque tiene solo 1 vida
+			//igualmente es igual que regular para otras modificaciones posibles.
+			int i = 0;
+			while(i < this.numDestroyer) {
+				this.destroyerList[i].hurt();
+				if(this.destroyerList[i].getLife() == 0){
+					for(int j=i;i<numDestroyer-1;j++) {
+						destroyerList[j]=destroyerList[i+1];
+					}
+					numDestroyer--;	
+				}
+				else i++;
+			}
+			
+		}
 		
 }

@@ -10,7 +10,7 @@ public class UCMShip {
 
 		public boolean move_UCMship (int steps, Move direction) {//ver direccion, tal vez enumerado
 			boolean ret = true;
-			if (direction == Move.RIGHT && ((column + steps) <= 8)) {
+			if (direction == Move.RIGHT && ((column + steps) < 8)) {
 				column+=steps;
 			}
 			else if (direction == Move.RIGHT && ((column + steps) >= 8)) {
@@ -19,7 +19,7 @@ public class UCMShip {
 			else if (direction == Move.LEFT && ((column - steps) >= 0)) {
 				column-=steps;
 			}
-			else if (direction == Move.RIGHT && ((column + steps) <= 0)) {
+			else if (direction == Move.LEFT && ((column - steps) < 0)) {
 				column = 0; 
 			}
 			else ret = false;

@@ -22,7 +22,7 @@ public class BombList {
 	public int find(int row, int col) {
 		int index = -1;
 		int i = 0;
-		while(i < list.length && index != -1) {
+		while(i < this.count && index == -1) {
 			if(list[i].getRow()== row && list[i].getCol() == col)
 				index = i;
 			i++;

@@ -231,7 +231,7 @@ public class Game {
 		}
 		else if(cm == Command.SHOCKWAVE) {
 			//quita vida a todas las naves alienigenas
-			//this.shockWave();//quit
+			if (this.shockWave) this.shockWave();//quit
 		}
 		else if(cm == Command.SHOOT) {
 			//realiza disparo si puede
@@ -240,6 +240,14 @@ public class Game {
 		
 	}
 	
+	private void shockWave() {
+		if (this.ovni!= null) this.ovni.hurt(ovni.getRow(), ovni.getColumn());
+		this.destroyerShipList.shockwave();
+		this.regularShipList.shockwave();
+		this.shockWave = false; //ha usado el poder
+	
+}
+
 	private void enemyMoves() {
 		if(this.cycles!=0 && this.cycles%this.level.getSpeed()==0) {
 			if(this.destroyerShipList.isBorder(this.right)||this.regularShipList.isBorder(this.right)) {
@@ -271,7 +279,7 @@ public class Game {
 		for(int i=0;i<this.destroyerShipList.getCount();i++) {
 			num=this.rand.nextDouble();
 			if (num<this.level.getFrecShoot() & this.destroyerShipList.getShip(i).getCanShoot()) {
-				this.bombList.insert(this.destroyerShipList.getShip(i).shoot());//ahora bombas
+				//this.bombList.insert(this.destroyerShipList.getShip(i).shoot());//ahora bombas
 			}//se inicializa la bomba en la posicion de su nave, en update se mueve fuera de la nave
 		}
 	}
