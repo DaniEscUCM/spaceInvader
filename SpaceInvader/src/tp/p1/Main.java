@@ -8,6 +8,10 @@ import tp.p1.control.Controller;
 import tp.p1.logic.Game;
 import tp.p1.logic.Level;
 
+/*DANIELA ALEJANDRA ESCOBAR SUAREZ
+MICHELLE BENACIR GUERRA GALLEGOS 
+ */
+
 public class Main {
 
 	public static void main(String[] args) {
