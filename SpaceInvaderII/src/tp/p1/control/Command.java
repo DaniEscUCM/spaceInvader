@@ -11,7 +11,7 @@ public abstract class Command {//subclase por cada objeto de la shoot...etc, com
 	protected static final String incorrectNumArgsMsg = "Incorrect number of arguments";
 	protected static final String incorrectArgsMsg = "Incorrect	argument format";
 	
-	public Command(String name, String shortcut, String details, String		help){
+	public Command(String name, String shortcut, String details, String help){
 		this.name = name;
 		this.shortcut = shortcut;
 		this.details = details;

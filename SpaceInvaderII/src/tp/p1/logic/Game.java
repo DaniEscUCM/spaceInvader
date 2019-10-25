@@ -205,11 +205,13 @@ public class Game {
 		if(this.laser == null) {this.laser = new UCMShipLaser(this.ucmShip.getColumn());}
 	}*/
 	
-	private void shockWave() {
-		if (this.ovni!= null) {this.points+=this.ovni.getPoint();this.ovni=null;}
-		if(this.destroyerShipList.getCount() > 0) { this.points+=this.destroyerShipList.shockwave();}
-		if(this.regularShipList.getCount() > 0) {this.points+=this.regularShipList.shockwave();}
-		this.shockWave = false; //ha usado el poder
+	public void shockWave() {
+		if(this.shockWave) {
+			if (this.ovni!= null) {this.points+=this.ovni.getPoint();this.ovni=null;}
+			if(this.destroyerShipList.getCount() > 0) { this.points+=this.destroyerShipList.shockwave();}
+			if(this.regularShipList.getCount() > 0) {this.points+=this.regularShipList.shockwave();}
+			this.shockWave = false;
+		}
 	}
 
 	private void enemyMoves() {
@@ -272,7 +274,7 @@ public class Game {
 		return points;
 	}
 	
-	private void showList() {
+	public void showList() {
 		String s ="";
 		s+= "[R]egular ship: Points: 5 - Harm: 0 - Shield: 2\n" +
 		"[D]estroyer ship: Points: 10 - Harm: 1 - Shield: 1|n" +
@@ -282,7 +284,7 @@ public class Game {
 
 	}
 
-	private void showHelp() {
+	public void showHelp() {
 		String s ="";
 		s+= "move <left|right><1|2>: Moves UCM-Ship to the indicated direction.\n" +
 		"shoot: UCM-Ship launches a missile.\n" +

@@ -40,9 +40,9 @@ public class Main {
 			
 			if(ok) {
 				Random rand = new Random(seed);
-				Game game = new Game(level, rand);/*
+				Game game = new Game(level, rand);
 				Controller control = new Controller(game, in);
-				control.run();*/
+				control.run();
 
 			}
 		}
