@@ -8,7 +8,7 @@ public class CommandGenerator {
 			new ResetCommand(),
 			new ExitCommand(),
 			new ListCommand(),
-			new UpdateCommand(),
+			new NoneCommand(),
 			new MoveCommand(),
 			new ShockwaveCommand()
 	};*/

@@ -177,6 +177,10 @@ public class Game {
 	public void setFinish(boolean in) {
 		this.finish=in;
 	}
+	
+	public void moveUCMShip(Move move, int i) {
+		this.ucmShip.move_UCMship(i, move);
+	}
 	/*
 	public void commands(Command cm, Move move, int i) {if(cm == Command.MOVE) {
 		this.ucmShip.move_UCMship(i, move);// aqui suo
