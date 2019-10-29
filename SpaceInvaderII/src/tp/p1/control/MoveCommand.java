@@ -44,8 +44,9 @@ public class MoveCommand extends Command {
 				if(Character.isDigit(commandWords[2].charAt(0))) {
 					int i=Integer.parseInt(commandWords[2]);
 					if(i >= 1 && i <= 2) {
-						cm=this;//funciona?
 						steps=i;
+						cm=this;//funciona?
+						//cm = new MoveCommand(dir, steps);
 					}
 				}
 			}
