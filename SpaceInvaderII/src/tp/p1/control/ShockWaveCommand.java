@@ -2,10 +2,14 @@ package tp.p1.control;
 
 import tp.p1.logic.Game;
 
-public class ShokWaveCommand extends Command {
+public class ShockWaveCommand extends Command {
 	
-	public ShokWaveCommand() {
-		super("SHOKWAVE","W","no se que va aqui","tampoco se");
+	private static String name = "shockWave";
+	private static String shortcut = "W";
+	private static String detail = ": ";
+	private static String help = "UCM-Ship releases a shock wave.";
+	public ShockWaveCommand() {
+		super(name, shortcut, detail, help);
 	}
 
 	@Override

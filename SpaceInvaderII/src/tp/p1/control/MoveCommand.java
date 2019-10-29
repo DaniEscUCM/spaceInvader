@@ -7,9 +7,21 @@ public class MoveCommand extends Command {
 	
 	private Move dir;
 	private int steps=0;
+	private static String name = "move";
+	private static String shortcut = "M";
+	private static String detail = " <left|right><1|2>: ";
+	private static String help = "Moves UCM-Ship to the indicated direction.";
+	
+	
+	public MoveCommand() {
+		super(name, shortcut, detail, help);
+	}
 
-	public MoveCommand(String name, String shortcut, String details, String help) {
-		super("MOVE", "M", "details", "help");
+	public MoveCommand(Move dir, int steps) {
+		this();
+		this.dir = dir;
+		this.steps = steps;
+		
 	}
 
 	@Override
