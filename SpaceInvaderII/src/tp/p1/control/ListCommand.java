@@ -3,9 +3,13 @@ package tp.p1.control;
 import tp.p1.logic.Game;
 
 public class ListCommand extends Command {
+	private static String name = "list";
+	private static String shortcut = "L";
+	private static String detail = " ";
+	private static String help = ": Prints the list of available ships.";
 	
 	public ListCommand() {
-		super("LIST","L","no se que va aqui","tampoco se");
+		super(name, shortcut, detail, help);
 	}
 
 	@Override
@@ -15,7 +19,7 @@ public class ListCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] commandWords) {//no se si va así
+	public Command parse(String[] commandWords) {//no se si va asï¿½
 		Command cm=null;
 		if(commandWords[0].equalsIgnoreCase(this.name) || commandWords[0].equalsIgnoreCase(this.shortcut)) {
 			cm = this;//funciona??

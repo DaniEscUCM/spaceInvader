@@ -6,16 +6,15 @@ public class ShockWaveCommand extends Command {
 	
 	private static String name = "shockWave";
 	private static String shortcut = "W";
-	private static String detail = ": ";
-	private static String help = "UCM-Ship releases a shock wave.";
+	private static String detail = " ";
+	private static String help = ": UCM-Ship releases a shock wave.";
 	public ShockWaveCommand() {
 		super(name, shortcut, detail, help);
 	}
 
 	@Override
 	public boolean execute(Game game) {
-		game.shockWave();
-		return true;
+		return game.shockWave();
 	}
 
 	@Override

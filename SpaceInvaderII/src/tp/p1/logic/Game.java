@@ -114,7 +114,7 @@ public class Game {
 			resul=true;
 		}
 		else if (this.regularShipList.regularHit(lrow,lcol)) {
-			this.points+=this.regularShipList.getPoints();//solo si lo elimina, está mal
+			this.points+=this.regularShipList.getPoints();//solo si lo elimina, estï¿½ mal
 			this.laser=null;
 			resul=true;
 		}
@@ -209,13 +209,15 @@ public class Game {
 		if(this.laser == null) {this.laser = new UCMShipLaser(this.ucmShip.getColumn());}
 	}*/
 	
-	public void shockWave() {
+	public boolean shockWave() {
 		if(this.shockWave) {
 			if (this.ovni!= null) {this.points+=this.ovni.getPoint();this.ovni=null;}
 			if(this.destroyerShipList.getCount() > 0) { this.points+=this.destroyerShipList.shockwave();}
 			if(this.regularShipList.getCount() > 0) {this.points+=this.regularShipList.shockwave();}
 			this.shockWave = false;
+			return true;
 		}
+		else return false;
 	}
 
 	private void enemyMoves() {
@@ -299,5 +301,13 @@ public class Game {
 		"exit: Terminates the program.\n" +
 		"[none]: Skips one cycle.\n";
 		System.out.println(s);
+	}
+
+	public boolean exit() {
+		if(!this.finish) {
+			this.finish = true; this.wins = 0;
+			return true;
+		}
+		else return false;
 	}
 }

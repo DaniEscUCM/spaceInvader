@@ -9,8 +9,8 @@ public class MoveCommand extends Command {
 	private int steps=0;
 	private static String name = "move";
 	private static String shortcut = "M";
-	private static String detail = " <left|right><1|2>: ";
-	private static String help = "Moves UCM-Ship to the indicated direction.";
+	private static String detail = " <left|right><1|2>";
+	private static String help = ": Moves UCM-Ship to the indicated direction.";
 	
 	
 	public MoveCommand() {
