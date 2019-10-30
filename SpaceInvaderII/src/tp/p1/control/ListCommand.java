@@ -5,7 +5,7 @@ import tp.p1.logic.Game;
 public class ListCommand extends Command {
 	private static String name = "list";
 	private static String shortcut = "L";
-	private static String detail = " ";
+	private static String detail = "";
 	private static String help = ": Prints the list of available ships.";
 	
 	public ListCommand() {

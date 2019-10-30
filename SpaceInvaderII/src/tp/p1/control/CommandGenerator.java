@@ -3,14 +3,15 @@ package tp.p1.control;
 public class CommandGenerator {
 	
 	private static Command[] availableCommands = {// no entiendo esto
-			new ListCommand(),
-			new HelpCommand(),
-			new ResetCommand(),
-			new ExitCommand(),
-			new ListCommand(),
-			new NoneCommand(),
+
 			new MoveCommand(),
-			new ShockWaveCommand()
+			new ShootCommand(),
+			new ShockWaveCommand(),
+			new ListCommand(),
+			new ResetCommand(),
+			new HelpCommand(),
+			new ExitCommand(),
+			new NoneCommand()
 	};
 
 	public static Command parseCommand(String[ ] commandWords) {
@@ -28,7 +29,7 @@ public class CommandGenerator {
 		String s = "";
 		for(int i = 0; i < CommandGenerator.availableCommands.length; i++) {
 			Command cm = CommandGenerator.availableCommands[i];
-			s+= cm.helpText() + System.lineSeparator();
+			s+= cm.helpText() /*+ System.lineSeparator()*/;
 		}
 		return s;
 	}

@@ -6,7 +6,7 @@ public class NoneCommand extends Command {
 	
 	private static String name = "[none]";
 	private static String shortcut = "N";
-	private static String detail = " ";
+	private static String detail = "";
 	private static String help = ": Skips one cycle.";
 
 	public NoneCommand() {

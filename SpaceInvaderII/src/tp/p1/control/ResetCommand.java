@@ -6,7 +6,7 @@ public class ResetCommand extends Command {
 	
 	private static String name = "reset";
 	private static String shortcut = "R";
-	private static String detail = " ";
+	private static String detail = "";
 	private static String help = ": Starts a new game.";
 
 	public ResetCommand() {

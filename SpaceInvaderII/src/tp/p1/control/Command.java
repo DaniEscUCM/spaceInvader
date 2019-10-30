@@ -26,7 +26,7 @@ public abstract class Command {//subclase por cada objeto de la shoot...etc, com
 		}
 	
 	public String helpText(){
-		return details + " : " + help + "\n";
+		return name + details + help + "\n";
 		}
 
 }

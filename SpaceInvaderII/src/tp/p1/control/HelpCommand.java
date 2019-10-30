@@ -6,7 +6,7 @@ public class HelpCommand extends Command {
 	
 	private static String name = "help";
 	private static String shortcut = "H";
-	private static String detail = " ";
+	private static String detail = "";
 	private static String help = ": Prints this help message.";
 
 	public HelpCommand() {
@@ -16,7 +16,6 @@ public class HelpCommand extends Command {
 	@Override
 	public boolean execute(Game game) {
 		System.out.println(CommandGenerator.commandHelp());
-		
 		return true;
 	}
 
