@@ -6,8 +6,9 @@ import tp.p1.logic.Game;
 public abstract class Command {//subclase por cada objeto de la shoot...etc, command generator si null no es reconocido
 	protected final String name;//ej: Help
 	protected final String shortcut;//ej: h
-	private final String details ;//??
+	private final String details ;//izquierda de help
 	private final String help;
+	
 	protected static final String incorrectNumArgsMsg = "Incorrect number of arguments";
 	protected static final String incorrectArgsMsg = "Incorrect	argument format";
 	

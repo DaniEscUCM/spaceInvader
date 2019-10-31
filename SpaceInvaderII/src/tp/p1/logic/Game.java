@@ -62,21 +62,21 @@ public class Game {
 		enemyMoves();
 		if (this.ovni!=null && !this.ovni.move()) {
 			ovni=null;
-	}	
+		}	
 	
-	if (this.laser!=null &&!this.Laserhits(this.laser.getRow(),this.laser.getColumn())) {
-		if (this.laser.move()) {
-			this.Laserhits(this.laser.getRow(),this.laser.getColumn());			
-		}
-		else {
-			this.laser=null;
-		}
-	}	
+		if (this.laser!=null &&!this.Laserhits(this.laser.getRow(),this.laser.getColumn())) {
+			if (this.laser.move()) {
+				this.Laserhits(this.laser.getRow(),this.laser.getColumn());			
+			}
+			else {
+				this.laser=null;
+			}
+		}	
 	
-	if (this.bombList.getCount()!=0) {
-		this.bombscan();
-		this.bombList.move(this.destroyerShipList);
-		this.bombscan();
+		if (this.bombList.getCount()!=0) {
+			this.bombscan();
+			this.bombList.move(this.destroyerShipList);
+			this.bombscan();
 	}
 	
 	this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();//final del juego
@@ -309,5 +309,13 @@ public class Game {
 			return true;
 		}
 		else return false;
+	}
+	
+	public boolean thereisLaser() {
+		return this.laser!=null;
+	}
+	
+	public void shoot() {
+		this.laser = new UCMShipLaser(this.ucmShip.getColumn());
 	}
 }

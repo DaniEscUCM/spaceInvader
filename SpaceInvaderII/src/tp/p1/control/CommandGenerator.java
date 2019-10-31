@@ -4,7 +4,7 @@ public class CommandGenerator {
 	
 	private static Command[] availableCommands = {// no entiendo esto
 
-			new MoveCommand(),
+			new MoveCommand(null, 0),
 			new ShootCommand(),
 			new ShockWaveCommand(),
 			new ListCommand(),

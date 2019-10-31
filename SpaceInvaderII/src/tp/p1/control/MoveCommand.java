@@ -7,18 +7,13 @@ public class MoveCommand extends Command {
 	
 	private Move dir;
 	private int steps=0;
-	private static String name = "move";
-	private static String shortcut = "M";
-	private static String detail = " <left|right><1|2>";
-	private static String help = ": Moves UCM-Ship to the indicated direction.";
+	private final static String name = "move";
+	private final static String shortcut = "M";
+	private final static String detail = "[M]ove <left|right><1|2>";
+	private final static String help = ": Moves UCM-Ship to the indicated direction.";
 	
-	
-	public MoveCommand() {
+	public MoveCommand(Move dir, int steps) {//???
 		super(name, shortcut, detail, help);
-	}
-
-	public MoveCommand(Move dir, int steps) {
-		this();
 		this.dir = dir;
 		this.steps = steps;
 		
@@ -27,26 +22,27 @@ public class MoveCommand extends Command {
 	@Override
 	public boolean execute(Game game) {
 		game.moveUCMShip(dir, steps);
+		game.update();
+		game.computerAction();
 		return true;
 	}
 
 	@Override
 	public Command parse(String[] commandWords) {
 		Command cm=null;
+		Move diraux=Move.DOWN;
 		if(commandWords.length == 3) { 				
-			if(commandWords[0].equalsIgnoreCase(this.name) || commandWords[0].equalsIgnoreCase(this.shortcut)) {
+			if(matchCommandName(commandWords[0])) {
 				if(commandWords[1].equalsIgnoreCase("RIGHT")|| commandWords[1].equalsIgnoreCase("R")) {
-					this.dir = Move.RIGHT;
+					diraux = Move.RIGHT;
 				}
 				else if(commandWords[1].equalsIgnoreCase("LEFT")|| commandWords[1].equalsIgnoreCase("L")) {
-					this.dir= Move.LEFT;
+					diraux= Move.LEFT;
 				}
 				if(Character.isDigit(commandWords[2].charAt(0))) {
 					int i=Integer.parseInt(commandWords[2]);
 					if(i >= 1 && i <= 2) {
-						steps=i;
-						cm=this;//funciona?
-						//cm = new MoveCommand(dir, steps);
+						cm=new MoveCommand(diraux,i);
 					}
 				}
 			}

@@ -5,7 +5,7 @@ import tp.p1.logic.Game;
 public class ShootCommand extends Command{
 	private static String name = "shoot";
 	private static String shortcut = "S";
-	private static String detail = "";
+	private static String detail = "[S]hoot";
 	private static String help = ": UCM-Ship launches a missile.";
 
 	public ShootCommand() {
@@ -14,14 +14,15 @@ public class ShootCommand extends Command{
 
 	@Override
 	public boolean execute(Game game) {
-		// TODO Auto-generated method stub
-		return false;
+		if(game.thereisLaser()) {game.shoot();}
+		return true;
 	}
 
 	@Override
 	public Command parse(String[] commandWords) {
-		// TODO Auto-generated method stub
-		return null;
+		Command cm=null;
+		if(matchCommandName(commandWords[0])) {cm=new ShootCommand();}
+		return cm;
 	}
 
 }
