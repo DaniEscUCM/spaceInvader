@@ -5,12 +5,10 @@ import java.util.Scanner;
 import tp.p1.logic.Game;
 
 public class Controller {
-// clase abstracta command updateCommand es NONE, es mejor usar none
 	private Game game;
 	private Scanner in;
 	private final String promt = "Command > ";
-	private final String unknownCommandMsg="UNKNOWN COMMAND";//bastante segura que no es así
-	//private boolean print = true;
+	private final String unknownCommandMsg="UNKNOWN COMMAND";
 	
 	public Controller(Game game, Scanner in) {
 		super();
@@ -19,6 +17,7 @@ public class Controller {
 	}
 	
 	public void run() {
+		System.out.println(game);
 		while(!this.game.getFinish()) {
 			System.out.print(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
@@ -31,5 +30,16 @@ public class Controller {
 				System.out.format(unknownCommandMsg);
 				}
 		}
+		if(game.getWins() == 1) {
+			System.out.println(this.game.toString());
+			System.out.println("Player wins");
+		}
+		else if(game.getWins() == 2){
+			System.out.println(this.game.toString());
+			System.out.println("Aliens win");
+		}
+		else {
+			System.out.println("Game Over");
+		}	
 	}
 }

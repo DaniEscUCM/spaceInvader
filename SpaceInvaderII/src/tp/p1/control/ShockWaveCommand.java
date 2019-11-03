@@ -6,7 +6,7 @@ public class ShockWaveCommand extends Command {
 	
 	private final static String name = "shockWave";
 	private final static String shortcut = "W";
-	private final static String detail = "shock[W]ave";
+	private final static String detail = " shock[W]ave";
 	private final static String help = ": UCM-Ship releases a shock wave.";
 	
 	public ShockWaveCommand() {
@@ -16,6 +16,8 @@ public class ShockWaveCommand extends Command {
 	@Override
 	public boolean execute(Game game) {
 		game.shockWave();//se que devuelve booleano pero da problemas con que dira que el comando es incorrecto
+		game.update();
+		game.computerAction();
 		return true;
 	}
 

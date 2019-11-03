@@ -9,7 +9,7 @@ public class MoveCommand extends Command {
 	private int steps=0;
 	private final static String name = "move";
 	private final static String shortcut = "M";
-	private final static String detail = "[M]ove <left|right><1|2>";
+	private final static String detail = " [M]ove <left|right><1|2>";
 	private final static String help = ": Moves UCM-Ship to the indicated direction.";
 	
 	public MoveCommand(Move dir, int steps) {//???

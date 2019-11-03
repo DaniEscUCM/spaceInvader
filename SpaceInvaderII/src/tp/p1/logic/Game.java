@@ -48,15 +48,15 @@ public class Game {
 		this.laser=null;
 		this.ucmShip=new UCMShip();
 		n=level.getNumDestroyers();
-		this.destroyerShipList = new DestroyerShipList(n,level); // seria pasarle tmbn row*col
+		this.destroyerShipList = new DestroyerShipList(n,level); 
 		n=level.getNumRegular();
 		this.regularShipList = new RegularShipList(n);
 		this.bombList = new BombList(level.getNumDestroyers());
 		this.remainingAliens = destroyerShipList.getCount() + regularShipList.getCount();
-		this.gamePrinter = new GamePrinter(this, row, col);// no estoy segura de esto
+		this.gamePrinter = new GamePrinter(this, row, col);
 	}
 	
-	public void update() {//quite computer action
+	public void update() {
 		this.cycles++;
 		
 		enemyMoves();
@@ -86,7 +86,7 @@ public class Game {
 		finish =true;
 		wins=2;
 		this.ucmShip.setDraw("!xx!");
-		}//ya no esta computer action
+		}
 	}
 	
 	private void bombscan() {
@@ -211,10 +211,11 @@ public class Game {
 	
 	public boolean shockWave() {
 		if(this.shockWave) {
-			if (this.ovni!= null) {this.points+=this.ovni.getPoint();this.ovni=null;}
+			
 			if(this.destroyerShipList.getCount() > 0) { this.points+=this.destroyerShipList.shockwave();}
 			if(this.regularShipList.getCount() > 0) {this.points+=this.regularShipList.shockwave();}
 			this.shockWave = false;
+			if (this.ovni!= null) {this.points+=this.ovni.getPoint();this.ovni=null; this.shockWave=true;}
 			return true;
 		}
 		else return false;
@@ -283,13 +284,13 @@ public class Game {
 	public void showList() {
 		String s ="";
 		s+= "[R]egular ship: Points: 5 - Harm: 0 - Shield: 2\n" +
-		"[D]estroyer ship: Points: 10 - Harm: 1 - Shield: 1|n" +
+		"[D]estroyer ship: Points: 10 - Harm: 1 - Shield: 1\n" +
 		"[O]vni: Points: 25 - Harm: 0 - Shield: 1\n" +
 		"^__^: Harm: 1 - Shield: 3\n";
 		System.out.println(s);
 
 	}
-
+/*
 	public void showHelp() {
 		String s ="";
 		s+= "move <left|right><1|2>: Moves UCM-Ship to the indicated direction.\n" +
@@ -302,7 +303,7 @@ public class Game {
 		"[none]: Skips one cycle.\n";
 		System.out.println(s);
 	}
-
+*/
 	public boolean exit() {
 		if(!this.finish) {
 			this.finish = true; this.wins = 0;

@@ -6,7 +6,7 @@ public class ExitCommand extends Command {
 	
 	private final static String name = "exit";
 	private final static String shortcut = "E";
-	private final static String detail = "[E]xit";
+	private final static String detail = " [E]xit";
 	private final static String help = ": Terminates the program.";//para algo es la herencia
 
 	public ExitCommand() {

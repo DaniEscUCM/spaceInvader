@@ -6,7 +6,7 @@ public class NoneCommand extends Command {
 	
 	private final static String name = "none";
 	private final static String shortcut = "N";
-	private final static String detail = "[none]";
+	private final static String detail = " [none]";
 	private final static String help = ": Skips one cycle.";
 
 	public NoneCommand() {
@@ -21,9 +21,9 @@ public class NoneCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] commandWords) {//creo que todos los commands(excepto esta y move) se deber�an hacer en command pq son iguales
+	public Command parse(String[] commandWords) {
 		Command cm=null;	
-		if(matchCommandName(commandWords[0])) {
+		if(matchCommandName(commandWords[0])||commandWords[0].equalsIgnoreCase("")) {
 			cm =new NoneCommand();
 			}
 		return cm;

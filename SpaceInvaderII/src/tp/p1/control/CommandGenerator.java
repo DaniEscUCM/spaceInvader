@@ -2,8 +2,7 @@ package tp.p1.control;
 
 public class CommandGenerator {
 	
-	private static Command[] availableCommands = {// no entiendo esto
-
+	private static Command[] availableCommands = {
 			new MoveCommand(null, 0),
 			new ShootCommand(),
 			new ShockWaveCommand(),
