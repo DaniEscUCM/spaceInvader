@@ -1,17 +1,19 @@
 package tp.p1.logic.objects;
 
+import tp.p1.logic.Game;
 import tp.p1.logic.Move;
 
-public class RegularShip {
+public class RegularShip extends AlienShip{
 	
-	private int life = 2;
+	private static int life = 2;
 	private int row;
 	private int col;
 	private final String draw = "R";
 	
-	public RegularShip(int row, int col) {
-		this.row = row;
-		this.col = col;
+	public RegularShip(Game game, int x, int y) {
+		super(game, x, y, life);
+		//this.row = row;
+		//this.col = col;
 	}
 
 	public int getRow() {

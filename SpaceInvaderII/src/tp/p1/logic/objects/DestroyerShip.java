@@ -1,15 +1,17 @@
 package tp.p1.logic.objects;
+import tp.p1.logic.Game;
 import tp.p1.logic.Move;
 
-public class DestroyerShip {
-	private int life=1;
+public class DestroyerShip extends AlienShip{
+	private static int life=1;
 	private int row, column;
 	private Bomb bomb=null;
 	
 	
-	public DestroyerShip(int row, int col) {
-		this.row=row;
-		this.column=col;
+	public DestroyerShip(Game game, int x, int y) {
+		super(game, x, y, life);
+		//this.row=row;
+		//this.column=col;
 	}
 	
 	public void move( Move dir) {//dir move
@@ -35,7 +37,8 @@ public class DestroyerShip {
 	}
 	
 	public Bomb shoot() {
-		this.bomb= new Bomb(this.row+1, this.column);
+		this.bomb= new Bomb(this.game, this.row + 1, this.column);
+		//this.bomb= new Bomb(this.row+1, this.column);
 		return bomb;
 	}
 	

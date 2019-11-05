@@ -1,13 +1,17 @@
 package tp.p1.logic.objects;
 
-public class Bomb {
+import tp.p1.logic.Game;
+
+public class Bomb extends Weapon{
+	private static int life = 1;
 	private int row;
 	private int col;	
 	private final String draw = ".";
 
-	public Bomb(int row, int col) {
-		this.row = row;
-		this.col = col;
+	public Bomb(Game game, int x, int y) {
+		super(game, x, y, life);
+		//this.row = row;
+		//this.col = col;
 	}
 
 	public int getRow() {
@@ -18,11 +22,11 @@ public class Bomb {
 		return col;
 	}
 	
-	public boolean move() {
+	public void move() {
 		if(this.row < 7) {
-			this.row ++; return true;
+			this.row ++; //return true;
 		}
-		else return false;
+		//else return false;
 	}
 	
 	public String toString() {

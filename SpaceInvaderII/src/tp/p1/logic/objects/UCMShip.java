@@ -1,12 +1,20 @@
 package tp.p1.logic.objects;
 
+import tp.p1.logic.Game;
 import tp.p1.logic.Move;
 
-public class UCMShip {
-	private int life=3;
+public class UCMShip extends Ship{
+	
+
+	private static int life=3;
 	private int column=4;
 	private String draw= "^__^";
 	private final int row=7;//nunca se mueve de la ultima fila
+	
+	public UCMShip(Game game, int x, int y) {
+		super(game, x, y, life);
+		// TODO Auto-generated constructor stub
+	}
 
 	public boolean move_UCMship (int steps, Move direction) {//ver direccion, tal vez enumerado
 		boolean ret = true;
