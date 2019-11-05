@@ -46,7 +46,7 @@ public class BombList {
 	public void move(DestroyerShipList dlist) {
 		int i=0;
 		while (i<count) {
-			if(this.list[i].move()) {i++;}
+			if(true/*this.list[i].move()*/) {i++;}
 			else {
 				dlist.destroyBomb(this.list[i]);
 				delete(i);}

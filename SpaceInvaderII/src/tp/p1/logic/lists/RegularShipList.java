@@ -45,7 +45,7 @@ public class RegularShipList {
 	}
 	
 	public void insert(int row, int col) {
-		list[count] = new RegularShip(row,col);
+		//list[count] = new RegularShip(row,col);
 		count++;
 	}
 		

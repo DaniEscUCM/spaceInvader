@@ -31,7 +31,7 @@ public class DestroyerShipList {
 	}
 	
 	public void addDestroyer(int fila,int columna) {
-		destroyerList[numDestroyer]=new DestroyerShip(fila, columna);
+		//destroyerList[numDestroyer]=new DestroyerShip(fila, columna);
 		numDestroyer++;
 	}
 	
