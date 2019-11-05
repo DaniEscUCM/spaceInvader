@@ -15,10 +15,11 @@ public class ShockWaveCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) {
-		game.shockWave();//se que devuelve booleano pero da problemas con que dira que el comando es incorrecto
+		/*game.shockWave();//se que devuelve booleano pero da problemas con que dira que el comando es incorrecto
 		game.update();
-		game.computerAction();
-		return true;
+		game.computerAction();*/
+		game.update();
+		return game.shockWave();
 	}
 
 	@Override

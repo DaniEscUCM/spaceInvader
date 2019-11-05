@@ -16,7 +16,6 @@ public class NoneCommand extends Command {
 	@Override
 	public boolean execute(Game game) {
 		game.update();
-		game.computerAction();
 		return true;
 	}
 

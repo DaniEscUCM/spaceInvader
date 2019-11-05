@@ -18,7 +18,7 @@ public class Controller {
 	
 	public void run() {
 		System.out.println(game);
-		while(!this.game.getFinish()) {
+		while(!this.game.isFinished()) {
 			System.out.print(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
 			Command command = CommandGenerator.parseCommand(words);
@@ -30,11 +30,11 @@ public class Controller {
 				System.out.format(unknownCommandMsg);
 				}
 		}
-		if(game.getWins() == 1) {
+		if(game.playerWin()) {
 			System.out.println(this.game.toString());
 			System.out.println("Player wins");
 		}
-		else if(game.getWins() == 2){
+		else if(game.aliensWin()){
 			System.out.println(this.game.toString());
 			System.out.println("Aliens win");
 		}

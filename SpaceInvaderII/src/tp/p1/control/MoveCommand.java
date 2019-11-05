@@ -5,7 +5,7 @@ import tp.p1.logic.Move;
 
 public class MoveCommand extends Command {
 	
-	private Move dir;
+	//private Move dir;
 	private int steps=0;
 	private final static String name = "move";
 	private final static String shortcut = "M";
@@ -14,17 +14,17 @@ public class MoveCommand extends Command {
 	
 	public MoveCommand(Move dir, int steps) {//???
 		super(name, shortcut, detail, help);
-		this.dir = dir;
+		//this.dir = dir;
 		this.steps = steps;
 		
 	}
 
 	@Override
 	public boolean execute(Game game) {
-		game.moveUCMShip(dir, steps);
+		/*game.moveUCMShip(dir, steps);		
+		game.computerAction();*/
 		game.update();
-		game.computerAction();
-		return true;
+		return game.move(steps);
 	}
 
 	@Override

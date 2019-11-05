@@ -14,12 +14,13 @@ public class ShootCommand extends Command{
 
 	@Override
 	public boolean execute(Game game) {
-		if(!game.thereisLaser()) {
+		/*if(!game.thereisLaser()) {
 			game.shoot();
 			game.update();
 			game.computerAction();
-			}
-		return true;
+			}*/
+		game.update();
+		return game.shootMissile();
 	}
 
 	@Override
