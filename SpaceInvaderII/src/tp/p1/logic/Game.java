@@ -2,13 +2,14 @@ package tp.p1.logic;
 import java.util.Random;
 
 import tp.p1.control.IPlayerController;
-//import pr2.game.Level;
+import tp.p1.logic.Level;
+import tp.p1.logic.lists.GameObjectBoard;
+import tp.p1.logic.objects.GameObject;
+import tp.p1.logic.objects.UCMShip;
 //import pr2.game.GameObjects.AlienShip;
 //import pr2.game.GameObjects.BoardInitializer;
 //import pr2.game.GameObjects.GameObject;
 //import pr2.game.GameObjects.IPlayerController;
-//import pr2.game.GameObjects.UCMShip;
-//import pr2.game.GameObjects.Lists.GameObjectBoard;
 
 public class Game implements IPlayerController{
 	
@@ -17,21 +18,21 @@ public class Game implements IPlayerController{
 		private int currentCycle;
 		private Random rand;
 		private Level level;
-		//GameObjectBoard board;
-		//private UCMShip player;
+		GameObjectBoard board;
+		private UCMShip player;
 		private boolean doExit;
-		//private BoardInitializer initializer ;
+		private BoardInitializer initializer ;
 		
 		public Game (Level level, Random random){
 			this. rand = random;
 			this.level = level;
-			//initializer = new BoardInitializer();
+			initializer = new BoardInitializer();
 			initGame();
 		}
 		
 		public void initGame () {
 			currentCycle = 0;
-			//board = initializer . initialize (this, level );
+			board = initializer . initialize (this, level );
 			//player = new UCMShip(this, DIM_X / 2, DIM_Y - 1);
 			//board.add(player);
 		}
@@ -47,13 +48,13 @@ public class Game implements IPlayerController{
 		public void reset() {
 			initGame();
 		}
-		/*
+		
 		public void addObject(GameObject object) {
 			board.add(object);
-		}*/
+		}
 		
 		public String positionToString(int x, int y) {
-			return "DESCOMENTA";//board.toString(x, y);
+			return board.toString(x, y);
 		}
 		
 		public boolean isFinished() {
@@ -69,8 +70,8 @@ public class Game implements IPlayerController{
 		}
 		
 		public void update() {
-			//board.computerAction();
-			//board.update();
+			board.computerAction();
+			board.update();
 			currentCycle ++;
 		}
 		public boolean isOnBoard(int x, int y) {
