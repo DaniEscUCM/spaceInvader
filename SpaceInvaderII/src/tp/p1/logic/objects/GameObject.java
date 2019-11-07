@@ -5,14 +5,14 @@ import tp.p1.logic.Game;
 public abstract class GameObject implements IAttack {
 	protected int x;
 	protected int y;
-	protected int live;
+	protected int live;//la profesora dice quitarlo pq no todos tienen vida
 	protected Game game;
 	
 	public GameObject( Game game, int x, int y, int life) {
 		this. x = x;
 		this. y = y;
 		this. game = game;
-		this.live = live;
+		this.live = life;
 	}
 	
 	public int getX() {
@@ -23,11 +23,11 @@ public abstract class GameObject implements IAttack {
 		return y;
 	}
 	
-	public boolean isAlive() {
+	public boolean isAlive() {//se pondria en los que tienen vida
 		return this.live > 0;
 	}
 	
-	public int getLive() {
+	public int getLive() {//se pondria en los que tienen vida
 		return this.live;
 	}
 	
@@ -39,12 +39,12 @@ public abstract class GameObject implements IAttack {
 		this.live = damage >= this.live ? 0 : this.live - damage;
 	}
 	
-	public boolean isOut() {
+	public boolean isOut() {//metodos move, si se sale del tablero
 		return !game.isOnBoard(x, y);
 	}
 	
-	public abstract void computerAction();
-	public abstract void onDelete();
-	public abstract void move();
+	public abstract void computerAction();//quien no lo haga se deja vacio
+	public abstract void onDelete();//ej: enable la bomba en destroyer 
+	public abstract void move();//quien no lo haga se deja vacio
 	public abstract String toString();
 }

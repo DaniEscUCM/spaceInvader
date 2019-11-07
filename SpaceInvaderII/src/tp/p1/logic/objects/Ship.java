@@ -2,11 +2,10 @@ package tp.p1.logic.objects;
 
 import tp.p1.logic.Game;
 
-public class Ship extends GameObject {
+public class Ship extends GameObject {// se puede quitar que no hace nada, sino esta vacia
 
 	
 	public Ship(Game game, int x, int y, int life) {
-		// TODO Auto-generated constructor stub
 		super(game, x, y, life);
 	}
 

@@ -5,11 +5,13 @@ import tp.p1.logic.Move;
 public class DestroyerShip extends AlienShip{
 	private static int life=1;
 	private int row, column;
-	private Bomb bomb=null;
+	//private Bomb bomb=null;
+	private boolean canShootBomb;
 	
 	
 	public DestroyerShip(Game game, int x, int y) {
 		super(game, x, y, life);
+		this.canShootBomb=true;
 		//this.row=row;
 		//this.column=col;
 	}
@@ -35,29 +37,33 @@ public class DestroyerShip extends AlienShip{
 	public String toString() {
 		return "D["+life+"]";
 	}
-	
+	/*
 	public Bomb shoot() {
 		this.bomb= new Bomb(this.game, this.row + 1, this.column);
 		//this.bomb= new Bomb(this.row+1, this.column);
 		return bomb;
+	}*/
+	
+	public void shoot() {
+		this.canShootBomb=false;
 	}
 	
 	public boolean getCanShoot() {
-		return this.bomb==null;
+		return this.canShootBomb;
 	}
 	
-	public void nullBomb() {
-		this.bomb=null;
+	public void enableBomb() {
+		this.canShootBomb=false;
 	}
 	
 
 	public void hurt() {
 		life--;
 	}
-	
+	/*
 	public boolean equalsbomb(Bomb bomb) {
 		return this.bomb==bomb;
-	}
+	}*/
 	
 
 }

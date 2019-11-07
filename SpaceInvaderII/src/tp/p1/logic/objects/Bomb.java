@@ -6,7 +6,7 @@ public class Bomb extends Weapon{
 	private static int life = 1;
 	private int row;
 	private int col;	
-	private final String draw = ".";
+	private final String draw = ".";//tendra un destroyer
 
 	public Bomb(Game game, int x, int y) {
 		super(game, x, y, life);

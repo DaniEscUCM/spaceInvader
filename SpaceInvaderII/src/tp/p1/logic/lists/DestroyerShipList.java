@@ -96,14 +96,14 @@ public class DestroyerShipList {
 		int pos=0;
 		boolean enc=false;
 		while(pos<this.numDestroyer && !enc) {//eliminar bomba ==
-			if (!this.destroyerList[pos].getCanShoot() && this.equalsBomb(bomb, pos) ) {enc =true;this.destroyerList[pos].nullBomb();}
+			if (!this.destroyerList[pos].getCanShoot() /*&& this.equalsBomb(bomb, pos)*/ ) {enc =true;this.destroyerList[pos].enableBomb();}
 			else {pos++;}
 		}
 	}
-	
+	/*
 	private boolean equalsBomb(Bomb bomb, int pos) {
 		return this.destroyerList[pos].equalsbomb(bomb);
-	}
+	}*/
 
 	public int shockwave() {
 		int i = 0, resul=this.numDestroyer*this.points;

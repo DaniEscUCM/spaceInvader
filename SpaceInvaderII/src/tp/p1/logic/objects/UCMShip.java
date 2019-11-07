@@ -10,10 +10,14 @@ public class UCMShip extends Ship{
 	private int column=4;
 	private String draw= "^__^";
 	private final int row=7;//nunca se mueve de la ultima fila
+	private int points=0;
+	private boolean hasShockWave;//segun diapositivas
+	private boolean canShootLaser;//no se si boolean o laser
 	
 	public UCMShip(Game game, int x, int y) {
 		super(game, x, y, life);
-		// TODO Auto-generated constructor stub
+		this.hasShockWave=false;
+		this.canShootLaser=true;
 	}
 
 	public boolean move_UCMship (int steps, Move direction) {//ver direccion, tal vez enumerado
@@ -54,6 +58,10 @@ public class UCMShip extends Ship{
 	
 	public void setDraw(String newD) {
 		this.draw=newD;
+	}
+
+	public String stateToString() {	
+		return "Life: "+this.live+"\n"+"Points: "+this.points+"\n";
 	}
 
 }

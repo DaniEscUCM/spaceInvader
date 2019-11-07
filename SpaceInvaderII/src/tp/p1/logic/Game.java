@@ -4,6 +4,7 @@ import java.util.Random;
 import tp.p1.control.IPlayerController;
 import tp.p1.logic.Level;
 import tp.p1.logic.lists.GameObjectBoard;
+import tp.p1.logic.objects.AlienShip;
 import tp.p1.logic.objects.GameObject;
 import tp.p1.logic.objects.UCMShip;
 //import pr2.game.GameObjects.AlienShip;
@@ -32,9 +33,9 @@ public class Game implements IPlayerController{
 		
 		public void initGame () {
 			currentCycle = 0;
-			board = initializer . initialize (this, level );
-			//player = new UCMShip(this, DIM_X / 2, DIM_Y - 1);
-			//board.add(player);
+			board = initializer.initialize(this, level );
+			player = new UCMShip(this, DIM_X / 2, DIM_Y - 1);
+			board.add(player);
 		}
 		
 		public Random getRandom() {
@@ -62,11 +63,11 @@ public class Game implements IPlayerController{
 		}
 		
 		public boolean aliensWin() {
-			return true;// !player.isAlive () || AlienShip.haveLanded();
+			return  !player.isAlive () || AlienShip.haveLanded();
 		}
 		
 		public boolean playerWin() {
-			return true;// AlienShip.allDead();
+			return AlienShip.allDead();
 		}
 		
 		public void update() {
@@ -84,8 +85,8 @@ public class Game implements IPlayerController{
 			
 		public String infoToString() {
 			return "Cycles: " + currentCycle + "\n" +
-			//player.stateToString() +
-			"Remaining aliens: "; //+ (AlienShip.getRemainingAliens()) + "\n";
+			player.stateToString() +
+			"Remaining aliens: "+ (AlienShip.getRemainingAliens()) + "\n";
 		}
 			
 		public String getWinnerMessage () {
