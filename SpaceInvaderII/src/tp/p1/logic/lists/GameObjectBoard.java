@@ -8,7 +8,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	private int currentObjects;
 	
 	
-	public GameObjectBoard (int width, int height) {//lista con objetos de tamaño de width*height; cont=0
+	public GameObjectBoard (int width, int height) {//lista con objetos de tamaï¿½o de width*height; cont=0
 	// TODO implement
 	}
 	private int getCurrentObjects () {
@@ -16,27 +16,54 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	// TODO implement
 	}
 	
-	public void add (GameObject object) {
+	public void add (GameObject object) { // inserta si ese objeto no esta en la lista
+		if(getIndex(object.getX(), object.getY()) == -1){
+			this.objects[this.currentObjects] = object;
+			this.currentObjects++;
+		}
 	// TODO implement
 	}
 	private GameObject getObjectInPosition (int x, int y) {//usa getIndex, devuelve el objeto en esa posicion
-		return null;
-	// TODO implement
+		int index = getIndex(x, y);
+		if(index > -1) {
+			return this.objects[index];
+		}
+		else return null;
 	}
-	private int getIndex(int x, int y) {
-		return y;
-	// TODO implement
+	private int getIndex(int x, int y) { // busca y devuelve el indice
+		int ret = -1;
+		int i = 0; 
+		boolean found = false;
+		while(!found && i < this.currentObjects) {
+			if(this.objects[i].getX() == x && this.objects[i].getY() == y) {
+				found = true;
+				ret = i;
+			}
+			i++;
+		}
+		return ret;
 	}
 	
 	private void remove (GameObject object) {//getIndex y desplazamos a la izquierda
 	// TODO implement
+		int index = getIndex(object.getX(), object.getY());
+		if(index > -1) {
+			for(int i = index; i < this.currentObjects; i++) {
+				this.objects[i] = this.objects[i + 1];
+			}
+			this.currentObjects--;
+		}
 	}
+		
 	
-	public void update() {//(1)recorre y hace move de todos,(2)check attack,(3) remove dead
+	public void update() {//(1)recorre y hace move de todos los objetos,(2)check attack,(3) remove dead
 	// TODO implement
+		//objects[i].move();
+		//checkAttack();
 	}
 	
-	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe daño
+	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe daï¿½o
+		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
 	// TODO implement
 	}
 	
@@ -52,5 +79,6 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		return null;
 	// TODO implement
 	}
+	
 
 }
