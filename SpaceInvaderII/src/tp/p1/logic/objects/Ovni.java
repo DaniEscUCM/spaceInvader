@@ -10,10 +10,16 @@ public class Ovni extends EnemyShip{
 	private int life = 1;
 	private int points = 25;
 	private final String draw = "O";
+	private boolean enable;//ya no se crea y se quita
+
+
+	private static int x=0;
+	private static int y=8;
+	private static int live=1;
 	
-	public Ovni(Game game, int x, int y, int life) {
-		super(game, x, y, life);
-		// TODO Auto-generated constructor stub
+	public Ovni(Game game) {
+		super(game, x, y, live);
+		enable=false;
 	}
 	
 	public void move () {
@@ -48,5 +54,13 @@ public class Ovni extends EnemyShip{
 	
 	public int getPoint() {
 		return this.points;
+	}
+	
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable() {
+		this.enable = false;
 	}
 }

@@ -16,10 +16,7 @@ public enum Level {
 	private double shootFrequency;
 	private int numRowsOfRegularAliens;
 	
-	private Level(
-	int numRegularAliens,
-	int numDestroyerAliens,
-	double shootFrequency,
+	private Level(int numRegularAliens,	int numDestroyerAliens,	double shootFrequency,
 	int numCyclesToMoveOneCell,
 	double ovniFrequency,
 	int numRowsOfRegularAliens)
