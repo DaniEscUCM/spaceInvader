@@ -6,8 +6,13 @@ public class Ship extends GameObject {// se puede quitar que no hace nada, sino 
 	
 	private int points;
 	
-	public Ship(Game game, int x, int y, int life) {
+	public Ship(Game game, int x, int y, int life, int points) {
 		super(game, x, y, life);
+		this.points=points;
+	}
+
+	public int getPoints() {
+		return points;
 	}
 
 	@Override

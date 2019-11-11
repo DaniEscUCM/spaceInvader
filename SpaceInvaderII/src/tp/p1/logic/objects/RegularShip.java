@@ -9,9 +9,10 @@ public class RegularShip extends AlienShip{
 	private int row;
 	private int col;
 	private final String draw = "R";
+	private static int points=5;
 	
 	public RegularShip(Game game, int x, int y) {
-		super(game, x, y, life);
+		super(game, x, y, life, points);
 		//this.row = row;
 		//this.col = col;
 	}
@@ -23,8 +24,8 @@ public class RegularShip extends AlienShip{
 	public int getCol() {
 		return col;
 	}
-	public int getLife() {
-		return this.life;
+	public int getLife() {//tal vez con herencia, ya que todos tienen vida
+		return life;
 	}
 
 	public void move(Move dir) {

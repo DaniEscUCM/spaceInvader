@@ -1,7 +1,7 @@
 package tp.p1.control;
 
 import tp.p1.logic.Game;
-import tp.p1.logic.Move;
+//import tp.p1.logic.Move;
 
 public class MoveCommand extends Command {
 	
@@ -12,7 +12,7 @@ public class MoveCommand extends Command {
 	private final static String detail = " [M]ove <left|right><1|2>";
 	private final static String help = ": Moves UCM-Ship to the indicated direction.";
 	
-	public MoveCommand(Move dir, int steps) {//???
+	public MoveCommand( int steps) {//Move dir,
 		super(name, shortcut, detail, help);
 		//this.dir = dir;
 		this.steps = steps;
@@ -30,21 +30,26 @@ public class MoveCommand extends Command {
 	@Override
 	public Command parse(String[] commandWords) {
 		Command cm=null;
-		Move diraux=Move.DOWN;
+		//Move diraux=Move.DOWN;
 		if(commandWords.length == 3) { 				
-			if(matchCommandName(commandWords[0])) {
-				if(commandWords[1].equalsIgnoreCase("RIGHT")|| commandWords[1].equalsIgnoreCase("R")) {
-					diraux = Move.RIGHT;
+			if(matchCommandName(commandWords[0]) && Character.isDigit(commandWords[2].charAt(0))) {
+				int i=Integer.parseInt(commandWords[2]);
+				if(i >= 1 && i <= 2) {
+					if(commandWords[1].equalsIgnoreCase("RIGHT")|| commandWords[1].equalsIgnoreCase("R")) {
+						cm=new MoveCommand(i);
+						//diraux = Move.RIGHT;
+					}
+					else if(commandWords[1].equalsIgnoreCase("LEFT")|| commandWords[1].equalsIgnoreCase("L")) {
+						cm=new MoveCommand(-i);
+						//diraux= Move.LEFT;
+					}
 				}
-				else if(commandWords[1].equalsIgnoreCase("LEFT")|| commandWords[1].equalsIgnoreCase("L")) {
-					diraux= Move.LEFT;
-				}
-				if(Character.isDigit(commandWords[2].charAt(0))) {
+				/*if(Character.isDigit(commandWords[2].charAt(0))) {
 					int i=Integer.parseInt(commandWords[2]);
 					if(i >= 1 && i <= 2) {
 						cm=new MoveCommand(diraux,i);
 					}
-				}
+				}*/
 			}
 		}
 		return cm;

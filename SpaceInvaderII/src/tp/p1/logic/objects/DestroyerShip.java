@@ -7,10 +7,11 @@ public class DestroyerShip extends AlienShip{
 	private int row, column;
 	//private Bomb bomb=null;
 	private boolean canShootBomb;
+	private static int points=10;
 	
 	
 	public DestroyerShip(Game game, int x, int y) {
-		super(game, x, y, life);
+		super(game, x, y, life, points);
 		this.canShootBomb=true;
 		//this.row=row;
 		//this.column=col;

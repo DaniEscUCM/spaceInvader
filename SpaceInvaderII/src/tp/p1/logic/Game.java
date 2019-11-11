@@ -1,11 +1,24 @@
 package tp.p1.logic;
 import java.util.Random;
 
+import tp.p1.control.Command;
+import tp.p1.control.ExitCommand;
+import tp.p1.control.HelpCommand;
 import tp.p1.control.IPlayerController;
+import tp.p1.control.ListCommand;
+import tp.p1.control.MoveCommand;
+import tp.p1.control.NoneCommand;
+import tp.p1.control.ResetCommand;
+import tp.p1.control.ShockWaveCommand;
+import tp.p1.control.ShootCommand;
 import tp.p1.logic.Level;
 import tp.p1.logic.lists.GameObjectBoard;
 import tp.p1.logic.objects.AlienShip;
+import tp.p1.logic.objects.DestroyerShip;
 import tp.p1.logic.objects.GameObject;
+import tp.p1.logic.objects.Ovni;
+import tp.p1.logic.objects.RegularShip;
+import tp.p1.logic.objects.Ship;
 import tp.p1.logic.objects.UCMShip;
 //import pr2.game.GameObjects.AlienShip;
 //import pr2.game.GameObjects.BoardInitializer;
@@ -23,6 +36,13 @@ public class Game implements IPlayerController{
 		private UCMShip player;
 		private boolean doExit;
 		private BoardInitializer initializer ;
+		
+		private static Ship[] availableShips = {//tal vez estoy loca
+				new RegularShip(null, 0, 0),
+				new DestroyerShip(null, 0, 0),
+				new Ovni(null),
+				new UCMShip(null, 0, 0)				
+		};
 		
 		public Game (Level level, Random random){
 			this. rand = random;
@@ -97,35 +117,44 @@ public class Game implements IPlayerController{
 		}
 		
 		@Override
-		public boolean move (int numCells) {
-			return true;
+		public boolean move (int numCells) {			
+			return this.player.move(numCells);
 		}
 		@Override
 		public boolean shootMissile() {
+			// TODO
 			return true;
 		}
 		@Override
 		public boolean shockWave() {
+			// TODO
 			return true;
 		}
 		
 		@Override
 		public void receivePoints(int points) {
-			
+			// TODO			
 		}
 		@Override
 		public void enableShockWave() {
-			
+			// TODO
 		}
 		@Override
 		public void enableMissile() {
-			
+			// TODO
 		}
-		public String toStringObjectAt(int i, int j) {
-			return "hay que hacer nuevo con gameobjectboard";
+		public String toStringObjectAt(int i, int j) {			
+			return this.board.toString(i,j);
 		}
 		
-		public void showList() {
-			
+		public void showList() {//ni ideade harm
+			String s="";
+			for(Ship e:availableShips) {
+				s+=e.toString();
+				s+=" Points: "+e.getPoints();
+				s+=" - Shields: "+e.getLive();//ucm ship tiene una funcion que hace esto, seria ponerlo en ship
+				s+="\n";
+			}
+			System.out.println(s);
 		}
 }

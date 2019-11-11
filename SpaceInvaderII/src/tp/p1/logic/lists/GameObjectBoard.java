@@ -76,8 +76,9 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	}
 	
 	public String toString(int x, int y) {//el string
+		int i=this.getIndex(x, y);
+		if(i!=-1) {return this.objects[i].toString();}
 		return null;
-	// TODO implement
 	}
 	
 

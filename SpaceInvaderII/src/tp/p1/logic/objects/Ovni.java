@@ -8,9 +8,10 @@ public class Ovni extends EnemyShip{
 	private final int row = 0;
 	private int column=8;
 	private int life = 1;
-	private int points = 25;
+	//private int points = 25;
 	private final String draw = "O";
 	private boolean enable;//ya no se crea y se quita
+	private static int points=25;
 
 
 	private static int x=0;
@@ -18,7 +19,7 @@ public class Ovni extends EnemyShip{
 	private static int live=1;
 	
 	public Ovni(Game game) {
-		super(game, x, y, live);
+		super(game, x, y, live,points);
 		enable=false;
 	}
 	

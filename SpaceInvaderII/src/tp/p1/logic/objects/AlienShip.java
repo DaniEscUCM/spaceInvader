@@ -9,8 +9,8 @@ public class AlienShip extends EnemyShip{
 	private static int SHIPS_ON_BORDER;
 	protected int cyclesToMove;
 
-	public AlienShip(Game game, int x, int y, int life) {
-		super(game, x, y, life);
+	public AlienShip(Game game, int x, int y, int life, int points) {
+		super(game, x, y, life, points);
 		REMAINING_ALIENS ++;
 		SHIPS_ON_BORDER = 0;
 		//cycleToMove se inicializa con el numero ciclos(segun level) en el que se mueve, en move decrece
