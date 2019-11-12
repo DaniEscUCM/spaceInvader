@@ -9,11 +9,12 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	
 	
 	public GameObjectBoard (int width, int height) {//lista con objetos de tama�o de width*height; cont=0
-	// TODO implement
+	
+		this.objects= new GameObject[width*height];
+		this.currentObjects = 0;
 	}
 	private int getCurrentObjects () {
 		return currentObjects;
-	// TODO implement
 	}
 	
 	public void add (GameObject object) { // inserta si ese objeto no esta en la lista
@@ -45,7 +46,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	}
 	
 	private void remove (GameObject object) {//getIndex y desplazamos a la izquierda
-	// TODO implement
+	
 		int index = getIndex(object.getX(), object.getY());
 		if(index > -1) {
 			for(int i = index; i < this.currentObjects; i++) {
@@ -57,22 +58,39 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		
 	
 	public void update() {//(1)recorre y hace move de todos los objetos,(2)check attack,(3) remove dead
-	// TODO implement
 		//objects[i].move();
 		//checkAttack();
+		for (int i = 0; i < this.currentObjects; i++) {
+			this.objects[i].move();
+			this.checkAttacks(this.objects[i]);
+		}
+		this.removeDead();
 	}
 	
 	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
 		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
-	// TODO implement
+		for(int i = 0; i < this.currentObjects; i++) {
+			if(this.objects[i].getX() == object.getX() &&
+					this.objects[i].getY() == object.getY()){
+				
+			}
+		}
 	}
 	
 	public void computerAction() {//llamar computerAction de todos
-	// TODO implement
+		for(int i = 0; i < this.currentObjects; i++) {
+			this.objects[i].computerAction();
+		}
 	}
 	
 	private void removeDead() {//quita los muertos?? primero delete y llama a remove
-	// TODO implement
+		for(int i = 0; i < this.currentObjects; i++) {
+			if(this.objects[i].getLive() == 0) {
+				this.objects[i].onDelete();
+				this.remove(this.objects[i]);
+			}
+		}
+		
 	}
 	
 	public String toString(int x, int y) {//el string
