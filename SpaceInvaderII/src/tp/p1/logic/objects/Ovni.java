@@ -2,7 +2,7 @@ package tp.p1.logic.objects;
 
 import tp.p1.logic.Game;
 
-public class Ovni extends EnemyShip{
+public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	
 
 	//private final int row = 0;
@@ -63,7 +63,8 @@ public class Ovni extends EnemyShip{
 	}
 	
 	public void computerAction() {
-		this.enable = true;
+		if(IExecuteRandomActions.canGenerateRandomOvni(game))
+			this.enable = true;
 	}
 	
 	public boolean isEnable() {

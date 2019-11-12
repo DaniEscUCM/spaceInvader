@@ -2,7 +2,7 @@ package tp.p1.logic.objects;
 import tp.p1.logic.Game;
 import tp.p1.logic.Move;
 
-public class DestroyerShip extends AlienShip{
+public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	private static int life=1;
 	private int row, column;
 	//private Bomb bomb=null;
@@ -28,6 +28,7 @@ public class DestroyerShip extends AlienShip{
 	}
 	
 	public void computerAction() {
+		if(IExecuteRandomActions.canGenerateRandomBomb(game))
 		this.canShootBomb = false;
 	}
 	
