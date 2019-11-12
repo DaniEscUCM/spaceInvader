@@ -1,6 +1,7 @@
 package tp.p1.logic.objects;
 
 import tp.p1.logic.Game;
+import tp.p1.logic.Move;
 
 public class AlienShip extends EnemyShip{
 	
@@ -8,11 +9,13 @@ public class AlienShip extends EnemyShip{
 	private static boolean IS_IN_FINAL_ROW;
 	private static int SHIPS_ON_BORDER;
 	protected int cyclesToMove;
+	private Move dir;
 
 	public AlienShip(Game game, int x, int y, int life, int points) {
 		super(game, x, y, life, points);
 		REMAINING_ALIENS ++;
 		SHIPS_ON_BORDER = 0;
+		this.dir=Move.LEFT;
 		//cycleToMove se inicializa con el numero ciclos(segun level) en el que se mueve, en move decrece
 	}
 
@@ -31,6 +34,19 @@ public class AlienShip extends EnemyShip{
 	}
 	
 	public void move() {//no sobre escribe si se quita ship
+		if(cyclesToMove==0) {
+			cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();
+			if(SHIPS_ON_BORDER>0 && !IS_IN_FINAL_ROW) {
+				this.y++;
+				if(dir==Move.RIGHT) {dir=Move.LEFT;}
+				else if(dir==Move.LEFT) {dir=Move.RIGHT;}
+				SHIPS_ON_BORDER --;
+				}
+			if(dir==Move.RIGHT) {this.x++;}
+			else if(dir==Move.LEFT) {this.x--;}
+						
+		}
+		else cyclesToMove--;
 		/*
 		  	Si (cyclesToMove == 0)
 				Actualizar cyclesToMove
