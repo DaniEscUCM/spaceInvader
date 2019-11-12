@@ -27,6 +27,9 @@ public class DestroyerShip extends AlienShip{
 		return life;
 	}
 	
+	public void computerAction() {
+		this.canShootBomb = false;
+	}
 	
 	public int getRow() {
 		return row;

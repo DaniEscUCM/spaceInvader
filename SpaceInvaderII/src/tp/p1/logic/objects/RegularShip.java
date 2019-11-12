@@ -37,6 +37,7 @@ public class RegularShip extends AlienShip{
 		life--;
 	}
 	
+	
 	public String toString(){
 		return this.draw+"[" + life + "]";
 	}

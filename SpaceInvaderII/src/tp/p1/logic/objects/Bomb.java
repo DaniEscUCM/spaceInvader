@@ -7,11 +7,18 @@ public class Bomb extends Weapon{
 	private int row;
 	private int col;	
 	private final String draw = ".";//tendra un destroyer
+	private DestroyerShip destroyer;
+
 
 	public Bomb(Game game, int x, int y) {
 		super(game, x, y, life);
+		this.destroyer = null;
 		//this.row = row;
 		//this.col = col;
+	}
+	
+	public void onDelete() {
+		this.destroyer = null;
 	}
 
 	public int getRow() {
@@ -23,12 +30,20 @@ public class Bomb extends Weapon{
 	}
 	
 	public void move() {
-		if(this.row < 7) {
-			this.row ++; //return true;
-		}
-		//else return false;
+		this.row ++;
 	}
 	
+	public void computerAction() {
+		;
+	}
+	
+	public DestroyerShip getDestroyer() {
+		return destroyer;
+	}
+
+	public void setDestroyer(DestroyerShip destroyer) {
+		this.destroyer = destroyer;
+	}
 	public String toString() {
 		return draw;
 	}

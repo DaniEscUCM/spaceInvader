@@ -16,13 +16,7 @@ public class UCMShipLaser extends Weapon{
 	}
 	
 	public void move() {
-		//if(this.row==0) {
-			//return false;
-		//}
-		//else {
-			row --;
-			//return true;
-		//}
+		this.row --;
 	}
 	
 	public int getHarm() {

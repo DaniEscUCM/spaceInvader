@@ -14,8 +14,8 @@ public class Ovni extends EnemyShip{
 	private static int points=25;
 
 
-	private static int x=0;
-	private static int y=8;
+	private static int x=8;
+	private static int y=0;
 	private static int live=1;
 	
 	public Ovni(Game game) {
@@ -60,6 +60,10 @@ public class Ovni extends EnemyShip{
 	
 	public int getPoint() {
 		return this.points;
+	}
+	
+	public void computerAction() {
+		this.enable = true;
 	}
 	
 	public boolean isEnable() {
