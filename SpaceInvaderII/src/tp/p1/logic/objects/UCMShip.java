@@ -7,9 +7,9 @@ public class UCMShip extends Ship{
 	
 
 	private static int life=3;
-	private int column=4;
+	//private int column=4;
 	private String draw= "^__^";
-	private final int row=7;//nunca se mueve de la ultima fila
+	//private final int row=7;//nunca se mueve de la ultima fila
 	private static int points=0;
 	private boolean hasShockWave;//segun diapositivas
 	private boolean canShootLaser;//no se si boolean o laser
@@ -38,7 +38,7 @@ public class UCMShip extends Ship{
 
 	public boolean move (int steps) {//ver direccion, tal vez enumerado, Move direction, como ya no nos dan dirección se cambiara a -/+ segun la dirccecion
 		boolean ret = true;
-		if((column + steps)<8 || (column + steps) >= 0) {column+=steps;}//no va a dejar dar mas pasos de los que necesita
+		if((x + steps)<8 || (x + steps) >= 0) {x+=steps;}//no va a dejar dar mas pasos de los que necesita
 		/*
 		if (direction == Move.RIGHT && ((column + steps) < 8)) {
 			column+=steps;
@@ -68,10 +68,10 @@ public class UCMShip extends Ship{
 		return draw;
 	}
 	public int getRow() {
-		return row;
+		return x;
 	}
 	public int getColumn() {
-		return column;
+		return y;
 	}
 	
 	public void setDraw(String newD) {

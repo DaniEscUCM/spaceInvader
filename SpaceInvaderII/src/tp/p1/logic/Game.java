@@ -27,8 +27,8 @@ import tp.p1.logic.objects.UCMShip;
 
 public class Game implements IPlayerController{
 	
-		public final static int DIM_X = 9;
-		public final static int DIM_Y = 8;
+		public final static int DIM_X = 8;
+		public final static int DIM_Y = 9;
 		private int currentCycle;
 		private Random rand;
 		private Level level;
@@ -36,6 +36,7 @@ public class Game implements IPlayerController{
 		private UCMShip player;
 		private boolean doExit;
 		private BoardInitializer initializer ;
+		private GamePrinter gamePrinter;
 		
 		private static Ship[] availableShips = {//tal vez estoy loca
 				new RegularShip(null, 0, 0),
@@ -54,7 +55,7 @@ public class Game implements IPlayerController{
 		public void initGame () {
 			currentCycle = 0;
 			board = initializer.initialize(this, level );
-			player = new UCMShip(this, DIM_X / 2, DIM_Y - 1);
+			player = new UCMShip(this, DIM_X- 1 , DIM_Y / 2);
 			board.add(player);
 		}
 		
@@ -156,5 +157,13 @@ public class Game implements IPlayerController{
 				s+="\n";
 			}
 			System.out.println(s);
+		}
+		
+		public String toString() {
+			String draw="";
+			draw+=this.infoToString();
+			this.gamePrinter=new GamePrinter(this, this.DIM_X, this.DIM_Y);
+			draw+=this.gamePrinter.toString();
+			return draw;
 		}
 }
