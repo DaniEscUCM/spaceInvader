@@ -16,8 +16,8 @@ public class AlienShip extends EnemyShip{
 		//cycleToMove se inicializa con el numero ciclos(segun level) en el que se mueve, en move decrece
 	}
 
-	public static String getRemainingAliens() {
-		return null;
+	public static int getRemainingAliens() {
+		return REMAINING_ALIENS;
 	}
 
 	public static boolean haveLanded() {//hacen falta en main

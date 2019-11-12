@@ -38,7 +38,7 @@ public class UCMShip extends Ship{
 
 	public boolean move (int steps) {//ver direccion, tal vez enumerado, Move direction, como ya no nos dan dirección se cambiara a -/+ segun la dirccecion
 		boolean ret = true;
-		if((x + steps)<8 || (x + steps) >= 0) {x+=steps;}//no va a dejar dar mas pasos de los que necesita
+		if((y + steps)<game.DIM_Y+1 && (y + steps) >= 0) {y+=steps;}//no va a dejar dar mas pasos de los que necesita
 		/*
 		if (direction == Move.RIGHT && ((column + steps) < 8)) {
 			column+=steps;
@@ -68,10 +68,10 @@ public class UCMShip extends Ship{
 		return draw;
 	}
 	public int getRow() {
-		return x;
+		return y;
 	}
 	public int getColumn() {
-		return y;
+		return x;
 	}
 	
 	public void setDraw(String newD) {

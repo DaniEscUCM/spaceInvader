@@ -5,9 +5,9 @@ import tp.p1.logic.Game;
 public class Ovni extends EnemyShip{
 	
 
-	private final int row = 0;
-	private int column=8;
-	private int life = 1;
+	//private final int row = 0;
+	//private int column=8;
+	//private int life = 1;
 	//private int points = 25;
 	private final String draw = "O";
 	private boolean enable;//ya no se crea y se quita
@@ -28,7 +28,9 @@ public class Ovni extends EnemyShip{
 			//return false;
 		//}
 		//else {
-			column --;
+		if(this.enable) {
+			x --;
+			}
 			//return true;
 		//}
 		
@@ -36,21 +38,24 @@ public class Ovni extends EnemyShip{
 	
 	public boolean hurt(int row,int col) {
 		boolean resul=false;
-		if(row==this.row & col==this.column) {
-			life--;
-			resul=true;
+		if(this.enable) {
+			if(row==this.x & col==this.x) {
+				live--;
+				resul=true;
+			}
 		}
 		return resul;
 	}
 	
 	public String toString() {
-		return draw + "["+ life + "]"; 
+		if(this.enable) {return draw + "["+ live + "]"; }
+		return "";
 	}
 	public int getRow() {
-		return this.row;
+		return this.y;
 	}
 	public int getColumn() {
-		return this.column;
+		return this.x;
 	}
 	
 	public int getPoint() {
