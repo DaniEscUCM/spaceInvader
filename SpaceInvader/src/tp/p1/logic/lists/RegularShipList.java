@@ -18,9 +18,9 @@ public class RegularShipList {
 			if(i==3) {//para los niveles hard e insane
 				row=2;
 				col=8;
-			}
-			
+			}			
 		}
+
 	}
 	
 	public int getPoints() {

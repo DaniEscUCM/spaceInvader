@@ -16,12 +16,12 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 		//this.row=row;
 		//this.column=col;
 	}
-	
+	/*
 	public void move( Move dir) {//dir move
 		if(dir==Move.DOWN) {this.row++;}
 		else if(dir==Move.RIGHT) {this.column++;}
 		else if(dir==Move.LEFT) {this.column--;}
-	}
+	}*/
 	
 	public int getLife() {
 		return life;

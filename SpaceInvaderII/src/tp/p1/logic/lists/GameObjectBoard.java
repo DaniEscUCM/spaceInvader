@@ -9,7 +9,6 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	
 	
 	public GameObjectBoard (int width, int height) {//lista con objetos de tama�o de width*height; cont=0
-	
 		this.objects= new GameObject[width*height];
 		this.currentObjects = 0;
 	}
@@ -40,7 +39,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 				found = true;
 				ret = i;
 			}
-			i++;
+			else i++;
 		}
 		return ret;
 	}

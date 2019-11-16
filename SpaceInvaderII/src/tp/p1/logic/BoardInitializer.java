@@ -31,22 +31,21 @@ public class BoardInitializer {
 			objeto=new RegularShip(game, row, col);
 			this.board.add(objeto);
 			col--;
-			if(i==3) {//para los niveles hard e insane
-				row=2;
+			if( i!=0 && (i+1)%4==0) {//para los niveles hard e insane2
+				row++;
 				col=8;
-			}
-			
-		}
-		
+			}			
+		}	
 	}
 	private void initializeDestroyerAliens () {
 		int row=2, col=6;
 		GameObject objeto;
-		if(level==Level.HARD ||level==Level.INSANE) {row++;}
+		//if(level==Level.HARD ||level==Level.INSANE) {row++;}
+		row+=(level.getNumRegularAliens()/4)-1;
 		for(int i=0;i<level.getNumDestroyerAliens();i++) {
-			objeto=new DestroyerShip(game, row, col);
+			objeto=new DestroyerShip(game,row, col );
 			this.board.add(objeto);
-			if(col==7) {//para insane				
+			if( i!=0 && (i+1)%2==0) {//para insane				
 				row++;
 				col=6;
 			}

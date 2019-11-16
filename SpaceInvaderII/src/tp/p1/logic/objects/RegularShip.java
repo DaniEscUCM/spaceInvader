@@ -27,12 +27,12 @@ public class RegularShip extends AlienShip{
 	public int getLife() {//tal vez con herencia, ya que todos tienen vida
 		return life;
 	}
-
+/*
 	public void move(Move dir) {
 		if(dir==Move.DOWN) {this.row++;}
 		else if(dir==Move.RIGHT) {this.col++;}
 		else if(dir==Move.LEFT) {this.col--;}
-	}
+	}*/
 	public void hurt() {
 		life--;
 	}

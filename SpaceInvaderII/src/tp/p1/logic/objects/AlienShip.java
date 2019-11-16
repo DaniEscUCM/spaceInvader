@@ -37,13 +37,13 @@ public class AlienShip extends EnemyShip{
 		if(cyclesToMove==0) {
 			cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();
 			if(SHIPS_ON_BORDER>0 && !IS_IN_FINAL_ROW) {
-				this.y++;
+				this.x++;
 				if(dir==Move.RIGHT) {dir=Move.LEFT;}
 				else if(dir==Move.LEFT) {dir=Move.RIGHT;}
 				SHIPS_ON_BORDER --;
 				}
-			if(dir==Move.RIGHT) {this.x++;}
-			else if(dir==Move.LEFT) {this.x--;}
+			if(dir==Move.RIGHT) {this.y++;}
+			else if(dir==Move.LEFT) {this.y--;}
 						
 		}
 		else cyclesToMove--;
