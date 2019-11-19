@@ -31,6 +31,7 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		if(this.enable) {
 			this.y --;
 			super.y--;
+			
 			}
 			//return true;
 		//}
@@ -66,6 +67,11 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	public void computerAction() {
 		if(!this.enable && IExecuteRandomActions.canGenerateRandomOvni(game)) {
 			this.enable = true;}
+		else if(y<0) {
+			this.enable=false;
+			super.y=9;
+			this.y=9;
+		}
 	}
 	
 	public boolean isEnable() {

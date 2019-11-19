@@ -2,6 +2,7 @@ package tp.p1;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.math.*;
 
 import tp.p1.control.Controller;
 import tp.p1.logic.Game;
@@ -13,7 +14,7 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		Level level = null;
 		boolean ok = true; // para controlar errores de argumentos
-		Long seed = (long) new Random().nextInt((int) System.currentTimeMillis());// semilla por defecto
+		Long seed = (long) new Random().nextInt(-(int) System.currentTimeMillis());// semilla por defecto
 		
 		if(args.length > 0 && args.length <= 2) {
 			if(args[0].equalsIgnoreCase("EASY")) {
