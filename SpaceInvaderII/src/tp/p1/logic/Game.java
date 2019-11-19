@@ -38,7 +38,7 @@ public class Game implements IPlayerController{
 		private BoardInitializer initializer ;
 		private GamePrinter gamePrinter;
 		
-		private static Ship[] availableShips = {//tal vez estoy loca
+		private static Ship[] availableShips = {
 				new RegularShip(null, 0, 0),
 				new DestroyerShip(null, 0, 0),
 				new Ovni(null),
