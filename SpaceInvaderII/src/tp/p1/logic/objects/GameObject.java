@@ -15,6 +15,7 @@ public abstract class GameObject implements IAttack {
 		this.live = life;
 	}
 	
+
 	public int getX() {
 		return x;
 	}

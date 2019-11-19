@@ -1,5 +1,6 @@
 package tp.p1.logic.lists;
 
+import tp.p1.logic.objects.Bomb;
 import tp.p1.logic.objects.GameObject;
 
 public class GameObjectBoard {//ya no va a haber las otras listas, esta es la superlista

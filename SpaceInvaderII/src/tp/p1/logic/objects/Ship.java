@@ -1,7 +1,6 @@
 package tp.p1.logic.objects;
 
 import tp.p1.logic.Game;
-
 public class Ship extends GameObject {// se puede quitar que no hace nada, sino esta vacia. talvez dejarla por los points
 	
 	private int points;
@@ -16,7 +15,8 @@ public class Ship extends GameObject {// se puede quitar que no hace nada, sino 
 	}
 
 	@Override
-	public void computerAction() {	}
+	public void computerAction() {	
+	}
 
 	@Override
 	public void onDelete() {	}

@@ -10,10 +10,7 @@ public class Weapon extends GameObject{
 
 	@Override
 	public void computerAction() {
-		
 	}
-	
-
 	@Override
 	public void move() {
 		this.move();
