@@ -8,6 +8,7 @@ public class Bomb extends Weapon{
 	private int col;	
 	private final String draw = ".";//tendra un destroyer
 	private DestroyerShip destroyer;
+	boolean move = false;
 
 
 	public Bomb(Game game, int x, int y) {
@@ -18,6 +19,7 @@ public class Bomb extends Weapon{
 	}
 	
 	public void onDelete() {
+		this.destroyer.setCanShootBomb(true);
 		this.destroyer = null;
 	}
 
@@ -30,11 +32,12 @@ public class Bomb extends Weapon{
 	}
 	
 	public void move() {
-		this.row ++;
+		if(move)
+			super.x++;
+		else this.move = true;
 	}
 	
 	public void computerAction() {
-		;
 	}
 	
 	public DestroyerShip getDestroyer() {

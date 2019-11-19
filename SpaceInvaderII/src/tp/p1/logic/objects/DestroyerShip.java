@@ -1,10 +1,10 @@
 package tp.p1.logic.objects;
 import tp.p1.logic.Game;
 import tp.p1.logic.Move;
+import tp.p1.logic.lists.GameObjectBoard;
 
 public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	private static int life=1;
-	private int row, column;
 	//private Bomb bomb=null;
 	private boolean canShootBomb;
 	private static int points=10;
@@ -12,9 +12,7 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	
 	public DestroyerShip(Game game, int x, int y) {
 		super(game, x, y, life, points);
-		this.canShootBomb=true;
-		//this.row=row;
-		//this.column=col;
+		this.canShootBomb =true;
 	}
 	/*
 	public void move( Move dir) {//dir move
@@ -28,15 +26,13 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	}
 	
 	public void computerAction() {
-		if(IExecuteRandomActions.canGenerateRandomBomb(game))
-		this.canShootBomb = false;
-	}
-	
-	public int getRow() {
-		return row;
-	}
-	public int getColumn() {
-		return column;
+		if(IExecuteRandomActions.canGenerateRandomBomb(game) 
+				&& canShootBomb) {
+			Bomb b = new Bomb(this.game, super.x + 1, super.y);
+			b.setDestroyer(this);
+			game.addObject(b);
+			this.canShootBomb = false;
+		}
 	}
 	
 	public String toString() {
@@ -49,16 +45,13 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 		return bomb;
 	}*/
 	
-	public void shoot() {
-		this.canShootBomb=false;
-	}
-	
-	public boolean getCanShoot() {
-		return this.canShootBomb;
-	}
 	
 	public void enableBomb() {
-		this.canShootBomb=false;
+		this.canShootBomb = false;
+	}
+	
+	public void setCanShootBomb(boolean canShoot) {
+		this.canShootBomb = canShoot;
 	}
 	
 
