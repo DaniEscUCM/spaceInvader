@@ -7,6 +7,8 @@ public class Weapon extends GameObject{
 	public Weapon(Game game, int x, int y, int life) {
 		super(game, x, y, life);
 	}
+	
+	//metodo abstracto que se implemente de forma diferente en laser y bomb, algo con check attack y receive attack
 
 	@Override
 	public void computerAction() {
