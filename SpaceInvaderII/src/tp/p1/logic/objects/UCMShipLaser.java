@@ -6,22 +6,22 @@ public class UCMShipLaser extends Weapon{
 	
 	private static int life = 1;
 	private int row, column;
-	private final int harm=1;//herencia?
+	private static final int harm=1;//herencia?
 	private final String draw= "oo";
 	
 	public UCMShipLaser(Game game, int x, int y) {
-		super(game, x, y, life);
+		super(game, x, y, life,harm);
 		//row=7;
 		//column=ucmColumn;
 	}
 	
 	public void move() {
+		super.y--;
 		this.row --;
-	}
-	
-	public int getHarm() {
-		return harm;
-	}
+		if(isOut()) {//is out no funciona?
+			super.live=0;
+		}
+	}	
 	
 	public String toString() {
 		return draw;

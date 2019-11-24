@@ -14,8 +14,8 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	private static int points=25;
 
 
-	private static int x=0;
-	private static int y=9;
+	private static int x=9;
+	private static int y=0;
 	private static int live=1;
 	
 	public Ovni(Game game) {
@@ -29,8 +29,12 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		//}
 		//else {
 		if(this.enable) {
-			this.y --;
-			super.y--;
+			this.x --;
+			super.x--;
+			if(isOut()) {
+				this.enable=false;
+				super.x=9;
+				this.x=9;}
 			
 			}
 			//return true;
@@ -41,9 +45,11 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	public boolean hurt(int row,int col) {
 		boolean resul=false;
 		if(this.enable) {
-			if(row==this.x & col==this.x) {
+			if(row==this.y & col==this.x) {
 				live--;
+				super.live--;
 				resul=true;
+				
 			}
 		}
 		return resul;
@@ -67,11 +73,6 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	public void computerAction() {
 		if(!this.enable && IExecuteRandomActions.canGenerateRandomOvni(game)) {
 			this.enable = true;}
-		else if(y<0) {
-			this.enable=false;
-			super.y=9;
-			this.y=9;
-		}
 	}
 	
 	public boolean isEnable() {

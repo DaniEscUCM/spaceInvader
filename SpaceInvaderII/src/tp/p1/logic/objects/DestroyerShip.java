@@ -28,7 +28,7 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	public void computerAction() {
 		if(IExecuteRandomActions.canGenerateRandomBomb(game) 
 				&& canShootBomb) {
-			Bomb b = new Bomb(this.game, super.x + 1, super.y);
+			Bomb b = new Bomb(this.game, super.x, super.y+1, this);
 			b.setDestroyer(this);
 			game.addObject(b);
 			this.canShootBomb = false;

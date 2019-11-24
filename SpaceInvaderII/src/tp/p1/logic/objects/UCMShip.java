@@ -9,6 +9,7 @@ public class UCMShip extends Ship{
 	private static int life=3;
 	//private int column=4;
 	private String draw= "^__^";
+	private String losedraw="!xx!";
 	//private final int row=7;//nunca se mueve de la ultima fila
 	private static int points=0;
 	private boolean hasShockWave;//segun diapositivas
@@ -33,12 +34,12 @@ public class UCMShip extends Ship{
 	}
 
 	public void setCanShootLaser() {
-		this.canShootLaser = true;
+		this.canShootLaser = !this.canShootLaser;
 	}
 
 	public boolean move (int steps) {//ver direccion, tal vez enumerado, Move direction, como ya no nos dan dirección se cambiara a -/+ segun la dirccecion
 		boolean ret = true;
-		if((y + steps)<game.DIM_Y+1 && (y + steps) >= 0) {y+=steps;}//no va a dejar dar mas pasos de los que necesita
+		if((x + steps)<game.DIM_X && (x + steps) >= 0) {x+=steps;}//no va a dejar dar mas pasos de los que necesita
 		/*
 		if (direction == Move.RIGHT && ((column + steps) < 8)) {
 			column+=steps;
@@ -65,6 +66,9 @@ public class UCMShip extends Ship{
 	}
 	
 	public String toString() {
+		if( super.live==0 || AlienShip.haveLanded()) {
+			return this.losedraw;
+		}
 		return draw;
 	}
 	public int getRow() {

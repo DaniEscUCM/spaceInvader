@@ -20,6 +20,7 @@ import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.RegularShip;
 import tp.p1.logic.objects.Ship;
 import tp.p1.logic.objects.UCMShip;
+import tp.p1.logic.objects.UCMShipLaser;
 //import pr2.game.GameObjects.AlienShip;
 //import pr2.game.GameObjects.BoardInitializer;
 //import pr2.game.GameObjects.GameObject;
@@ -27,8 +28,8 @@ import tp.p1.logic.objects.UCMShip;
 
 public class Game implements IPlayerController{
 	
-		public final static int DIM_X = 9;
-		public final static int DIM_Y = 8;
+		public final static int DIM_X = 9;//9
+		public final static int DIM_Y = 8;//8
 		private int currentCycle;
 		private Random rand;
 		private Level level;
@@ -55,7 +56,7 @@ public class Game implements IPlayerController{
 		public void initGame () {
 			currentCycle = 0;
 			board = initializer.initialize(this, level );
-			player = new UCMShip(this,DIM_Y - 1 , DIM_X / 2);
+			player = new UCMShip(this,DIM_X / 2 ,DIM_Y - 1 );
 			board.add(player);
 		}
 		
@@ -123,8 +124,13 @@ public class Game implements IPlayerController{
 		}
 		@Override
 		public boolean shootMissile() {
-			// TODO
-			return true;
+			if(this.player.isCanShootLaser()) {
+				GameObject laser=new UCMShipLaser(this,this.player.getX(),this.player.getY()-1);
+				this.board.add(laser);
+				return true;
+			}
+			return false;
+			
 		}
 		@Override
 		public boolean shockWave() {
@@ -162,7 +168,7 @@ public class Game implements IPlayerController{
 		public String toString() {
 			String draw="";
 			draw+=this.infoToString();
-			this.gamePrinter=new GamePrinter(this,this.DIM_Y , this.DIM_X);
+			this.gamePrinter=new GamePrinter(this,this.DIM_Y ,this.DIM_X );
 			draw+=this.gamePrinter.toString();
 			return draw;
 		}

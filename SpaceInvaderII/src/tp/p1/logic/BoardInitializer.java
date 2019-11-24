@@ -28,7 +28,7 @@ public class BoardInitializer {
 		int row=1, col=8;
 		GameObject objeto;
 		for(int i=0;i<level.getNumRegularAliens();i++) {
-			objeto=new RegularShip(game, row, col);
+			objeto=new RegularShip(game,col , row);
 			this.board.add(objeto);
 			col--;
 			if( i!=0 && (i+1)%4==0) {//para los niveles hard e insane2
@@ -43,7 +43,7 @@ public class BoardInitializer {
 		//if(level==Level.HARD ||level==Level.INSANE) {row++;}
 		row+=(level.getNumRegularAliens()/4)-1;
 		for(int i=0;i<level.getNumDestroyerAliens();i++) {
-			objeto=new DestroyerShip(game,row, col );
+			objeto=new DestroyerShip(game,col, row );
 			this.board.add(objeto);
 			if( i!=0 && (i+1)%2==0) {//para insane				
 				row++;

@@ -3,9 +3,12 @@ package tp.p1.logic.objects;
 import tp.p1.logic.Game;
 
 public class Weapon extends GameObject{
+	
+	private int harm;
 
-	public Weapon(Game game, int x, int y, int life) {
+	public Weapon(Game game, int x, int y, int life, int harm) {
 		super(game, x, y, life);
+		this.harm=harm;
 	}
 	
 	//metodo abstracto que se implemente de forma diferente en laser y bomb, algo con check attack y receive attack
@@ -15,16 +18,20 @@ public class Weapon extends GameObject{
 	}
 	@Override
 	public void move() {
-		this.move();
+		//this.move();
 	}
 
 	@Override
 	public void onDelete() {
-		this.onDelete();
+		//this.onDelete();
 	}
 	@Override
 	public String toString() {
-		return this.toString();
+		return " ";
+	}
+	public int getHarm() {
+		this.live--;
+		return harm;
 	}
 
 

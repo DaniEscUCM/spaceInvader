@@ -13,8 +13,7 @@ public abstract class GameObject implements IAttack {
 		this. y = y;
 		this. game = game;
 		this.live = life;
-	}
-	
+	}	
 
 	public int getX() {
 		return x;
@@ -42,6 +41,10 @@ public abstract class GameObject implements IAttack {
 	
 	public boolean isOut() {//metodos move, si se sale del tablero
 		return !game.isOnBoard(x, y);
+	}
+	
+	public int getHarm() {
+		return 0;
 	}
 	
 	public abstract void computerAction();//quien no lo haga se deja vacio

@@ -39,16 +39,16 @@ public class AlienShip extends EnemyShip{
 	public void move() {//no sobre escribe si se quita ship
 		if(cyclesToMove==0) {
 			cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();			
-			if(dir==Move.RIGHT) {this.y++;}
-			else if(dir==Move.LEFT) {this.y--;}	
+			if(dir==Move.RIGHT) {this.x++;}
+			else if(dir==Move.LEFT) {this.x--;}	
 			this.border();						
 		}
 		else if(SHIPS_ON_BORDER>0) { //&& !IS_IN_FINAL_ROW
-				this.x++;
+				this.y++;
 				if(dir==Move.RIGHT) {dir=Move.LEFT;}
 				else if(dir==Move.LEFT) {dir=Move.RIGHT;}
 				SHIPS_ON_BORDER --;
-				if(!IS_IN_FINAL_ROW && x==game.DIM_Y-1) {
+				if(!IS_IN_FINAL_ROW && y==game.DIM_Y-1) {
 					IS_IN_FINAL_ROW=true;
 					}
 					
@@ -69,7 +69,7 @@ public class AlienShip extends EnemyShip{
 	}
 	
 	public void border() {
-		if((dir==Move.LEFT && y==0)||(dir==Move.RIGHT && y==game.DIM_X-1)) {
+		if((dir==Move.LEFT && x==0)||(dir==Move.RIGHT && x==game.DIM_X-1)) {
 			SHIPS_ON_BORDER=REMAINING_ALIENS;
 		}
 	}

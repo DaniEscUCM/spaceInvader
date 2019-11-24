@@ -33,13 +33,14 @@ public class RegularShip extends AlienShip{
 		else if(dir==Move.RIGHT) {this.col++;}
 		else if(dir==Move.LEFT) {this.col--;}
 	}*/
+	/*
 	public void hurt() {
 		life--;
-	}
+	}*/
 	
 	
 	public String toString(){
-		return this.draw+"[" + life + "]";
+		return this.draw+"[" + super.live + "]";
 	}
 
 }

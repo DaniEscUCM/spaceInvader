@@ -2,6 +2,7 @@ package tp.p1.logic.lists;
 
 import tp.p1.logic.objects.Bomb;
 import tp.p1.logic.objects.GameObject;
+import tp.p1.logic.objects.UCMShipLaser;
 
 public class GameObjectBoard {//ya no va a haber las otras listas, esta es la superlista
 
@@ -70,8 +71,8 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
 		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
 		for(int i = 0; i < this.currentObjects; i++) {
-			if(this.objects[i].getX() == object.getX() &&
-					this.objects[i].getY() == object.getY()){
+			if(this.objects[i].isOnPosition(object.getX(), object.getY())&& this.objects[i]!=(object)){
+				this.objects[i].getDamage(object.getHarm());
 				
 			}
 		}
@@ -94,10 +95,16 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	}
 	
 	public String toString(int x, int y) {//el string
-		int i=this.getIndex(x, y);
+		int i=this.getIndex(y, x);
 		if(i!=-1) {return this.objects[i].toString();}
 		return "";
 	}
+	/*
+	public boolean shoot(GameObject laser) {
+		=new UCMShipLaser(this,x,y);
+	
+		return false;
+	}*/
 	
 
 }

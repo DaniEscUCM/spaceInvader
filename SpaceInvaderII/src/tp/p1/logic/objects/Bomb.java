@@ -8,12 +8,13 @@ public class Bomb extends Weapon{
 	private int col;	
 	private final String draw = ".";//tendra un destroyer
 	private DestroyerShip destroyer;
+	private static final int harm=1;
 	boolean move = false;
 
 
-	public Bomb(Game game, int x, int y) {
-		super(game, x, y, life);
-		this.destroyer = null;
+	public Bomb(Game game, int x, int y,DestroyerShip destroyer) {
+		super(game, x, y, life,harm);
+		this.destroyer = destroyer;
 		//this.row = row;
 		//this.col = col;
 	}
@@ -32,8 +33,12 @@ public class Bomb extends Weapon{
 	}
 	
 	public void move() {
-		if(move)
-			super.x++;
+		if(move) {
+			super.y++;
+			if(isOut()) {
+				super.live=0;
+			}
+		}
 		else this.move = true;
 	}
 	
