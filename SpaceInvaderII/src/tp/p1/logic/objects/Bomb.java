@@ -55,5 +55,15 @@ public class Bomb extends Weapon{
 	public String toString() {
 		return draw;
 	}
+	
+	public  boolean performAttack(GameObject other) {
+		boolean resul=false;
+		if(other.isOnPosition(this.getX(), this.getY())&& other!=this) {
+			resul=other.receiveBombAttack(super.getHarm());
+			super.live--;
+		}
+		
+		return resul;
+		}
 
 }

@@ -51,4 +51,19 @@ public abstract class GameObject implements IAttack {
 	public abstract void onDelete();//ej: enable la bomba en destroyer 
 	public abstract void move();//quien no lo haga se deja vacio
 	public abstract String toString();
+	
+	public boolean receiveMissileAttack(int damage) {
+		this.live-=damage;
+		return true;
+		}
+	public boolean receiveBombAttack(int damage) {
+		this.live-=damage;
+		return true;
+		}
+	public boolean receiveShockWaveAttack(int damage) {
+		this.live-=damage;
+		return false;
+		}
+	
+	
 }

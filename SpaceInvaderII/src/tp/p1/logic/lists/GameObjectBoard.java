@@ -50,7 +50,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	private void remove (GameObject object) {//getIndex y desplazamos a la izquierda
 	
 		int index = getIndex(object.getX(), object.getY());
-		if(index > -1) {
+		if(index > -1 && object==objects[index]) {
 			for(int i = index; i < this.currentObjects; i++) {
 				this.objects[i] = this.objects[i + 1];
 			}
@@ -71,16 +71,11 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	
 	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
 		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
-		//if(IAttack.performAttack(object)) {			
-			for(int i = 0; i < this.currentObjects; i++) {
-				if(this.objects[i].isOnPosition(object.getX(), object.getY())&& this.objects[i]!=(object)){
-				/*	receiveMissileAttack(int damage) };
-					receiveBombAttack(int damage);
-					receiveShockWaveAttack(int damage) ;*/
-					
-				}
-			}
-		//}
+		int i=0;
+		while(!object.performAttack(this.objects[i])&& i<this.currentObjects-1) {
+			i++;
+		}
+		
 	}
 	
 	public void computerAction() {//llamar computerAction de todos
@@ -91,7 +86,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	
 	private void removeDead() {//quita los muertos?? primero delete y llama a remove
 		for(int i = 0; i < this.currentObjects; i++) {
-			if(this.objects[i].getLive() == 0) {
+			if(!this.objects[i].isAlive()) {
 				this.objects[i].onDelete();
 				this.remove(this.objects[i]);
 			}
