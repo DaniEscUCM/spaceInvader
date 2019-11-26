@@ -127,6 +127,7 @@ public class Game implements IPlayerController{
 			if(this.player.isCanShootLaser()) {
 				GameObject laser=new UCMShipLaser(this,this.player.getX(),this.player.getY()-1);
 				this.board.add(laser);
+				this.player.setCanShootLaser();
 				return true;
 			}
 			return false;
@@ -140,7 +141,7 @@ public class Game implements IPlayerController{
 		
 		@Override
 		public void receivePoints(int points) {
-			// TODO			
+			this.player.receivePoints(points);		
 		}
 		@Override
 		public void enableShockWave() {
@@ -148,7 +149,7 @@ public class Game implements IPlayerController{
 		}
 		@Override
 		public void enableMissile() {
-			// TODO
+			this.player.setCanShootLaser();
 		}
 		public String toStringObjectAt(int i, int j) {			
 			return this.board.toString(i,j);

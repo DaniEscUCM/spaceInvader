@@ -49,6 +49,7 @@ public class RegularShip extends AlienShip{
 	@Override
 	public void onDelete() {
 		super.REMAINING_ALIENS--;
+		game.receivePoints(this.getPoints());
 		if(super.getSHIPS_ON_BORDER()>0) {
 			super.setSHIPS_ON_BORDER();
 		}

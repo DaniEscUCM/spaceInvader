@@ -40,6 +40,7 @@ public class UCMShipLaser extends Weapon{
 		if(other.isOnPosition(super.getX(), super.getY())&& other!=this) {
 			resul=other.receiveMissileAttack(super.getHarm());
 			super.live--;
+			game.enableMissile();
 		}		
 		return resul;
 	}

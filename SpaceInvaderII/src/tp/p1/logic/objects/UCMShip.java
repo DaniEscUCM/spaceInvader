@@ -36,6 +36,10 @@ public class UCMShip extends Ship{
 	public void setCanShootLaser() {
 		this.canShootLaser = !this.canShootLaser;
 	}
+	
+	public void receivePoints(int points) {
+		this.points+=points;
+	}
 
 	public boolean move (int steps) {//ver direccion, tal vez enumerado, Move direction, como ya no nos dan dirección se cambiara a -/+ segun la dirccecion
 		boolean ret = true;
@@ -85,10 +89,10 @@ public class UCMShip extends Ship{
 	public String stateToString() {	
 		return "Life: "+this.live+"\n"+"Points: "+points+"\n";//he puesto points en ship
 	}
-	
+	/*
 	public boolean shootLaser() {//no se como hacer con el laser
 		// TODO implement
 		return false;
-	}
+	}*/
 
 }
