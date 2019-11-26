@@ -38,6 +38,7 @@ public class Game implements IPlayerController{
 		private boolean doExit;
 		private BoardInitializer initializer ;
 		private GamePrinter gamePrinter;
+		private boolean shockWave = false;
 		
 		private static Ship[] availableShips = {
 				new RegularShip(null, 0, 0),
@@ -108,7 +109,8 @@ public class Game implements IPlayerController{
 		public String infoToString() {
 			return "Cycles: " + currentCycle + "\n" +
 			player.stateToString() +
-			"Remaining aliens: "+ (AlienShip.getRemainingAliens()) + "\n";
+			"Remaining aliens: "+ (AlienShip.getRemainingAliens()) + "\n" +
+			"ShockWave: " + (String.valueOf(this.shockWave));
 		}
 			
 		public String getWinnerMessage () {
@@ -135,8 +137,12 @@ public class Game implements IPlayerController{
 		}
 		@Override
 		public boolean shockWave() {
-			// TODO
-			return true;
+			if(this.shockWave) {
+				this.board.shockWave();
+				this.shockWave = false;
+				return true;
+			}
+			else return false;
 		}
 		
 		@Override
@@ -145,7 +151,7 @@ public class Game implements IPlayerController{
 		}
 		@Override
 		public void enableShockWave() {
-			// TODO
+			this.shockWave = true;
 		}
 		@Override
 		public void enableMissile() {

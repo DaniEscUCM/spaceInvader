@@ -3,6 +3,7 @@ package tp.p1.logic.lists;
 import tp.p1.logic.objects.Bomb;
 import tp.p1.logic.objects.GameObject;
 import tp.p1.logic.objects.IAttack;
+import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.UCMShipLaser;
 
 public class GameObjectBoard {//ya no va a haber las otras listas, esta es la superlista
@@ -47,15 +48,15 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		return ret;
 	}
 	
-	private void remove (GameObject object) {//getIndex y desplazamos a la izquierda
+	private void remove (int i ) {//getIndex y desplazamos a la izquierda
 	
-		int index = getIndex(object.getX(), object.getY());
-		if(index > -1 && object==objects[index]) {
-			for(int i = index; i < this.currentObjects; i++) {
+		//int index = getIndex(object.getX(), object.getY());
+		//if(i > -1 && object==objects[index]) {
+			for(; i < this.currentObjects; i++) {
 				this.objects[i] = this.objects[i + 1];
 			}
 			this.currentObjects--;
-		}
+		//}
 	}
 		
 	
@@ -88,7 +89,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		for(int i = 0; i < this.currentObjects; i++) {
 			if(!this.objects[i].isAlive()) {
 				this.objects[i].onDelete();
-				this.remove(this.objects[i]);
+				this.remove(i);
 			}
 		}
 		
@@ -105,6 +106,17 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	
 		return false;
 	}*/
+	public void shockWave() {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < this.currentObjects; i++) {
+			if(this.objects[i] instanceof Ovni) {
+				//this.remov(i);
+			}
+		}
+	}
+	
+	
+	
 	
 
 }
