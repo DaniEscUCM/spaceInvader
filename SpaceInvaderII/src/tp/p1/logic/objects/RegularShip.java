@@ -38,9 +38,20 @@ public class RegularShip extends AlienShip{
 		life--;
 	}*/
 	
+	public void hurt() {
+		super.live--;
+	}
 	
 	public String toString(){
 		return this.draw+"[" + super.live + "]";
+	}
+	
+	@Override
+	public void onDelete() {
+		super.REMAINING_ALIENS--;
+		if(super.getSHIPS_ON_BORDER()>0) {
+			super.setSHIPS_ON_BORDER();
+		}
 	}
 
 }

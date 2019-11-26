@@ -56,12 +56,20 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	
 
 	public void hurt() {
-		life--;
+		super.live--;
 	}
+	
 	/*
 	public boolean equalsbomb(Bomb bomb) {
 		return this.bomb==bomb;
 	}*/
 	
+	@Override
+	public void onDelete() {
+		super.REMAINING_ALIENS--;
+		if(super.getSHIPS_ON_BORDER()>0) {
+			super.setSHIPS_ON_BORDER();
+		}
+	}
 
 }

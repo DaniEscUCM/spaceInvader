@@ -8,6 +8,7 @@ public class AlienShip extends EnemyShip{
 	protected static int REMAINING_ALIENS = -2;
 	private static boolean IS_IN_FINAL_ROW;
 	private static int SHIPS_ON_BORDER;
+	
 	protected int cyclesToMove;
 	private Move dir;
 
@@ -32,8 +33,7 @@ public class AlienShip extends EnemyShip{
 	}
 
 	public static boolean allDead() {//hacen falta en main
-		// TODO Auto-generated method stub
-		return false;
+		return REMAINING_ALIENS==0;
 	}
 	
 	public void move() {//no sobre escribe si se quita ship
@@ -72,6 +72,14 @@ public class AlienShip extends EnemyShip{
 		if((dir==Move.LEFT && x==0)||(dir==Move.RIGHT && x==game.DIM_X-1)) {
 			SHIPS_ON_BORDER=REMAINING_ALIENS;
 		}
+	}
+	
+	public static int getSHIPS_ON_BORDER() {
+		return SHIPS_ON_BORDER;
+	}
+
+	public static void setSHIPS_ON_BORDER() {
+		SHIPS_ON_BORDER --;
 	}
 
 }

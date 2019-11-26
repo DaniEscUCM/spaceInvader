@@ -33,6 +33,8 @@ public class Weapon extends GameObject{
 		this.live--;
 		return harm;
 	}
+	
+	public boolean performAttack(GameObject other) {return true;}
 
 
 }

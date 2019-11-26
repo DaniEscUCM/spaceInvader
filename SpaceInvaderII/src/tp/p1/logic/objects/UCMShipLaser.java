@@ -34,5 +34,7 @@ public class UCMShipLaser extends Weapon{
 	public int getColumn() {
 		return column;
 	}
+	
+	
 
 }

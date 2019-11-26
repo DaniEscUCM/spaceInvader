@@ -2,6 +2,7 @@ package tp.p1.logic.lists;
 
 import tp.p1.logic.objects.Bomb;
 import tp.p1.logic.objects.GameObject;
+import tp.p1.logic.objects.IAttack;
 import tp.p1.logic.objects.UCMShipLaser;
 
 public class GameObjectBoard {//ya no va a haber las otras listas, esta es la superlista
@@ -70,12 +71,16 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	
 	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
 		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
-		for(int i = 0; i < this.currentObjects; i++) {
-			if(this.objects[i].isOnPosition(object.getX(), object.getY())&& this.objects[i]!=(object)){
-				this.objects[i].getDamage(object.getHarm());
-				
+		//if(IAttack.performAttack(object)) {			
+			for(int i = 0; i < this.currentObjects; i++) {
+				if(this.objects[i].isOnPosition(object.getX(), object.getY())&& this.objects[i]!=(object)){
+				/*	receiveMissileAttack(int damage) };
+					receiveBombAttack(int damage);
+					receiveShockWaveAttack(int damage) ;*/
+					
+				}
 			}
-		}
+		//}
 	}
 	
 	public void computerAction() {//llamar computerAction de todos
