@@ -29,42 +29,42 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		//}
 		//else {
 		if(this.enable) {
-			this.x --;
 			super.x--;
 			if(isOut()) {
 				this.enable=false;
-				super.x=9;
-				this.x=9;}
+				super.x=9;}
 			
 			}
 			//return true;
 		//}
 		
 	}
-	
+	/*
 	public boolean hurt(int row,int col) {
 		boolean resul=false;
 		if(this.enable) {
-			if(row==this.y & col==this.x) {
-				live--;
-				super.live--;
+			if(row==super.y & col==super.x) {
+				this.enable=false;
+				super.x=x;
+				super.y=y;
+				game.receivePoints(this.getPoints());
 				resul=true;
 				
 			}
 		}
 		return resul;
-	}
+	}*/
 	
 	public String toString() {
 		if(this.enable) {return draw + "["+ live + "]"; }
 		return "";
-	}
+	}/*
 	public int getRow() {
 		return this.y;
 	}
 	public int getColumn() {
 		return this.x;
-	}
+	}*/
 	
 	public int getPoint() {
 		return this.points;
@@ -82,4 +82,27 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	public void setEnable() {
 		this.enable = false;
 	}
+	/*
+	public void onDelete() {
+		super.live=live;
+		this.enable=false;
+		super.x=x;
+		super.y=y;
+		game.receivePoints(this.getPoints());
+	}*/
+	
+	public boolean receiveMissileAttack(int damage) {
+		this.enable=false;
+		super.x=x;
+		super.y=y;
+		game.receivePoints(this.getPoints());
+		return true;
+		}
+	public boolean receiveShockWaveAttack(int damage) {
+		this.enable=false;
+		super.x=x;
+		super.y=y;
+		game.receivePoints(this.getPoints());
+		return false;
+		}
 }
