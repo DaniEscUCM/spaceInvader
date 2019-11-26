@@ -5,7 +5,6 @@ import tp.p1.logic.lists.GameObjectBoard;
 
 public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	private static int life=1;
-	//private Bomb bomb=null;
 	private boolean canShootBomb;
 	private static int points=10;
 	
@@ -14,12 +13,6 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 		super(game, x, y, life, points);
 		this.canShootBomb =true;
 	}
-	/*
-	public void move( Move dir) {//dir move
-		if(dir==Move.DOWN) {this.row++;}
-		else if(dir==Move.RIGHT) {this.column++;}
-		else if(dir==Move.LEFT) {this.column--;}
-	}*/
 	
 	public int getLife() {
 		return life;

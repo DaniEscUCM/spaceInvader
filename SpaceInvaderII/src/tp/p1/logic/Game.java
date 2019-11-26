@@ -1,16 +1,7 @@
 package tp.p1.logic;
 import java.util.Random;
 
-import tp.p1.control.Command;
-import tp.p1.control.ExitCommand;
-import tp.p1.control.HelpCommand;
 import tp.p1.control.IPlayerController;
-import tp.p1.control.ListCommand;
-import tp.p1.control.MoveCommand;
-import tp.p1.control.NoneCommand;
-import tp.p1.control.ResetCommand;
-import tp.p1.control.ShockWaveCommand;
-import tp.p1.control.ShootCommand;
 import tp.p1.logic.Level;
 import tp.p1.logic.lists.GameObjectBoard;
 import tp.p1.logic.objects.AlienShip;
@@ -21,10 +12,6 @@ import tp.p1.logic.objects.RegularShip;
 import tp.p1.logic.objects.Ship;
 import tp.p1.logic.objects.UCMShip;
 import tp.p1.logic.objects.UCMShipLaser;
-//import pr2.game.GameObjects.AlienShip;
-//import pr2.game.GameObjects.BoardInitializer;
-//import pr2.game.GameObjects.GameObject;
-//import pr2.game.GameObjects.IPlayerController;
 
 public class Game implements IPlayerController{
 	
@@ -178,5 +165,10 @@ public class Game implements IPlayerController{
 			this.gamePrinter=new GamePrinter(this,this.DIM_Y ,this.DIM_X );
 			draw+=this.gamePrinter.toString();
 			return draw;
+		}
+
+		public void deleteOnlist(GameObject object) {
+			//board.;
+	
 		}
 }

@@ -4,6 +4,7 @@ import tp.p1.logic.objects.Bomb;
 import tp.p1.logic.objects.GameObject;
 import tp.p1.logic.objects.IAttack;
 import tp.p1.logic.objects.Ovni;
+import tp.p1.logic.objects.UCMShip;
 import tp.p1.logic.objects.UCMShipLaser;
 
 public class GameObjectBoard {//ya no va a haber las otras listas, esta es la superlista
@@ -21,10 +22,10 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	}
 	
 	public void add (GameObject object) { // inserta si ese objeto no esta en la lista
-		if(getIndex(object.getX(), object.getY()) == -1){
+		//if(getIndex(object.getX(), object.getY()) == -1){
 			this.objects[this.currentObjects] = object;
 			this.currentObjects++;
-		}
+		//}
 	// TODO implement
 	}
 	private GameObject getObjectInPosition (int x, int y) {//usa getIndex, devuelve el objeto en esa posicion
@@ -48,15 +49,12 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		return ret;
 	}
 	
-	private void remove (int i ) {//getIndex y desplazamos a la izquierda
+	public void remove (int i ) {//getIndex y desplazamos a la izquierda
 	
-		//int index = getIndex(object.getX(), object.getY());
-		//if(i > -1 && object==objects[index]) {
-			for(; i < this.currentObjects; i++) {
-				this.objects[i] = this.objects[i + 1];
-			}
-			this.currentObjects--;
-		//}
+		for(; i < this.currentObjects; i++) {
+			this.objects[i] = this.objects[i + 1];
+		}
+		this.currentObjects--;
 	}
 		
 	
@@ -70,7 +68,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		this.removeDead();
 	}
 	
-	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
+	public void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
 		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
 		int i=0;
 		while(!object.performAttack(this.objects[i])&& i<this.currentObjects-1) {
@@ -85,7 +83,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		}
 	}
 	
-	private void removeDead() {//quita los muertos?? primero delete y llama a remove
+	public void removeDead() {//quita los muertos?? primero delete y llama a remove
 		for(int i = 0; i < this.currentObjects; i++) {
 			if(!this.objects[i].isAlive()) {
 				this.objects[i].onDelete();
@@ -109,10 +107,14 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	public void shockWave() {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < this.currentObjects; i++) {
-			if(this.objects[i] instanceof Ovni) {
-				//this.remov(i);
+			if(this.objects[i] instanceof UCMShip) {
+				;
+			}
+			else {
+				this.objects[i].receiveShockWaveAttack(1);
 			}
 		}
+		this.removeDead();
 	}
 	
 	

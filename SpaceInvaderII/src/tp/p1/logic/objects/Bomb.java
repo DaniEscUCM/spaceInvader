@@ -3,9 +3,7 @@ package tp.p1.logic.objects;
 import tp.p1.logic.Game;
 
 public class Bomb extends Weapon{
-	private static int life = 1;
-	//private int row;
-	//private int col;	
+	private static int life = 1;	
 	private final String draw = ".";//tendra un destroyer
 	private DestroyerShip destroyer;
 	private static final int harm=1;
@@ -15,22 +13,12 @@ public class Bomb extends Weapon{
 	public Bomb(Game game, int x, int y,DestroyerShip destroyer) {
 		super(game, x, y, life,harm);
 		this.destroyer = destroyer;
-		//this.row = row;
-		//this.col = col;
 	}
 	
 	public void onDelete() {
 		this.destroyer.setCanShootBomb(true);
 		this.destroyer = null;
 	}
-/*
-	public int getRow() {
-		return row;
-	}
-	
-	public int getCol() {
-		return col;
-	}*/
 	
 	public void move() {
 		if(move) {
