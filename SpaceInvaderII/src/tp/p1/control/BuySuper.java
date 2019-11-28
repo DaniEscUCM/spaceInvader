@@ -16,7 +16,7 @@ public class BuySuper extends Command {
 	@Override
 	public boolean execute(Game game) {
 		game.update();
-		return false;//return game.buyMissile();
+		return game.buyMissile();
 	}
 
 	@Override

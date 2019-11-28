@@ -11,9 +11,9 @@ public class ShootCommand extends Command{
 	private String shortcutSuper = "SM";
 	private boolean superm;
 
-	public ShootCommand() {
+	public ShootCommand(boolean sup) {
 		super(name, shortcut, detail, help);
-		superm=false;
+		this.superm=sup;
 	}
 
 	@Override
@@ -24,15 +24,18 @@ public class ShootCommand extends Command{
 			game.computerAction();
 			}*/
 		game.update();
-		return game.shootMissile();//por entrada se diria si es super misil
+		if(superm) {return game.shootSuperMis();}
+		else {	return game.shootMissile();		}
 	}
 
 	@Override
 	public Command parse(String[] commandWords) {
 		Command cm=null;
+		superm=false;
 		if(matchCommandName(commandWords[0])) {
-			cm=new ShootCommand();
-			superm=this.shortcutSuper.equalsIgnoreCase(name) ||	this.nameSuper.equalsIgnoreCase(name);
+			superm=commandWords.length>1 
+					&&(this.shortcutSuper.equalsIgnoreCase(commandWords[1])||this.nameSuper.equalsIgnoreCase(commandWords[1]));
+			cm=new ShootCommand(superm);
 			}
 		return cm;
 	}

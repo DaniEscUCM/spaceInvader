@@ -81,5 +81,7 @@ public class AlienShip extends EnemyShip{
 	public static void setSHIPS_ON_BORDER() {
 		SHIPS_ON_BORDER --;
 	}
+	
+	public boolean receiveBombAttack(int damage) {return false;};
 
 }

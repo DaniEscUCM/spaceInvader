@@ -10,6 +10,7 @@ import tp.p1.logic.objects.GameObject;
 import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.RegularShip;
 import tp.p1.logic.objects.Ship;
+import tp.p1.logic.objects.SuperMisil;
 import tp.p1.logic.objects.UCMShip;
 import tp.p1.logic.objects.UCMShipLaser;
 
@@ -97,7 +98,8 @@ public class Game implements IPlayerController{
 			return "Cycles: " + currentCycle + "\n" +
 			player.stateToString() +
 			"Remaining aliens: "+ (AlienShip.getRemainingAliens()) + "\n" +
-			"ShockWave: " + (String.valueOf(this.shockWave));
+			"ShockWave: " + (this.shockWave?"SI":"NO")+ "\n" +
+			"SuperMissile: "+this.player.getNumofSuper()	;
 		}
 			
 		public String getWinnerMessage () {
@@ -120,7 +122,16 @@ public class Game implements IPlayerController{
 				return true;
 			}
 			return false;
-			
+		}
+		@Override
+		public boolean shootSuperMis() {
+			if(this.player.isCanShootLaser() && this.player.getNumofSuper()>0) {
+				GameObject laser=new SuperMisil(this,this.player.getX(),this.player.getY()-1);
+				this.board.add(laser);
+				this.player.setCanShootLaser();
+				return true;
+			}
+			return false;
 		}
 		@Override
 		public boolean shockWave() {
@@ -143,6 +154,10 @@ public class Game implements IPlayerController{
 		@Override
 		public void enableMissile() {
 			this.player.setCanShootLaser();
+		}
+		public void enableMissileSup() {
+			this.player.setCanShootLaser();
+			this.player.useSuper();
 		}
 		public String toStringObjectAt(int i, int j) {			
 			return this.board.toString(i,j);
@@ -170,5 +185,10 @@ public class Game implements IPlayerController{
 		public void deleteOnlist(GameObject object) {
 			board.removeObject(object);
 	
+		}
+
+		public boolean buyMissile() {
+			if(player.getPoints()%20==0) {player.setNumofSuper();return true;}
+			return false;
 		}
 }
