@@ -1,3 +1,4 @@
+package tp.p1.logic.objects;
 import tp.p1.logic.Game;
 import tp.p1.logic.objects.GameObject;
 import tp.p1.logic.objects.Weapon;
