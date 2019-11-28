@@ -97,7 +97,8 @@ public class Game implements IPlayerController{
 			return "Cycles: " + currentCycle + "\n" +
 			player.stateToString() +
 			"Remaining aliens: "+ (AlienShip.getRemainingAliens()) + "\n" +
-			"ShockWave: " + (String.valueOf(this.shockWave));
+			"ShockWave: " + (this.shockWave?"SI":"NO")+ "\n" +
+			"SuperMissile: "+this.player.getNumofSuper()	;
 		}
 			
 		public String getWinnerMessage () {
@@ -170,5 +171,10 @@ public class Game implements IPlayerController{
 		public void deleteOnlist(GameObject object) {
 			//board.;
 	
+		}
+
+		public boolean buyMissile() {
+			if(player.getPoints()%20==0) {player.setNumofSuper();return true;}
+			return false;
 		}
 }

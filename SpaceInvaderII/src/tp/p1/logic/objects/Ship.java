@@ -13,6 +13,9 @@ public class Ship extends GameObject {// se puede quitar que no hace nada, sino 
 	public int getPoints() {
 		return points;
 	}
+	public void setPoints() {
+		points-=20;
+	}
 
 	@Override
 	public void computerAction() {	
