@@ -21,8 +21,12 @@ public class UCMShip extends Ship{
 	}
 
 	public void setNumofSuper() {
-		super.setPoints();
+		this.points-=20;
 		this.numofSuper++;
+	}
+	
+	public void useSuper() {
+		this.numofSuper--;
 	}
 
 	public UCMShip(Game game, int x, int y) {
@@ -47,6 +51,7 @@ public class UCMShip extends Ship{
 	public void setCanShootLaser() {
 		this.canShootLaser = !this.canShootLaser;
 	}
+	
 	
 	public void receivePoints(int points) {
 		this.points+=points;

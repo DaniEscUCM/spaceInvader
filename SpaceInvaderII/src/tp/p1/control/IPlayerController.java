@@ -6,6 +6,7 @@ public interface IPlayerController {
 	public boolean move (int numCells);
 	public boolean shootMissile();
 	public boolean shockWave();
+	public boolean shootSuperMis();
 	
 	// Callbacks
 	public void receivePoints(int points);
