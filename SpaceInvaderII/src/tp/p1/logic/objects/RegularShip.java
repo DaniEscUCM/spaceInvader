@@ -18,7 +18,7 @@ public class RegularShip extends AlienShip{
 	
 	public void computerAction() {
 		if(IExecuteRandomActions.canGenerateRandomExplosiv(game)) {
-			ExplosivShip explosiv = new ExplosivShip(this.game, super.x, super.y+1, this.life, 1);
+			ExplosivShip explosiv = new ExplosivShip(this.game, super.x, super.y, this.life, 1);
 			this.game.addObject(explosiv);
 			this.game.deleteOnlist(this);
 		}

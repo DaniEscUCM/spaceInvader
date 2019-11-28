@@ -2,7 +2,7 @@ package tp.p1.logic.objects;
 
 import tp.p1.logic.Game;
 
-public class ExplosivShip extends Weapon{
+public class ExplosivShip extends AlienShip{
 
 	private static int life = 2;
 	private final String draw = "E";

@@ -49,7 +49,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		return ret;
 	}
 	
-	public void remove (int i ) {//getIndex y desplazamos a la izquierda
+	private void remove (int i ) {//getIndex y desplazamos a la izquierda
 	
 		for(; i < this.currentObjects; i++) {
 			this.objects[i] = this.objects[i + 1];
@@ -68,7 +68,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		this.removeDead();
 	}
 	
-	public void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
+	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
 		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
 		int i=0;
 		while(!object.performAttack(this.objects[i])&& i<this.currentObjects-1) {
@@ -83,7 +83,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		}
 	}
 	
-	public void removeDead() {//quita los muertos?? primero delete y llama a remove
+	private void removeDead() {//quita los muertos?? primero delete y llama a remove
 		for(int i = 0; i < this.currentObjects; i++) {
 			if(!this.objects[i].isAlive()) {
 				this.objects[i].onDelete();
@@ -117,6 +117,11 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		this.removeDead();
 	}
 	
+	
+	public void removeObject(GameObject object) {
+		int i = this.getIndex(object.getX(), object.getY());
+		this.remove(i);
+	}
 	
 	
 	

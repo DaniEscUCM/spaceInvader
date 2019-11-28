@@ -168,7 +168,7 @@ public class Game implements IPlayerController{
 		}
 
 		public void deleteOnlist(GameObject object) {
-			//board.;
+			board.removeObject(object);
 	
 		}
 }
