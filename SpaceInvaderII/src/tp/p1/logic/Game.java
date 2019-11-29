@@ -1,6 +1,7 @@
 package tp.p1.logic;
 import java.util.Random;
 
+import exceptions.CommandExecuteException;
 import tp.p1.control.IPlayerController;
 import tp.p1.logic.Level;
 import tp.p1.logic.lists.GameObjectBoard;
@@ -114,14 +115,16 @@ public class Game implements IPlayerController{
 			return this.player.move(numCells);
 		}
 		@Override
-		public boolean shootMissile() {
+		public boolean shootMissile() throws CommandExecuteException{
 			if(this.player.isCanShootLaser()) {
 				GameObject laser=new UCMShipLaser(this,this.player.getX(),this.player.getY()-1);
 				this.board.add(laser);
 				this.player.setCanShootLaser();
 				return true;
+			}else {
+				CommandExecuteException miExc = new CommandExecuteException("PLAYER HAS ALREADY SHOOT"); //REALMENTE HAY QUE CREAR SU EXCEPCION
+				throw miExc;
 			}
-			return false;
 		}
 		@Override
 		public boolean shootSuperMis() {

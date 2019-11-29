@@ -2,6 +2,8 @@ package tp.p1.control;
 
 import java.util.Scanner;
 
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
 import tp.p1.logic.Game;
 
 public class Controller {
@@ -21,14 +23,19 @@ public class Controller {
 		while(!this.game.isFinished()) {
 			System.out.print(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
-			Command command = CommandGenerator.parseCommand(words);
-			if (command != null) {
-				if (command.execute(game))
-				System.out.println(game);
-				}
-				else {
-				System.out.format(unknownCommandMsg);
-				}
+			try {
+				Command command = CommandGenerator.parseCommand(words);
+				if (command != null) {
+					if (command.execute(game))
+					System.out.println(game);
+					}
+					else {
+					System.out.format(unknownCommandMsg);
+					}
+			}catch(CommandParseException | CommandExecuteException ex) {
+				System.out.format(ex.getMessage() + " %n %n");
+			}
+
 		}
 		if(game.playerWin()) {
 			System.out.println(this.game.toString());

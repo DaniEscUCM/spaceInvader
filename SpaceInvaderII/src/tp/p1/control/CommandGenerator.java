@@ -1,5 +1,7 @@
 package tp.p1.control;
 
+import exceptions.CommandParseException;
+
 public class CommandGenerator {
 	
 	private static Command[] availableCommands = {
@@ -14,7 +16,7 @@ public class CommandGenerator {
 			new BuySuper()
 	};
 
-	public static Command parseCommand(String[ ] commandWords) {
+	public static Command parseCommand(String[ ] commandWords) throws CommandParseException {
 		Command cm=null;
 
 		for(Command command:availableCommands) {

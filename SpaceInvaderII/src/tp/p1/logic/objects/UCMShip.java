@@ -105,10 +105,6 @@ public class UCMShip extends Ship{
 	public String stateToString() {	
 		return "Life: "+this.live+"\n"+"Points: "+points+"\n";//he puesto points en ship
 	}
-	/*
-	public boolean shootLaser() {//no se como hacer con el laser
-		// TODO implement
-		return false;
-	}*/
+	
 
 }
