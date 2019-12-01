@@ -1,5 +1,8 @@
 package tp.p1.control;
 
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
+import exceptions.OffWorldException;
 import tp.p1.logic.Game;
 //import tp.p1.logic.Move;
 
@@ -20,7 +23,7 @@ public class MoveCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		/*game.moveUCMShip(dir, steps);		
 		game.computerAction();*/
 		game.update();
@@ -28,28 +31,30 @@ public class MoveCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException {
 		Command cm=null;
 		//Move diraux=Move.DOWN;
-		if(commandWords.length == 3) { 				
-			if(matchCommandName(commandWords[0]) && Character.isDigit(commandWords[2].charAt(0))) {
+		if(matchCommandName(commandWords[0]) && commandWords.length == 3) { 	
+				if(Character.isDigit(commandWords[2].charAt(0))) {			
 				int i=Integer.parseInt(commandWords[2]);
 				if(i >= 1 && i <= 2) {
 					if(commandWords[1].equalsIgnoreCase("RIGHT")|| commandWords[1].equalsIgnoreCase("R")) {
 						cm=new MoveCommand(i);
 						//diraux = Move.RIGHT;
-					}
+						}
 					else if(commandWords[1].equalsIgnoreCase("LEFT")|| commandWords[1].equalsIgnoreCase("L")) {
 						cm=new MoveCommand(-i);
 						//diraux= Move.LEFT;
-					}
+						}
+					else {
+						CommandParseException ex= new CommandParseException("UNKNOWN DIRECTION");
+						throw ex;
+						}
 				}
-				/*if(Character.isDigit(commandWords[2].charAt(0))) {
-					int i=Integer.parseInt(commandWords[2]);
-					if(i >= 1 && i <= 2) {
-						cm=new MoveCommand(diraux,i);
+				else {
+					System.out.println("TOO MANY STEPS");
 					}
-				}*/
+			
 			}
 		}
 		return cm;

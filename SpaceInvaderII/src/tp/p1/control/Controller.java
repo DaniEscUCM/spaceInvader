@@ -24,14 +24,19 @@ public class Controller {
 			System.out.print(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
 			try {
-				Command command = CommandGenerator.parseCommand(words);
-				if (command != null) {
-					if (command.execute(game))
-					System.out.println(game);
-					}
+				if(words.length<=3) {
+					Command command = CommandGenerator.parseCommand(words);
+					if (command != null) {
+						if (command.execute(game))
+							System.out.println(game);
+						}
 					else {
-					System.out.format(unknownCommandMsg);
+						System.out.format(unknownCommandMsg);
 					}
+				}
+				else {
+					System.out.println("Usage: Main "+game.getLevel()+" "+game.getRandom());//la semilla muestra cosas raras
+				}
 			}catch(CommandParseException | CommandExecuteException ex) {
 				System.out.format(ex.getMessage() + " %n %n");
 			}

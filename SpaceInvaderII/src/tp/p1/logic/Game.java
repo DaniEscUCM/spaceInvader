@@ -2,6 +2,9 @@ package tp.p1.logic;
 import java.util.Random;
 
 import exceptions.CommandExecuteException;
+import exceptions.MissileInFlightException;
+import exceptions.NoEnoughPoints;
+import exceptions.OffWorldException;
 import tp.p1.control.IPlayerController;
 import tp.p1.logic.Level;
 import tp.p1.logic.lists.GameObjectBoard;
@@ -111,39 +114,50 @@ public class Game implements IPlayerController{
 		}
 		
 		@Override
-		public boolean move (int numCells) {			
+		public boolean move (int numCells) throws OffWorldException {			
 			return this.player.move(numCells);
 		}
 		@Override
-		public boolean shootMissile() throws CommandExecuteException{
+		public boolean shootMissile() throws MissileInFlightException{
 			if(this.player.isCanShootLaser()) {
 				GameObject laser=new UCMShipLaser(this,this.player.getX(),this.player.getY()-1);
 				this.board.add(laser);
 				this.player.setCanShootLaser();
 				return true;
 			}else {
-				CommandExecuteException miExc = new CommandExecuteException("PLAYER HAS ALREADY SHOOT"); //REALMENTE HAY QUE CREAR SU EXCEPCION
+				MissileInFlightException miExc = new MissileInFlightException(" Cannot fire missile: missile already exists on board"); 
 				throw miExc;
 			}
 		}
 		@Override
-		public boolean shootSuperMis() {
-			if(this.player.isCanShootLaser() && this.player.getNumofSuper()>0) {
-				GameObject laser=new SuperMisil(this,this.player.getX(),this.player.getY()-1);
-				this.board.add(laser);
-				this.player.setCanShootLaser();
-				return true;
+		public boolean shootSuperMis() throws MissileInFlightException {
+			if(this.player.isCanShootLaser() ) {
+				if(this.player.getNumofSuper()>0) {
+					GameObject laser=new SuperMisil(this,this.player.getX(),this.player.getY()-1);
+					this.board.add(laser);
+					this.player.setCanShootLaser();
+					return true;
+					}
+				else {
+					MissileInFlightException miExc = new MissileInFlightException("Cannot fire missile: there is no super missile to be shoot"); 
+					throw miExc;
+				}
+			}else {
+				MissileInFlightException miExc = new MissileInFlightException("Cannot fire missile: missile already exists on board"); 
+				throw miExc;
 			}
-			return false;
 		}
 		@Override
-		public boolean shockWave() {
+		public boolean shockWave() throws MissileInFlightException {
 			if(this.shockWave) {
 				this.board.shockWave();
 				this.shockWave = false;
 				return true;
 			}
-			else return false;
+			else {
+				MissileInFlightException miExc = new MissileInFlightException(" Cannot fire missile: missile already exists on board"); 
+				throw miExc;
+			}
 		}
 		
 		@Override
@@ -190,8 +204,11 @@ public class Game implements IPlayerController{
 	
 		}
 
-		public boolean buyMissile() {
+		public boolean buyMissile() throws NoEnoughPoints {
 			if(player.getPoints()%20==0) {player.setNumofSuper();return true;}
-			return false;
+			else{
+				NoEnoughPoints miExc = new NoEnoughPoints(" Cannot buy super missile: No enough points to buy SuperMissile"); 
+				throw miExc;
+			}
 		}
 }

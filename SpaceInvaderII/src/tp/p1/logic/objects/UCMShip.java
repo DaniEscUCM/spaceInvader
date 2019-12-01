@@ -1,5 +1,6 @@
 package tp.p1.logic.objects;
 
+import exceptions.OffWorldException;
 import tp.p1.logic.Game;
 //import tp.p1.logic.Move;
 
@@ -57,9 +58,9 @@ public class UCMShip extends Ship{
 		this.points+=points;
 	}
 
-	public boolean move (int steps) {//ver direccion, tal vez enumerado, Move direction, como ya no nos dan dirección se cambiara a -/+ segun la dirccecion
-		boolean ret = true;
-		if((x + steps)<game.DIM_X && (x + steps) >= 0) {x+=steps;}//no va a dejar dar mas pasos de los que necesita
+	public boolean move (int steps) throws OffWorldException{//ver direccion, tal vez enumerado, Move direction, como ya no nos dan dirección se cambiara a -/+ segun la dirccecion
+		boolean ret = false;
+		if((x + steps)<game.DIM_X && (x + steps) >= 0) {x+=steps;ret=true;}//no va a dejar dar mas pasos de los que necesita
 		/*
 		if (direction == Move.RIGHT && ((column + steps) < 8)) {
 			column+=steps;
@@ -73,7 +74,10 @@ public class UCMShip extends Ship{
 		else if (direction == Move.LEFT && ((column - steps) < 0)) {
 			column = 0; 
 		}*/
-		else ret = false;
+		else {
+			OffWorldException ex= new OffWorldException(" Cannot perform move: ship too near border ");
+			throw ex;
+			}
 		return ret;
 	}
 	
