@@ -1,5 +1,6 @@
 package tp.p1.logic.objects;
 
+import exceptions.MissileInFlightException;
 import tp.p1.logic.Game;
 
 public class UCMShipLaser extends Weapon{
@@ -15,7 +16,7 @@ public class UCMShipLaser extends Weapon{
 		//column=ucmColumn;
 	}
 	
-	public void move() {
+	public void move()  {
 		super.y--;
 		this.row --;
 		if(isOut()) {//is out no funciona?

@@ -1,5 +1,7 @@
 package tp.p1.control;
 
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
 import tp.p1.logic.Game;
 
 public class ShootCommand extends Command{
@@ -17,7 +19,7 @@ public class ShootCommand extends Command{
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		/*if(!game.thereisLaser()) {
 			game.shoot();
 			game.update();
@@ -29,12 +31,20 @@ public class ShootCommand extends Command{
 	}
 
 	@Override
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException {
 		Command cm=null;
 		superm=false;
 		if(matchCommandName(commandWords[0])) {
-			superm=commandWords.length>1 
-					&&(this.shortcutSuper.equalsIgnoreCase(commandWords[1])||this.nameSuper.equalsIgnoreCase(commandWords[1]));
+			if(commandWords.length>1) {
+				if(this.shortcutSuper.equalsIgnoreCase(commandWords[1])||this.nameSuper.equalsIgnoreCase(commandWords[1])) {
+					superm= true;
+				}
+				else {
+					CommandParseException miExc = new CommandParseException("UNKNOWN COMMAND NEXT TO SHOOT COMMAND"); 
+					 throw miExc;
+
+				}
+			}
 			cm=new ShootCommand(superm);
 			}
 		return cm;

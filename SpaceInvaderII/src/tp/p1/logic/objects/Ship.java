@@ -26,7 +26,6 @@ public class Ship extends GameObject {// se puede quitar que no hace nada, sino 
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

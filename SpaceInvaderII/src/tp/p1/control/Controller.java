@@ -1,8 +1,9 @@
 package tp.p1.control;
 
 import java.util.Scanner;
-
 import tp.p1.logic.BoardPrinter;
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
 import tp.p1.logic.Game;
 import tp.p1.logic.GamePrinter;
 
@@ -26,14 +27,24 @@ public class Controller {
 			System.out.println(printer);
 			System.out.print(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
-			Command command = CommandGenerator.parseCommand(words);
-			if (command != null) {
-				if (command.execute(game))
-				System.out.println(game);
+			try {
+				if(words.length<=3) {
+					Command command = CommandGenerator.parseCommand(words);
+					if (command != null) {
+						if (command.execute(game))
+							System.out.println(game);
+						}
+					else {
+						System.out.format(unknownCommandMsg);
+					}
 				}
 				else {
-				System.out.format(unknownCommandMsg);
+					System.out.println("Usage: Main "+game.getLevel()+" "+game.getRandom());//la semilla muestra cosas raras
 				}
+			}catch(CommandParseException | CommandExecuteException ex) {
+				System.out.format(ex.getMessage() + " %n %n");
+			}
+
 		}
 		if(game.playerWin()) {
 			System.out.println(this.game.toString());

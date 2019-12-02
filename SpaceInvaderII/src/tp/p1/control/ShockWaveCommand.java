@@ -1,5 +1,7 @@
 package tp.p1.control;
 
+import exceptions.CommandExecuteException;
+import exceptions.MissileInFlightException;
 import tp.p1.logic.Game;
 
 public class ShockWaveCommand extends Command {
@@ -14,7 +16,7 @@ public class ShockWaveCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		/*game.shockWave();//se que devuelve booleano pero da problemas con que dira que el comando es incorrecto
 		game.update();
 		game.computerAction();*/
@@ -26,7 +28,9 @@ public class ShockWaveCommand extends Command {
 	public Command parse(String[] commandWords) {
 		Command cm=null;
 		if(matchCommandName(commandWords[0])) {
-			cm = new ShockWaveCommand();
+			if(commandWords.length==1) {
+				cm = new ShockWaveCommand();
+			}
 		}
 		return cm;
 	}

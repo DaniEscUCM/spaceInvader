@@ -26,7 +26,6 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 			this.objects[this.currentObjects] = object;
 			this.currentObjects++;
 		//}
-	// TODO implement
 	}
 	private GameObject getObjectInPosition (int x, int y) {//usa getIndex, devuelve el objeto en esa posicion
 		int index = getIndex(x, y);
@@ -105,7 +104,6 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		return false;
 	}*/
 	public void shockWave() {
-		// TODO Auto-generated method stub
 		for(int i = 0; i < this.currentObjects; i++) {
 			if(this.objects[i] instanceof UCMShip) {
 				;

@@ -1,5 +1,8 @@
 package tp.p1.control;
 
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
+import exceptions.NoEnoughPoints;
 import tp.p1.logic.Game;
 
 public class BuySuper extends Command {
@@ -14,7 +17,7 @@ public class BuySuper extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException{
 		game.update();
 		return game.buyMissile();
 	}
@@ -22,7 +25,15 @@ public class BuySuper extends Command {
 	@Override
 	public Command parse(String[] commandWords) {
 		Command cm=null;
-		if(matchCommandName(commandWords[0])) {cm=new BuySuper();}
+		if(matchCommandName(commandWords[0])) {
+			if(commandWords.length==1) {
+				cm=new BuySuper();
+			}
+			else {
+				System.out.println("THERE IS TOO MANY PARAMETERS");
+			}
+			
+		}
 		return cm;
 	}
 
