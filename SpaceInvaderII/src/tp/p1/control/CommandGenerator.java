@@ -11,7 +11,8 @@ public class CommandGenerator {
 			new HelpCommand(),
 			new ExitCommand(),
 			new NoneCommand(),
-			new BuySuper()
+			new BuySuper(),
+			new StringifyCommand()
 	};
 
 	public static Command parseCommand(String[ ] commandWords) {

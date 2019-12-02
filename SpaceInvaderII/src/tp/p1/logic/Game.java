@@ -25,7 +25,7 @@ public class Game implements IPlayerController{
 		private UCMShip player;
 		private boolean doExit;
 		private BoardInitializer initializer ;
-		private GamePrinter gamePrinter;
+		//private BoardPrinter gamePrinter;
 		private boolean shockWave = false;
 		
 		private static Ship[] availableShips = {
@@ -177,8 +177,8 @@ public class Game implements IPlayerController{
 		public String toString() {
 			String draw="";
 			draw+=this.infoToString();
-			this.gamePrinter=new GamePrinter(this,this.DIM_Y ,this.DIM_X );
-			draw+=this.gamePrinter.toString();
+			//this.gamePrinter=new BoardPrinter(this,this.DIM_Y ,this.DIM_X );
+			//draw+=this.gamePrinter.toString();
 			return draw;
 		}
 
