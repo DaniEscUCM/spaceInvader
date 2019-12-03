@@ -7,6 +7,7 @@ import tp.p1.logic.Game;
 public class UCMShip extends Ship{
 	
 
+	private static final String strfy = "P";
 	private static int life=3;
 	//private int column=4;
 	private String draw= "^__^";
@@ -58,7 +59,7 @@ public class UCMShip extends Ship{
 		this.points+=points;
 	}
 
-	public boolean move (int steps) throws OffWorldException{//ver direccion, tal vez enumerado, Move direction, como ya no nos dan dirección se cambiara a -/+ segun la dirccecion
+	public boolean move (int steps) throws OffWorldException{//ver direccion, tal vez enumerado, Move direction, como ya no nos dan direcciï¿½n se cambiara a -/+ segun la dirccecion
 		boolean ret = false;
 		if((x + steps)<game.DIM_X && (x + steps) >= 0) {x+=steps;ret=true;}//no va a dejar dar mas pasos de los que necesita
 		/*
@@ -108,6 +109,13 @@ public class UCMShip extends Ship{
 
 	public String stateToString() {	
 		return "Life: "+this.live+"\n"+"Points: "+points+"\n";//he puesto points en ship
+	}
+	
+	public String stringify() {
+		String s = this.strfy + ";" + this.x + "," + this.y + ";" + this.live + ";"
+				+ points + ";" + this.numofSuper;
+	
+		return s;
 	}
 	
 

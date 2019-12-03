@@ -120,6 +120,12 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		int i = this.getIndex(object.getX(), object.getY());
 		this.remove(i);
 	}
+	public String stringify() {
+		String s = "";
+		for(int i = 0; i < this.currentObjects; i++)
+			s+= this.objects[i].stringify() + "\n";
+		return s;
+	}
 	
 	
 	

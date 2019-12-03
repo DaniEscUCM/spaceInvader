@@ -1,11 +1,12 @@
 package tp.p1.control;
 
 import java.util.Scanner;
-import tp.p1.logic.BoardPrinter;
+
 import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
 import tp.p1.logic.Game;
-import tp.p1.logic.GamePrinter;
+import view.BoardPrinter;
+import view.GamePrinter;
 
 public class Controller {
 	private Game game;
@@ -18,34 +19,30 @@ public class Controller {
 		super();
 		this.game = game;
 		this.in = in;
-		this.printer = new BoardPrinter(game, game.DIM_Y ,game.DIM_X);//las x e y estaban al reves
+		this.printer = new BoardPrinter(game, game.DIM_X ,game.DIM_Y);
 	}
 	
 	public void run() {
-		System.out.println(game);
-		while(!this.game.isFinished()) {
-			System.out.println(printer);
+		printGame();
+		while(!game.isFinished()) {
 			System.out.print(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
 			try {
 				if(words.length<=3) {
 					Command command = CommandGenerator.parseCommand(words);
 					if (command != null) {
-						if (command.execute(game))
-							printer= new BoardPrinter(game, game.DIM_Y ,game.DIM_X);//no se estaba actualizando el tablero
-							System.out.println(game);
-						}
-					else {
-						System.out.format(unknownCommandMsg);
-					}
-				}
-				else {
+						if (command.execute(game)) 
+							printGame();
+					}else
+						System.out.println(unknownCommandMsg);
+	
+				}else {
 					System.out.println("Usage: Main "+game.getLevel()+" "+game.getRandom());//la semilla muestra cosas raras
 				}
+					
 			}catch(CommandParseException | CommandExecuteException ex) {
 				System.out.format(ex.getMessage() + " %n %n");
 			}
-
 		}
 		if(game.playerWin()) {
 			System.out.println(this.game.toString());
@@ -59,4 +56,6 @@ public class Controller {
 			System.out.println("Game Over");
 		}	
 	}
+	
+	
 }

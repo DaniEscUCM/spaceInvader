@@ -11,13 +11,15 @@ import tp.p1.logic.lists.GameObjectBoard;
 import tp.p1.logic.objects.AlienShip;
 import tp.p1.logic.objects.DestroyerShip;
 import tp.p1.logic.objects.GameObject;
+import tp.p1.logic.objects.GameObjectGenerator;
 import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.RegularShip;
 import tp.p1.logic.objects.Ship;
 import tp.p1.logic.objects.SuperMisil;
 import tp.p1.logic.objects.UCMShip;
 import tp.p1.logic.objects.UCMShipLaser;
-import tp.p1.logic.GamePrinter;
+import view.BoardPrinter;
+import view.GamePrinter;
 
 public class Game implements IPlayerController{
 	
@@ -30,7 +32,6 @@ public class Game implements IPlayerController{
 		private UCMShip player;
 		private boolean doExit;
 		private BoardInitializer initializer ;
-		private GamePrinter gamePrinter;
 		private boolean shockWave = false;
 		
 		private static Ship[] availableShips = {
@@ -192,6 +193,7 @@ public class Game implements IPlayerController{
 			System.out.println(s);
 		}
 		
+		/*
 		public String toString() {
 			String draw="";
 			draw+=this.infoToString();
@@ -199,7 +201,7 @@ public class Game implements IPlayerController{
 			draw+=this.gamePrinter.toString();
 			return draw;
 		}
-
+*/
 		public void deleteOnlist(GameObject object) {
 			board.removeObject(object);
 	
@@ -211,5 +213,27 @@ public class Game implements IPlayerController{
 				NoEnoughPoints miExc = new NoEnoughPoints(); 
 				throw miExc;
 			}
+		}
+		
+		public void load() {
+			boolean loading = false;
+			String line = inStream.readline().trim();
+			while(line != null && !line.isEmpty() ) {
+				GameObject gameObject = GameObjectGenerator.parse(line, this, verifier);
+				if (gameObject == null) {
+					throw new FileContentsException("invalid file, " +
+				"unrecognised line prefix");
+				}
+				board.add(gameObject);
+				line = inStream.readLine().trim();
+			}
+		}
+
+		public String stringify() {
+			String s = "		 — Space Invaders 2.0 —  \n"
+					+ "G," + this.currentCycle
+					+ "L," + this.level.toString() 
+					+ board.stringify();
+			return s;
 		}
 }

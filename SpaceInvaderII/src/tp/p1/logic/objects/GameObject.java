@@ -64,6 +64,8 @@ public abstract class GameObject implements IAttack {
 		this.live-=damage;
 		return false;
 		}
+
+	public abstract String stringify();
 	
 	
 }

@@ -105,5 +105,11 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		super.y=y;
 		game.receivePoints(this.getPoints());
 		return false;
-		}
+	}
+	
+	public String stringify() {
+		String s = this.draw + "," + this.x + "," + this.y + ";"+ this.live;
+		return s;
+	}
+	
 }

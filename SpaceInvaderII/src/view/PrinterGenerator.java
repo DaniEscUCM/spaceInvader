@@ -1,4 +1,4 @@
-package tp.p1.logic;
+package view;
 
 
 public class PrinterGenerator {

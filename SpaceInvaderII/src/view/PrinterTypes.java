@@ -1,4 +1,6 @@
-package tp.p1.logic;
+package view;
+
+import tp.p1.logic.Game;
 
 public enum PrinterTypes {
 	

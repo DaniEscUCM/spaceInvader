@@ -5,6 +5,7 @@ import tp.p1.logic.Move;
 
 public class RegularShip extends AlienShip{
 	
+	
 	private static int life = 2;
 	private final String draw = "R";
 	private static int points=5;
@@ -39,6 +40,12 @@ public class RegularShip extends AlienShip{
 		if(super.getSHIPS_ON_BORDER()>0) {
 			super.setSHIPS_ON_BORDER();
 		}
+	}
+	
+	public String stringify() {
+		String s = this.draw + ";" + this.x + "," + this.y + ";" + this.live 
+				+ ";" + this.game.cyclesNextAlien + this.dir;
+		return s;
 	}
 
 }
