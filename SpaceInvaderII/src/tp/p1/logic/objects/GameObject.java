@@ -51,6 +51,7 @@ public abstract class GameObject implements IAttack {
 	public abstract void onDelete();//ej: enable la bomba en destroyer 
 	public abstract void move();//quien no lo haga se deja vacio
 	public abstract String toString();
+	public abstract String stringify();
 	
 	public boolean receiveMissileAttack(int damage) {
 		this.live-=damage;
@@ -64,8 +65,6 @@ public abstract class GameObject implements IAttack {
 		this.live-=damage;
 		return false;
 		}
-
-	public abstract String stringify();
 	
 	
 }

@@ -5,7 +5,7 @@ import tp.p1.logic.Game;
 public class Stringifier extends GamePrinter{
 
 	public Stringifier(Game game) {
-		this.setGame(game);
+		super(game);
 	}
 
 	@Override

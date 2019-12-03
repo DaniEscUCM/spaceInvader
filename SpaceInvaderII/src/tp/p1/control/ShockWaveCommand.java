@@ -42,4 +42,10 @@ public class ShockWaveCommand extends Command {
 		return cm;
 	}
 
+	@Override
+	protected boolean printGame() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 }

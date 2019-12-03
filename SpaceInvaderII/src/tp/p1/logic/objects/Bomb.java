@@ -7,13 +7,14 @@ public class Bomb extends Weapon{
 	private final String draw = ".";//tendra un destroyer
 	private DestroyerShip destroyer;
 	private static final int harm=1;
-	private static final String strfy = "B";
+	private static String strfy = "B";
 	boolean move = false;
 
 
 	public Bomb(Game game, int x, int y,DestroyerShip destroyer) {
 		super(game, x, y, life,harm);
 		this.destroyer = destroyer;
+		
 	}
 	
 	public void onDelete() {
@@ -56,8 +57,10 @@ public class Bomb extends Weapon{
 	}
 	
 	public String stringify() {
-		String s = this.strfy + "," + this.x + "," + this.y;
+		String s = this.strfy + "," + this.x + "," + this.y+ ";" + this.live 
+				+ ";";/* + this.game.cyclesNextAlien + this.dir;*/
 		return s;
 	}
+
 
 }

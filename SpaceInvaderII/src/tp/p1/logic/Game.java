@@ -32,6 +32,7 @@ public class Game implements IPlayerController{
 		private UCMShip player;
 		private boolean doExit;
 		private BoardInitializer initializer ;
+		private GamePrinter gamePrinter;
 		private boolean shockWave = false;
 		
 		private static Ship[] availableShips = {
@@ -193,7 +194,6 @@ public class Game implements IPlayerController{
 			System.out.println(s);
 		}
 		
-		/*
 		public String toString() {
 			String draw="";
 			draw+=this.infoToString();
@@ -201,7 +201,7 @@ public class Game implements IPlayerController{
 			draw+=this.gamePrinter.toString();
 			return draw;
 		}
-*/
+
 		public void deleteOnlist(GameObject object) {
 			board.removeObject(object);
 	
@@ -215,24 +215,11 @@ public class Game implements IPlayerController{
 			}
 		}
 		
-		public void load() {
-			boolean loading = false;
-			String line = inStream.readline().trim();
-			while(line != null && !line.isEmpty() ) {
-				GameObject gameObject = GameObjectGenerator.parse(line, this, verifier);
-				if (gameObject == null) {
-					throw new FileContentsException("invalid file, " +
-				"unrecognised line prefix");
-				}
-				board.add(gameObject);
-				line = inStream.readLine().trim();
-			}
-		}
 
 		public String stringify() {
 			String s = "		 — Space Invaders 2.0 —  \n"
-					+ "G," + this.currentCycle
-					+ "L," + this.level.toString() 
+					+ "G," + this.currentCycle + "\n"
+					+ "L," + this.level.toString() + "\n"
 					+ board.stringify();
 			return s;
 		}

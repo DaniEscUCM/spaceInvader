@@ -28,4 +28,10 @@ public class ExitCommand extends Command {
 		return cm;
 	}
 
+	@Override
+	protected boolean printGame() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 }

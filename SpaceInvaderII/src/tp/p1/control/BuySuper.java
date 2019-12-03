@@ -35,4 +35,9 @@ public class BuySuper extends Command {
 		return cm;
 	}
 
+	@Override
+	protected boolean printGame() {
+		return true;
+	}
+
 }

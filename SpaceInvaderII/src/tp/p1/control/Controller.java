@@ -31,8 +31,10 @@ public class Controller {
 				if(words.length<=3) {
 					Command command = CommandGenerator.parseCommand(words);
 					if (command != null) {
-						if (command.execute(game)) 
+						if (command.execute(game) && command.printGame()) {
+							printer = this.printer = new BoardPrinter(game, game.DIM_X ,game.DIM_Y);
 							printGame();
+						}
 					}else
 						System.out.println(unknownCommandMsg);
 	
@@ -55,6 +57,11 @@ public class Controller {
 		else {
 			System.out.println("Game Over");
 		}	
+	}
+	
+	
+	public void printGame() {
+		System.out.println(printer);
 	}
 	
 	
