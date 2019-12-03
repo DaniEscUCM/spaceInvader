@@ -1,14 +1,12 @@
 package exceptions;
 
-public class NoShockwaveException extends CommandExecuteException {
+public class NoShockwaveException extends Exception {
 
+	private static String message="Cause of Exception:\r\n" + 
+			"exceptions.NoShockwaveException: Cannot release shockwave: no shockwave available";//preguntar si seria asi el mensaje
+	
 	public NoShockwaveException() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public NoShockwaveException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 }

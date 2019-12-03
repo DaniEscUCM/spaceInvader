@@ -81,20 +81,21 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	public void setEnable() {
 		this.enable = false;
 	}
-	/*
+	
 	public void onDelete() {
 		super.live=live;
 		this.enable=false;
 		super.x=x;
 		super.y=y;
 		game.receivePoints(this.getPoints());
-	}*/
+	}
 	
 	public boolean receiveMissileAttack(int damage) {
 		this.enable=false;
 		super.x=x;
 		super.y=y;
 		game.receivePoints(this.getPoints());
+		game.enableShockWave();
 		return true;
 		}
 	

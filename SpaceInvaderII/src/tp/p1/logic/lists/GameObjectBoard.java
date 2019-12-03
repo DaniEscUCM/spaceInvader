@@ -83,11 +83,14 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	}
 	
 	private void removeDead() {//quita los muertos?? primero delete y llama a remove
-		for(int i = 0; i < this.currentObjects; i++) {
+		//for(int i = 0; i < this.currentObjects; i++) {
+		int i=0;
+		while(i < this.currentObjects) {
 			if(!this.objects[i].isAlive()) {
 				this.objects[i].onDelete();
 				this.remove(i);
 			}
+			else {i++;}
 		}
 		
 	}
@@ -105,10 +108,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 	}*/
 	public void shockWave() {
 		for(int i = 0; i < this.currentObjects; i++) {
-			if(this.objects[i] instanceof UCMShip) {
-				;
-			}
-			else {
+			if(! (this.objects[i] instanceof UCMShip)) {
 				this.objects[i].receiveShockWaveAttack(1);
 			}
 		}

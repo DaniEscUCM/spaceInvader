@@ -2,6 +2,8 @@ package tp.p1.control;
 
 import exceptions.CommandExecuteException;
 import exceptions.MissileInFlightException;
+import exceptions.NoShockwaveException;
+import exceptions.NoSuperMissileAvaible;
 import tp.p1.logic.Game;
 
 public class ShockWaveCommand extends Command {
@@ -20,8 +22,13 @@ public class ShockWaveCommand extends Command {
 		/*game.shockWave();//se que devuelve booleano pero da problemas con que dira que el comando es incorrecto
 		game.update();
 		game.computerAction();*/
-		game.update();
-		return game.shockWave();
+		try {
+			game.update();
+			return game.shockWave();
+		}
+		catch(NoShockwaveException mife) {
+		      throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
+		  }
 	}
 
 	@Override

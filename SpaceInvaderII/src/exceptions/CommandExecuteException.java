@@ -1,6 +1,8 @@
 package exceptions;
 
 public class CommandExecuteException extends Exception {
+	
+	protected String action;
 
 	public CommandExecuteException() {
 	}

@@ -2,6 +2,8 @@ package tp.p1.control;
 
 import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
+import exceptions.MissileInFlightException;
+import exceptions.NoSuperMissileAvaible;
 import tp.p1.logic.Game;
 
 public class ShootCommand extends Command{
@@ -25,9 +27,14 @@ public class ShootCommand extends Command{
 			game.update();
 			game.computerAction();
 			}*/
-		game.update();
-		if(superm) {return game.shootSuperMis();}
-		else {	return game.shootMissile();		}
+		try {
+			game.update();
+			if(superm) {return game.shootSuperMis();}
+			else {	return game.shootMissile();		}
+		}
+		catch( MissileInFlightException | NoSuperMissileAvaible mife) {
+		      throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
+		  }
 	}
 
 	@Override
