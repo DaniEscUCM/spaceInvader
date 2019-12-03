@@ -29,12 +29,7 @@ public class BuySuper extends Command {
 	public Command parse(String[] commandWords) {
 		Command cm=null;
 		if(matchCommandName(commandWords[0])) {
-			if(commandWords.length==1) {
-				cm=new BuySuper();
-			}
-			else {
-				System.out.println("THERE IS TOO MANY PARAMETERS");
-			}
+			cm=new BuySuper();		
 			
 		}
 		return cm;

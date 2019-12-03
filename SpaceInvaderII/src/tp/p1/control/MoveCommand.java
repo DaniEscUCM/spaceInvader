@@ -33,7 +33,7 @@ public class MoveCommand extends Command {
 		return game.move(steps);
 		}
 		catch(OffWorldException mife) {
-		      throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
+		      throw new CommandExecuteException(mife.getMessage());
 		  }
 	}
 

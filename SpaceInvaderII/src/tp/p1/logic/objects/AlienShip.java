@@ -6,6 +6,8 @@ import tp.p1.logic.Move;
 public class AlienShip extends EnemyShip{
 	
 	protected static int REMAINING_ALIENS = -2;
+	
+
 	private static boolean IS_IN_FINAL_ROW;
 	private static int SHIPS_ON_BORDER;
 	
@@ -15,14 +17,28 @@ public class AlienShip extends EnemyShip{
 	public AlienShip(Game game, int x, int y, int life, int points) {
 		super(game, x, y, life, points);
 		REMAINING_ALIENS ++;
-		SHIPS_ON_BORDER = 0;
-		this.dir=Move.LEFT;
-		if (game !=null) {
-			cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();
+		if(!(this instanceof ExplosivShip)) {
+			SHIPS_ON_BORDER = 0;
+			this.dir=Move.LEFT;
+			if (game !=null) {
+				cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();
+			}
+
 		}
-		//cycleToMove se inicializa con el numero ciclos(segun level) en el que se mueve, en move decrece
+				//cycleToMove se inicializa con el numero ciclos(segun level) en el que se mueve, en move decrece
+	}
+	
+	public static void setREMAINING_ALIENS() {
+		REMAINING_ALIENS --;
+	}
+	public void setcyclesToMove(int cy) {
+		this.cyclesToMove=cy;
 	}
 
+	public int getcyclesToMove() {
+		return this.cyclesToMove;
+	}
+	
 	public static int getRemainingAliens() {
 		return REMAINING_ALIENS;
 	}

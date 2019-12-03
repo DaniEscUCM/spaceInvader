@@ -33,7 +33,7 @@ public class ShootCommand extends Command{
 			else {	return game.shootMissile();		}
 		}
 		catch( MissileInFlightException | NoSuperMissileAvaible mife) {
-		      throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
+		      throw new CommandExecuteException(mife.getMessage());
 		  }
 	}
 

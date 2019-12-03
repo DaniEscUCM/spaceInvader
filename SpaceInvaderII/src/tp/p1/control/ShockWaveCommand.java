@@ -27,7 +27,7 @@ public class ShockWaveCommand extends Command {
 			return game.shockWave();
 		}
 		catch(NoShockwaveException mife) {
-		      throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
+		      throw new CommandExecuteException(mife.getMessage());
 		  }
 	}
 

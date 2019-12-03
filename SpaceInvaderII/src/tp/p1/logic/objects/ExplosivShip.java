@@ -8,9 +8,9 @@ public class ExplosivShip extends AlienShip{
 	private final String draw = "E";
 	private static int points=5;
 	
-	public ExplosivShip(Game game, int x, int y, int life, int hurt) {
-		super(game, x, y, life, hurt);
-		// TODO Auto-generated constructor stub
+	public ExplosivShip(Game game, int x, int y, int life,int cy) {//quite hurt???
+		super(game, x, y, life, points);
+		super.setcyclesToMove(cy);
 	}
 
 	public String toString(){
