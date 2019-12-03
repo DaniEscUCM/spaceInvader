@@ -7,6 +7,7 @@ public class Bomb extends Weapon{
 	private final String draw = ".";//tendra un destroyer
 	private DestroyerShip destroyer;
 	private static final int harm=1;
+	private static final String strfy = "B";
 	boolean move = false;
 
 
@@ -52,6 +53,11 @@ public class Bomb extends Weapon{
 		}
 		
 		return resul;
-		}
+	}
+	
+	public String stringify() {
+		String s = this.strfy + "," + this.x + "," + this.y;
+		return s;
+	}
 
 }

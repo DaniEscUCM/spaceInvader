@@ -17,4 +17,10 @@ public class ExplosivShip extends AlienShip{
 		return this.draw+"[" + super.live + "]";
 	}
 	
+	public String stringify() {
+		String s = this.draw + "," + this.x + "," + this.y + ";"+ this.live
+				+ ";" + this.game.cyclesNextAlien + ";" + this.dir;
+		return s;
+	}
+	
 }

@@ -1,13 +1,15 @@
-package tp.p1.logic;
+package view;
+
+import tp.p1.logic.Game;
 
 public enum PrinterTypes {
-	/*
+	
 	BOARDPRINTER("boardprinter",
 		"prints the game formatted as a board of dimension: ",
-		new BoardPrinter()),
+		new BoardPrinter(null, 0, 0)),
 	STRINGIFIER("stringifier",
 		"prints the game as plain text",
-		new Stringifier() ); 
+		new Stringifier(null) ); 
 	
 	private String printerName;
 	private String helpText;
@@ -31,6 +33,6 @@ public enum PrinterTypes {
 	public GamePrinter getObject(Game game) {
 		//printerObject. setGame(game);
 		return printerObject;
-	}*/
+	}
 
 }

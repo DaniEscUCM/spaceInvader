@@ -1,5 +1,6 @@
-package tp.p1.logic;
+package view;
 
+import tp.p1.logic.Game;
 import tp.p1.logic.MyStringUtils;
 
 public class BoardPrinter extends GamePrinter{
@@ -11,7 +12,7 @@ public class BoardPrinter extends GamePrinter{
 	
 	
 	public BoardPrinter (Game game, int rows, int cols) {
-		super("", "", "", "");
+		this.setGame(game);
 		this.numRows = rows;
 		this.numCols = cols;		
 		encodeGame(game);

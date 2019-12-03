@@ -7,6 +7,7 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	private static int life=1;
 	private boolean canShootBomb;
 	private static int points=10;
+	private final String draw = "D";
 	
 	
 	public DestroyerShip(Game game, int x, int y) {
@@ -64,6 +65,12 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 		if(super.getSHIPS_ON_BORDER()>0) {
 			super.setSHIPS_ON_BORDER();
 		}
+	}
+	
+	public String stringify() {
+		String s = this.draw + "," + this.x + "," + this.y+ ";" + this.live 
+				+ ";" + this.game.cyclesNextAlien + this.dir;
+		return s;
 	}
 
 }
