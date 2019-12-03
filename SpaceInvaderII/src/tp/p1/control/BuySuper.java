@@ -18,8 +18,11 @@ public class BuySuper extends Command {
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException{
-		game.update();
-		return game.buyMissile();
+		try{game.update();
+		return game.buyMissile();}
+		catch(NoEnoughPoints mife) {
+			 throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
+		}
 	}
 
 	@Override

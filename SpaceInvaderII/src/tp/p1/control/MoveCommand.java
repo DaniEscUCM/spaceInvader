@@ -2,6 +2,8 @@ package tp.p1.control;
 
 import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
+import exceptions.MissileInFlightException;
+import exceptions.NoSuperMissileAvaible;
 import exceptions.OffWorldException;
 import tp.p1.logic.Game;
 //import tp.p1.logic.Move;
@@ -26,8 +28,13 @@ public class MoveCommand extends Command {
 	public boolean execute(Game game) throws CommandExecuteException {
 		/*game.moveUCMShip(dir, steps);		
 		game.computerAction();*/
+		try {
 		game.update();
 		return game.move(steps);
+		}
+		catch(OffWorldException mife) {
+		      throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
+		  }
 	}
 
 	@Override

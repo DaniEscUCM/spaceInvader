@@ -75,7 +75,7 @@ public class UCMShip extends Ship{
 			column = 0; 
 		}*/
 		else {
-			OffWorldException ex= new OffWorldException(" Cannot perform move: ship too near border ");
+			OffWorldException ex= new OffWorldException();
 			throw ex;
 			}
 		return ret;

@@ -2,6 +2,8 @@ package tp.p1.logic;
 import java.util.Random;
 import exceptions.MissileInFlightException;
 import exceptions.NoEnoughPoints;
+import exceptions.NoShockwaveException;
+import exceptions.NoSuperMissileAvaible;
 import exceptions.OffWorldException;
 import tp.p1.control.IPlayerController;
 import tp.p1.logic.Level;
@@ -124,12 +126,12 @@ public class Game implements IPlayerController{
 				this.player.setCanShootLaser();
 				return true;
 			}else {
-				MissileInFlightException miExc = new MissileInFlightException(" Cannot fire missile: missile already exists on board"); 
+				MissileInFlightException miExc = new MissileInFlightException(); 
 				throw miExc;
 			}
 		}
 		@Override
-		public boolean shootSuperMis() throws MissileInFlightException {
+		public boolean shootSuperMis() throws MissileInFlightException, NoSuperMissileAvaible {
 			if(this.player.isCanShootLaser() ) {
 				if(this.player.getNumofSuper()>0) {
 					GameObject laser=new SuperMisil(this,this.player.getX(),this.player.getY()-1);
@@ -138,23 +140,23 @@ public class Game implements IPlayerController{
 					return true;
 					}
 				else {
-					MissileInFlightException miExc = new MissileInFlightException("Cannot fire missile: there is no super missile to be shoot"); 
+					NoSuperMissileAvaible miExc = new NoSuperMissileAvaible(); 
 					throw miExc;
 				}
 			}else {
-				MissileInFlightException miExc = new MissileInFlightException("Cannot fire missile: missile already exists on board"); 
+				MissileInFlightException miExc = new MissileInFlightException(); 
 				throw miExc;
 			}
 		}
 		@Override
-		public boolean shockWave() throws MissileInFlightException {
+		public boolean shockWave() throws NoShockwaveException {
 			if(this.shockWave) {
 				this.board.shockWave();
 				this.shockWave = false;
 				return true;
 			}
 			else {
-				MissileInFlightException miExc = new MissileInFlightException(" Cannot fire missile: missile already exists on board"); 
+				NoShockwaveException miExc = new NoShockwaveException(); 
 				throw miExc;
 			}
 		}
@@ -206,7 +208,7 @@ public class Game implements IPlayerController{
 		public boolean buyMissile() throws NoEnoughPoints {
 			if(player.getPoints()%20==0) {player.setNumofSuper();return true;}
 			else{
-				NoEnoughPoints miExc = new NoEnoughPoints(" Cannot buy super missile: No enough points to buy SuperMissile"); 
+				NoEnoughPoints miExc = new NoEnoughPoints(); 
 				throw miExc;
 			}
 		}
