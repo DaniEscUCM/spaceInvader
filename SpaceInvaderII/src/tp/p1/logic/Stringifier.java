@@ -2,8 +2,8 @@ package tp.p1.logic;
 
 public class Stringifier extends GamePrinter{
 
-	public Stringifier() {
-		super("", "", "", "");
+	public Stringifier(Game game) {
+		super(game, 0, 0);
 	}
 
 	@Override

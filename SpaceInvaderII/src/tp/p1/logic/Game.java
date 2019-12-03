@@ -1,7 +1,5 @@
 package tp.p1.logic;
 import java.util.Random;
-
-import exceptions.CommandExecuteException;
 import exceptions.MissileInFlightException;
 import exceptions.NoEnoughPoints;
 import exceptions.OffWorldException;
@@ -17,6 +15,7 @@ import tp.p1.logic.objects.Ship;
 import tp.p1.logic.objects.SuperMisil;
 import tp.p1.logic.objects.UCMShip;
 import tp.p1.logic.objects.UCMShipLaser;
+import tp.p1.logic.GamePrinter;
 
 public class Game implements IPlayerController{
 	
@@ -29,7 +28,7 @@ public class Game implements IPlayerController{
 		private UCMShip player;
 		private boolean doExit;
 		private BoardInitializer initializer ;
-		//private BoardPrinter gamePrinter;
+		private GamePrinter gamePrinter;
 		private boolean shockWave = false;
 		
 		private static Ship[] availableShips = {
@@ -194,8 +193,8 @@ public class Game implements IPlayerController{
 		public String toString() {
 			String draw="";
 			draw+=this.infoToString();
-			//this.gamePrinter=new BoardPrinter(this,this.DIM_Y ,this.DIM_X );
-			//draw+=this.gamePrinter.toString();
+			this.gamePrinter =  new BoardPrinter(this, this.DIM_X, this.DIM_Y);
+			draw+=this.gamePrinter.toString();
 			return draw;
 		}
 

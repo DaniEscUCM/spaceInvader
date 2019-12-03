@@ -11,7 +11,7 @@ public class BoardPrinter extends GamePrinter{
 	
 	
 	public BoardPrinter (Game game, int rows, int cols) {
-		super("", "", "", "");
+		super(game, rows, cols);
 		this.numRows = rows;
 		this.numCols = cols;		
 		encodeGame(game);
