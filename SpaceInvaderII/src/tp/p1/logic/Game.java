@@ -31,6 +31,7 @@ public class Game implements IPlayerController{
 		private boolean doExit;
 		private BoardInitializer initializer ;
 		private boolean shockWave = false;
+		private boolean serializing = false;
 		
 		private static Ship[] availableShips = {
 				new RegularShip(null, 0, 0),
@@ -213,6 +214,7 @@ public class Game implements IPlayerController{
 		}
 
 		public String stringify() {
+			serializing = false;
 			String s = "		 — Space Invaders 2.0 —  \n"
 					+ "G," + this.currentCycle + "\n"
 					+ "L," + this.level.toString() + "\n"
@@ -223,4 +225,14 @@ public class Game implements IPlayerController{
 		public void explosiveDeath(int x, int y) {
 			board.explosiveDeath( x, y);
 		}
+		
+		
+		public void setSerializing() {
+			serializing = true;
+		}
+		
+		public boolean isSerializing() {
+			return serializing;
+		}
+
 }

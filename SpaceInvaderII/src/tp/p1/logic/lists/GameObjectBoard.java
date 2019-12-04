@@ -2,7 +2,6 @@ package tp.p1.logic.lists;
 
 import tp.p1.logic.objects.ExplosivShip;
 import tp.p1.logic.objects.GameObject;
-import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.UCMShip;
 
 public class GameObjectBoard {//es la superlista
@@ -126,8 +125,6 @@ public class GameObjectBoard {//es la superlista
 			for(int i=x-1;i<=x+1;i++) {
 				GameObject ob=getObjectInPosition(i, j);
 				if(ob!=null && !ob.isOnPosition(x, y)) {
-					if(ob instanceof Ovni)
-						
 					ex.performAttack(ob);
 				}
 			}
