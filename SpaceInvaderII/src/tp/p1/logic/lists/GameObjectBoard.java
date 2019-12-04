@@ -83,7 +83,7 @@ public class GameObjectBoard {//es la superlista
 		
 		int i=0;
 		while(i < this.currentObjects) {
-			if(!this.objects[i].isAlive()) {
+			if(!this.objects[i].isAlive() && ! (this.objects[i] instanceof UCMShip)) {
 				this.objects[i].onDelete();
 				this.remove(i);
 			}
