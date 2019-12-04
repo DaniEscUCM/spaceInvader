@@ -62,7 +62,6 @@ public class GameObjectBoard {//es la superlista
 			this.checkAttacks(this.objects[i]);
 		}
 		this.removeDead();
-		this.removeDead();
 	}
 	
 	private void checkAttacks(GameObject object) {//perfomeattack other recibe da�o
@@ -80,15 +79,17 @@ public class GameObjectBoard {//es la superlista
 	}
 	
 	private void removeDead() {//quita los muertos primero delete y llama a remove
-		
+		boolean hecho=false;
 		int i=0;
 		while(i < this.currentObjects) {
 			if(!this.objects[i].isAlive() && ! (this.objects[i] instanceof UCMShip)) {
 				this.objects[i].onDelete();
 				this.remove(i);
+				hecho=true;
 			}
 			else {i++;}
 		}
+		if(hecho) {removeDead();}
 		
 	}
 	
