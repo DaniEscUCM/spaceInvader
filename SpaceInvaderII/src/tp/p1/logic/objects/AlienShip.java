@@ -5,7 +5,7 @@ import tp.p1.logic.Move;
 
 public class AlienShip extends EnemyShip{
 	
-	protected static int REMAINING_ALIENS = -2;
+	protected static int REMAINING_ALIENS = -3;
 	
 
 	private static boolean IS_IN_FINAL_ROW;

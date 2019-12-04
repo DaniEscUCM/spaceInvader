@@ -23,7 +23,7 @@ public class BuySuper extends Command {
 		if(exec) game.update();
 		}
 		catch(NoEnoughPoints mife) {
-			 throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
+			 throw new CommandExecuteException(mife.getMessage());
 		}
 		return exec;
 	}

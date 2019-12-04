@@ -11,6 +11,7 @@ import tp.p1.logic.Level;
 import tp.p1.logic.lists.GameObjectBoard;
 import tp.p1.logic.objects.AlienShip;
 import tp.p1.logic.objects.DestroyerShip;
+import tp.p1.logic.objects.ExplosivShip;
 import tp.p1.logic.objects.GameObject;
 import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.RegularShip;
@@ -33,10 +34,12 @@ public class Game implements IPlayerController{
 		private boolean shockWave = false;
 		
 		private static Ship[] availableShips = {
+				new ExplosivShip(null, 0, 0, 2, 0, 0, null),
 				new RegularShip(null, 0, 0),
 				new DestroyerShip(null, 0, 0),
 				new Ovni(null),
-				new UCMShip(null, 0, 0)				
+				new UCMShip(null, 0, 0)
+				
 		};
 		
 		public Game (Level level, Random random){

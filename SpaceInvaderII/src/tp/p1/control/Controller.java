@@ -30,20 +30,20 @@ public class Controller {
 			System.out.print(this.promt);
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
 			try {
-				if(words.length<=3) {
+				
 					Command command = CommandGenerator.parseCommand(words);
 					if (command != null) {
 						if (command.execute(game) && command.printGame()) {
 							this.printer = new BoardPrinter(game, game.DIM_X ,game.DIM_Y);
 							printGame();
 						}
-					}else
+					}else {
 						System.out.println(unknownCommandMsg);
 	
-				}else {
-					System.out.println("Usage: Main "+game.getLevel()+" "+game.getRandom());//la semilla muestra cosas raras
-				}
-					
+				}/*else {
+					System.out.println("Usage: Main  <EASY|HARD|INSANE> [seed]");//la semilla muestra cosas raras
+				}*/
+						
 			}catch(CommandParseException | CommandExecuteException ex) {
 				System.out.format(ex.getMessage() + " %n %n");
 			}

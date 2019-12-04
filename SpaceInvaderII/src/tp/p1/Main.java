@@ -22,9 +22,9 @@ public class Main {
 			}else if(args[0].equalsIgnoreCase("INSANE") ) {
 				level = Level.INSANE;
 			}else {
-				System.out.println("Incorrect parameters. Level = EASY, HARD, INSANE.");
+				System.out.println("Usage: Main <EASY|HARD|INSANE> [seed]: level must be one of: EASY, HARD, INSANE");
 				ok = false;
-			}
+			}		
 			
 			if(args.length > 1) {
 				
@@ -47,7 +47,7 @@ public class Main {
 		}
 		
 		else
-			System.out.println("Fail, at least one level is needed.");
+			System.out.println("Usage: Main <EASY|HARD|INSANE> [seed]");
 		
 	}
 	
