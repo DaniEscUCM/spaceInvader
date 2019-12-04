@@ -104,7 +104,11 @@ public class UCMShip extends Ship{
 	
 	public String stringify() {
 		String s = this.strfy + ";" + super.x + "," + super.y + ";" + super.life + ";"
-				+ points + ";" + this.canShootLaser + ";" + this.numLasers;
+				+ super.points + ";";
+		
+		if(this.numofSuper > 0) s+= "supermissile;";
+		if(game.getShockWave()) s+= "shockwave;";
+		s+= this.numLasers;
 	
 		return s;
 	}

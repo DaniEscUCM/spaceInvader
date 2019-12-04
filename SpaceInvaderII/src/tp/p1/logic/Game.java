@@ -237,5 +237,9 @@ public class Game implements IPlayerController{
 		public boolean isSerializing() {
 			return serializing;
 		}
+		
+		public boolean getShockWave() {
+			return this.shockWave;
+		}
 
 }
