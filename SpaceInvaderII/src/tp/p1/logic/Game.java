@@ -213,4 +213,12 @@ public class Game implements IPlayerController{
 				throw miExc;
 			}
 		}
+
+		public String stringify() {
+			String s = "		 — Space Invaders 2.0 —  \n"
+					+ "G," + this.currentCycle + "\n"
+					+ "L," + this.level.toString() + "\n"
+					+ board.stringify();
+			return s;
+		}
 }

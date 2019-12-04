@@ -9,7 +9,7 @@ public class SuperMisil extends Weapon {
 	
 	private static int life = 1;
 	private static final int harm=2;
-	private static final String strfy = "X";
+	private static String strfy = "X";
 	private final String draw= "^";
 
 	public SuperMisil(Game game, int x, int y) {
@@ -41,7 +41,9 @@ public class SuperMisil extends Weapon {
 	}
 	
 	public String stringify() {
-		String s = this.strfy + ";" + this.x + "," + this.y;
+		String s = this.strfy + "," + this.x + "," + this.y+ ";" + this.live 
+				+ ";";/* + this.game.cyclesNextAlien + this.dir;*/
 		return s;
 	}
+
 }

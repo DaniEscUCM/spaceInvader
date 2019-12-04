@@ -17,11 +17,8 @@ public class ListPrintersCommand extends Command{
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
-		System.out.println(PrinterTypes.BOARDPRINTER.printerHelp(game) +
-				game.DIM_X + "x" + game.DIM_Y +
-				PrinterTypes.BOARDPRINTER.printerHelp(game));
-		//System.out.println(help);
-		return true;
+		System.out.println(PrinterTypes.printerHelp(game));
+		return false;
 	}
 
 	@Override
@@ -31,6 +28,12 @@ public class ListPrintersCommand extends Command{
 			cm =new ListPrintersCommand();
 			}
 		return cm;
+	}
+
+	@Override
+	protected boolean printGame() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

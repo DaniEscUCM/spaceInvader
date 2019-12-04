@@ -11,10 +11,10 @@ public class BoardPrinter extends GamePrinter{
 	final String space = " ";
 	
 	
-	public BoardPrinter (Game game, int rows, int cols) {
-		this.setGame(game);
-		this.numRows = rows;
-		this.numCols = cols;		
+	public BoardPrinter (Game game, int x, int y) {
+		super(game);
+		this.numRows = y;
+		this.numCols = x;		
 		encodeGame(game);
 		
 	}
@@ -51,11 +51,5 @@ public class BoardPrinter extends GamePrinter{
 				str.append(lineDelimiter);
 		}
 		return str.toString();
-	}
-
-	@Override
-	public GamePrinter parse(String[] gameWords) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

@@ -69,7 +69,7 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	
 	public String stringify() {
 		String s = this.draw + "," + this.x + "," + this.y+ ";" + this.live 
-				+ ";" + this.game.cyclesNextAlien + this.dir;
+				+ ";";/* + this.game.cyclesNextAlien + this.dir;*/
 		return s;
 	}
 

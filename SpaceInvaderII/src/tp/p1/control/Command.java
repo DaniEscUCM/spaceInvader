@@ -32,4 +32,6 @@ public abstract class Command {//subclase por cada objeto de la shoot...etc, com
 		return name + details + help + "\n";
 		}
 
+	protected abstract boolean printGame();
+
 }

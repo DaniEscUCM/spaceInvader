@@ -29,4 +29,9 @@ public class Ship extends GameObject {// se puede quitar que no hace nada, sino 
 		return null;
 	}
 
+	@Override
+	public String stringify() {
+		return null;
+	}
+
 }

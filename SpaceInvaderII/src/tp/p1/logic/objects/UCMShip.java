@@ -17,6 +17,7 @@ public class UCMShip extends Ship{
 	private boolean hasShockWave;//segun diapositivas
 	private boolean canShootLaser;//no se si boolean o laser
 	private int numofSuper;
+	private int numLasers;
 	
 	public int getNumofSuper() {
 		return numofSuper;
@@ -35,7 +36,8 @@ public class UCMShip extends Ship{
 		super(game, x, y, life,points);
 		this.hasShockWave=false;
 		this.canShootLaser=true;
-		numofSuper=0;
+		numofSuper = 0;
+		numLasers = 0;
 	}
 
 	public boolean isHasShockWave() {
@@ -51,6 +53,8 @@ public class UCMShip extends Ship{
 	}
 
 	public void setCanShootLaser() {
+		if(canShootLaser) this.numLasers++;
+		else this.numLasers--;
 		this.canShootLaser = !this.canShootLaser;
 	}
 	
@@ -113,7 +117,7 @@ public class UCMShip extends Ship{
 	
 	public String stringify() {
 		String s = this.strfy + ";" + this.x + "," + this.y + ";" + this.live + ";"
-				+ points + ";" + this.numofSuper;
+				+ points + ";" + this.canShootLaser + this.numofSuper;
 	
 		return s;
 	}

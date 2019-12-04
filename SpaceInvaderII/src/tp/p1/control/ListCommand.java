@@ -27,5 +27,11 @@ public class ListCommand extends Command {
 		return cm;
 	}
 
+	@Override
+	protected boolean printGame() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
 

@@ -8,25 +8,8 @@ public class PrinterGenerator {
 			new Stringifier(null)
 	};
 	
-	public static GamePrinter parseGamePrinter(String[] gameWords) {
-		GamePrinter gp=null;
-
-		for(GamePrinter gameprinter:availableGamePrinters) {
-			gp = gameprinter.parse(gameWords);
-			if(gp!=null)
-				return gp;
-		}
-		return gp;
+	public static GamePrinter parseGamePrinter(PrinterTypes typePrinter) {
+		
+		return typePrinter.getObject();
 	}
-	
-	/*
-	public static String gamePrinterHelp() {
-		String s = "";
-		for(int i = 0; i < PrinterGenerator.availableGamePrinters.length; i++) {
-			GamePrinter gp = PrinterGenerator.availableGamePrinters[i];
-			s+= gp.helpText() /*+ System.lineSeparator()*/;
-		//}
-		//return s;
-	//}
-
 }

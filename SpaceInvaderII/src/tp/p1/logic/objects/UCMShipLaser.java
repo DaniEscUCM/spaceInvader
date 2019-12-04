@@ -9,7 +9,7 @@ public class UCMShipLaser extends Weapon{
 	private int row, column;
 	private static final int harm=1;//herencia?
 	private final String draw= "oo";
-	private final String strfy = "M";
+	private static String strfy = "M";
 	
 	public UCMShipLaser(Game game, int x, int y) {
 		super(game, x, y, life,harm);

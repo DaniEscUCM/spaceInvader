@@ -32,7 +32,11 @@ public class Weapon extends GameObject{
 	public int getHarm() {
 		return harm;
 	}
-	
 
+	@Override
+	public String stringify() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
