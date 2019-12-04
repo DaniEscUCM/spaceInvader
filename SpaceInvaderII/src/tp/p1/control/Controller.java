@@ -32,7 +32,7 @@ public class Controller {
 					Command command = CommandGenerator.parseCommand(words);
 					if (command != null) {
 						if (command.execute(game) && command.printGame()) {
-							printer = this.printer = new BoardPrinter(game, game.DIM_X ,game.DIM_Y);
+							this.printer = new BoardPrinter(game, game.DIM_X ,game.DIM_Y);
 							printGame();
 						}
 					}else

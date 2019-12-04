@@ -15,7 +15,8 @@ public class CommandGenerator {
 			new NoneCommand(),
 			new BuySuper(),
 			new StringifyCommand(), 
-			new ListPrintersCommand()
+			new ListPrintersCommand(),
+			new SaveCommand(null)
 	};
 
 	public static Command parseCommand(String[ ] commandWords) throws CommandParseException {

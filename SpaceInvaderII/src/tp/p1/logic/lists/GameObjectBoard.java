@@ -1,6 +1,7 @@
 package tp.p1.logic.lists;
 
 import tp.p1.logic.objects.Bomb;
+import tp.p1.logic.objects.ExplosivShip;
 import tp.p1.logic.objects.GameObject;
 import tp.p1.logic.objects.IAttack;
 import tp.p1.logic.objects.Ovni;
@@ -65,6 +66,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 			this.checkAttacks(this.objects[i]);
 		}
 		this.removeDead();
+		this.removeDead();
 	}
 	
 	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
@@ -127,6 +129,17 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		return s;
 	}
 	
+	public void explosiveDeath(int x, int y) {
+		ExplosivShip ex=(ExplosivShip) getObjectInPosition(x, y);
+		for(int j=y-1;j<=y+1;j++) {
+			for(int i=x-1;i<=x+1;i++) {
+				GameObject ob=getObjectInPosition(i, j);
+				if(ob!=null && !ob.isOnPosition(x, y)) {
+					ex.performAttack(ob);
+				}
+			}
+		}
+	}
 	
 	
 

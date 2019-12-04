@@ -40,7 +40,7 @@ public class BoardPrinter extends GamePrinter{
 		String lineDelimiter = String.format("%n%s%s%n", margin + space, rowDelimiter);
 		
 		StringBuilder str = new StringBuilder();
-		
+		str.append(game.toString());//cabecera
 		str.append(lineDelimiter);
 		
 		for(int i=0; i<numRows; i++) {

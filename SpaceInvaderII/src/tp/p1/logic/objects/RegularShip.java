@@ -19,7 +19,7 @@ public class RegularShip extends AlienShip{
 	
 	public void computerAction() {
 		if(IExecuteRandomActions.canGenerateRandomExplosiv(game)) {
-			ExplosivShip explosiv = new ExplosivShip(this.game, super.x, super.y, this.life,super.getcyclesToMove());
+			ExplosivShip explosiv = new ExplosivShip(this.game, super.x, super.y, super.live, this.getcyclesToMove(),this.getSHIPS_ON_BORDER(),this.dir);
 			this.game.addObject(explosiv);
 			this.game.deleteOnlist(this);
 			super.setREMAINING_ALIENS();

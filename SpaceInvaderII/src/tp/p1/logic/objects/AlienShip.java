@@ -9,21 +9,19 @@ public class AlienShip extends EnemyShip{
 	
 
 	private static boolean IS_IN_FINAL_ROW;
-	private static int SHIPS_ON_BORDER;
+	protected static int SHIPS_ON_BORDER;//antes estaba en private y lo cambie a protected
 	
 	protected int cyclesToMove;
-	private Move dir;
+	protected Move dir;//antes estaba en private y lo cambie a protected
 
 	public AlienShip(Game game, int x, int y, int life, int points) {
 		super(game, x, y, life, points);
-		REMAINING_ALIENS ++;
-		if(!(this instanceof ExplosivShip)) {
-			SHIPS_ON_BORDER = 0;
-			this.dir=Move.LEFT;
-			if (game !=null) {
-				cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();
-			}
-
+		REMAINING_ALIENS ++;	
+		SHIPS_ON_BORDER = 0;
+		this.dir=Move.LEFT;
+		if (game !=null) {
+			cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();
+	
 		}
 				//cycleToMove se inicializa con el numero ciclos(segun level) en el que se mueve, en move decrece
 	}
@@ -31,9 +29,7 @@ public class AlienShip extends EnemyShip{
 	public static void setREMAINING_ALIENS() {
 		REMAINING_ALIENS --;
 	}
-	public void setcyclesToMove(int cy) {
-		this.cyclesToMove=cy;
-	}
+
 
 	public int getcyclesToMove() {
 		return this.cyclesToMove;

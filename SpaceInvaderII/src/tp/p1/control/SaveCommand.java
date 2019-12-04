@@ -1,5 +1,11 @@
 package tp.p1.control;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javax.imageio.IIOException;
+
 import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
 import tp.p1.logic.Game;
@@ -9,7 +15,7 @@ public class SaveCommand extends Command {
 	private static String name = "save";
 	private static String shortcut = "sa";
 	private static String detail = " [sa]ve";
-	private static String help = ": player save current game";
+	private static String help = ": player save current game, with the name of file without .dat";
 	private  String nameoffile;
 
 	public SaveCommand(String nameOffile) {
@@ -19,14 +25,15 @@ public class SaveCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
-		/*try(BufferWriter in= new BufferWritter (new FileWriter(nameoffile)){
-		 * 		in.write(game.stringify);
-		 * }
-		 * catch(iosException mife) {
-		      throw new CommandExecuteException( mife.getMessage());
-		  }
-		 * */
-		return false;
+		try(BufferedWriter in= new BufferedWriter(new FileWriter(nameoffile+".dat"))){
+			in.write(game.stringify());
+			System.out.println("Game successfully saved in file "+nameoffile+".dat. ");
+					//+ "Use the load command to reload it");
+			return true;
+		}
+		catch(IOException mife) {
+			 throw new CommandExecuteException( mife.getMessage());
+		}
 	}
 
 	@Override

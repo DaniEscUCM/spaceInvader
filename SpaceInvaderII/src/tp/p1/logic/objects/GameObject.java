@@ -63,8 +63,13 @@ public abstract class GameObject implements IAttack {
 		}
 	public boolean receiveShockWaveAttack(int damage) {
 		this.live-=damage;
-		return false;
+		return true;
 		}
+	
+	public boolean receiveExplosiveAttack(int damage) {
+		 this.live-=damage;
+		 return true;
+		 }
 	
 	
 }

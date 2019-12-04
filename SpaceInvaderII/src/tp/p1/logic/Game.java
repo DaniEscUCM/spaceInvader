@@ -221,4 +221,8 @@ public class Game implements IPlayerController{
 					+ board.stringify();
 			return s;
 		}
+		
+		public void explosiveDeath(int x, int y) {
+			board.explosiveDeath( x, y);
+		}
 }
