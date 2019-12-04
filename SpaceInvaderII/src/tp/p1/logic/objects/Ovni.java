@@ -59,7 +59,8 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		game.receivePoints(this.getPoints());
 	}
 	
-	public boolean receiveExplosivAttack(int damage) {
+	@Override
+	public boolean receiveExplosiveAttack(int damage) {
 		this.enable=false;
 		super.x=x;
 		super.y=y;

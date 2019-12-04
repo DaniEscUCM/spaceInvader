@@ -7,6 +7,8 @@ public abstract class GameObject implements IAttack {
 	protected int y;
 	protected int life;//la profesora dice quitarlo pq no todos tienen vida
 	protected Game game;
+	public static final String labelRefSeparator = " - ";
+	protected int label = 0;
 	
 	public GameObject( Game game, int x, int y, int life) {
 		this. x = x;
@@ -14,6 +16,10 @@ public abstract class GameObject implements IAttack {
 		this. game = game;
 		this.life = life;
 	}	
+	
+	public int getLabel() {
+		return label;
+	}
 
 	public int getX() {
 		return x;

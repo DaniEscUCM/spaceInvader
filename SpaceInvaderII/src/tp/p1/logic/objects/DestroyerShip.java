@@ -6,7 +6,38 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	private boolean canShootBomb;
 	private static int points=10;
 	private final String draw = "D";
+	private static int currentSerialNumber;
 	
+	
+
+	private void initialiseLabelling() {
+		currentSerialNumber = 1;
+	}
+
+	private String generateSerializingLabel() {
+		label = currentSerialNumber;
+		currentSerialNumber++;
+		return labelRefSeparator + label;
+	}
+	/*
+	public String serialize() {
+		if (!game.isSerializing()) {
+			game.setSerializing();
+			initialiseLabelling();
+		}
+		return this.stringify() + generateSerializingLabel();
+	}
+	*/
+	
+	public String stringify() {
+		if (!game.isSerializing()) {
+			game.setSerializing();
+			initialiseLabelling();
+		}
+		String s = this.draw + "," + super.x + "," + super.y+ ";" + super.life 
+				+ ";" + super.cyclesToMove + super.dir.toString();
+		return s + generateSerializingLabel();
+	}
 	
 	public DestroyerShip(Game game, int x, int y) {
 		super(game, x, y, life, points);
@@ -53,12 +84,6 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 		if(super.getSHIPS_ON_BORDER()>0) {
 			super.setSHIPS_ON_BORDER();
 		}
-	}
-	
-	public String stringify() {
-		String s = this.draw + "," + super.x + "," + super.y+ ";" + super.life 
-				+ ";" + super.cyclesToMove + super.dir.toString();
-		return s;
 	}
 
 }
