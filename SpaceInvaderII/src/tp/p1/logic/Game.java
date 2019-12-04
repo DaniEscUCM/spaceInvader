@@ -124,7 +124,7 @@ public class Game implements IPlayerController{
 		@Override
 		public boolean shootMissile() throws MissileInFlightException{
 			if(this.player.isCanShootLaser()) {
-				GameObject laser=new UCMShipLaser(this,this.player.getX(),this.player.getY()-1);
+				GameObject laser=new UCMShipLaser(this,this.player.getX(),this.player.getY());
 				this.board.add(laser);
 				this.player.setCanShootLaser();
 				return true;
@@ -137,7 +137,7 @@ public class Game implements IPlayerController{
 		public boolean shootSuperMis() throws MissileInFlightException, NoSuperMissileAvaible {
 			if(this.player.isCanShootLaser() ) {
 				if(this.player.getNumofSuper()>0) {
-					GameObject laser=new SuperMisil(this,this.player.getX(),this.player.getY()-1);
+					GameObject laser=new SuperMisil(this,this.player.getX(),this.player.getY());
 					this.board.add(laser);
 					this.player.setCanShootLaser();
 					return true;

@@ -6,7 +6,7 @@ public class StringifyCommand extends Command{
 
 	private final static String name = "stringify";
 	private final static String shortcut = "Z";
-	private final static String detail = " [St]ringify";
+	private final static String detail = " [z]Stringify";
 	private final static String help = ": Starts a new game.";
 
 	public StringifyCommand() {
