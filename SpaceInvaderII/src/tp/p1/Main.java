@@ -2,8 +2,6 @@ package tp.p1;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.math.*;
-
 import tp.p1.control.Controller;
 import tp.p1.logic.Game;
 import tp.p1.logic.Level;

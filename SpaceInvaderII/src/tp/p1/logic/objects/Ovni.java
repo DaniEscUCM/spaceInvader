@@ -4,11 +4,6 @@ import tp.p1.logic.Game;
 
 public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	
-
-	//private final int row = 0;
-	//private int column=8;
-	//private int life = 1;
-	//private int points = 25;
 	private final String draw = "O";
 	private boolean enable;//ya no se crea y se quita
 	private static int points=25;
@@ -16,18 +11,14 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 
 	private static int x=9;
 	private static int y=-1;
-	private static int live=1;
+	private static int life=1;
 	
 	public Ovni(Game game) {
-		super(game, x, y, live,points);
+		super(game, x, y, life,points);
 		enable=false;
 	}
 	
 	public void move () {
-		//if(this.column==0) {
-			//return false;
-		//}
-		//else {
 		if(this.enable) {
 			super.x--;
 			if(isOut()) {
@@ -35,36 +26,14 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 				super.x=9;}
 			
 			}
-			//return true;
-		//}
 		
 	}
-	/*
-	public boolean hurt(int row,int col) {
-		boolean resul=false;
-		if(this.enable) {
-			if(row==super.y & col==super.x) {
-				this.enable=false;
-				super.x=x;
-				super.y=y;
-				game.receivePoints(this.getPoints());
-				resul=true;
-				
-			}
-		}
-		return resul;
-	}*/
 	
 	public String toString() {
-		return draw + "["+ live + "]"; 
-	}/*
-	public int getRow() {
-		return this.y;
+		return draw + "["+ super.life + "]"; 
 	}
-	public int getColumn() {
-		return this.x;
-	}*/
 	
+	@SuppressWarnings("static-access")
 	public int getPoint() {
 		return this.points;
 	}
@@ -83,12 +52,21 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	}
 	
 	public void onDelete() {
-		super.live=live;
+		super.life=life;
 		this.enable=false;
 		super.x=x;
 		super.y=y;
 		game.receivePoints(this.getPoints());
 	}
+	
+	public boolean receiveExplosivAttack(int damage) {
+		this.enable=false;
+		super.x=x;
+		super.y=y;
+		game.receivePoints(this.getPoints());
+		game.enableShockWave();
+		return true;
+		}
 	
 	public boolean receiveMissileAttack(int damage) {
 		this.enable=false;
@@ -107,8 +85,9 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		return false;
 	}
 	
+	@SuppressWarnings("static-access")
 	public String stringify() {
-		String s = this.draw + "," + this.x + "," + this.y + ";"+ this.live;
+		String s = this.draw + "," + super.x + "," + super.y + ";"+ super.life;
 		return s;
 	}
 	

@@ -1,8 +1,6 @@
 package tp.p1.logic.objects;
 
 import tp.p1.logic.Game;
-import tp.p1.logic.Level;
-
 public interface IExecuteRandomActions {
 
 	static boolean canGenerateRandomOvni(Game game){

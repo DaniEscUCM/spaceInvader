@@ -1,5 +1,6 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class NoEnoughPoints extends Exception {
 
 	private static String message="Failed to buy\r\n" + 

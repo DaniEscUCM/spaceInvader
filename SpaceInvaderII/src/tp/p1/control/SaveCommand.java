@@ -3,9 +3,6 @@ package tp.p1.control;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import javax.imageio.IIOException;
-
 import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
 import tp.p1.logic.Game;
@@ -52,7 +49,6 @@ public class SaveCommand extends Command {
 
 	@Override
 	protected boolean printGame() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

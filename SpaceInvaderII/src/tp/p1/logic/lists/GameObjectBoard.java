@@ -1,16 +1,12 @@
 package tp.p1.logic.lists;
 
-import tp.p1.logic.objects.Bomb;
 import tp.p1.logic.objects.ExplosivShip;
 import tp.p1.logic.objects.GameObject;
-import tp.p1.logic.objects.IAttack;
-import tp.p1.logic.objects.Ovni;
 import tp.p1.logic.objects.UCMShip;
-import tp.p1.logic.objects.UCMShipLaser;
 
-public class GameObjectBoard {//ya no va a haber las otras listas, esta es la superlista
+public class GameObjectBoard {//es la superlista
 
-	private GameObject[] objects;//es una lista!!
+	private GameObject[] objects;//una lista
 	private int currentObjects;
 	
 	
@@ -18,6 +14,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		this.objects= new GameObject[width*height];
 		this.currentObjects = 0;
 	}
+	@SuppressWarnings("unused")
 	private int getCurrentObjects () {
 		return currentObjects;
 	}
@@ -59,8 +56,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		
 	
 	public void update() {//(1)recorre y hace move de todos los objetos,(2)check attack,(3) remove dead
-		//objects[i].move();
-		//checkAttack();
+		
 		for (int i = 0; i < this.currentObjects; i++) {
 			this.objects[i].move();
 			this.checkAttacks(this.objects[i]);
@@ -69,13 +65,12 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		this.removeDead();
 	}
 	
-	private void checkAttacks(GameObject object) {//perfomeattack?? other recibe da�o
+	private void checkAttacks(GameObject object) {//perfomeattack other recibe da�o
 		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
 		int i=0;
 		while(!object.performAttack(this.objects[i])&& i<this.currentObjects-1) {
 			i++;
 		}
-		
 	}
 	
 	public void computerAction() {//llamar computerAction de todos
@@ -84,8 +79,8 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		}
 	}
 	
-	private void removeDead() {//quita los muertos?? primero delete y llama a remove
-		//for(int i = 0; i < this.currentObjects; i++) {
+	private void removeDead() {//quita los muertos primero delete y llama a remove
+		
 		int i=0;
 		while(i < this.currentObjects) {
 			if(!this.objects[i].isAlive()) {
@@ -102,12 +97,7 @@ public class GameObjectBoard {//ya no va a haber las otras listas, esta es la su
 		if(i!=-1) {return this.objects[i].toString();}
 		return "";
 	}
-	/*
-	public boolean shoot(GameObject laser) {
-		=new UCMShipLaser(this,x,y);
 	
-		return false;
-	}*/
 	public void shockWave() {
 		for(int i = 0; i < this.currentObjects; i++) {
 			if(! (this.objects[i] instanceof UCMShip)) {

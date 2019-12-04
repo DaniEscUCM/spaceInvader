@@ -1,7 +1,5 @@
 package tp.p1.logic.objects;
 import tp.p1.logic.Game;
-import tp.p1.logic.Move;
-import tp.p1.logic.lists.GameObjectBoard;
 
 public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	private static int life=1;
@@ -32,12 +30,6 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	public String toString() {
 		return "D["+life+"]";
 	}
-	/*
-	public Bomb shoot() {
-		this.bomb= new Bomb(this.game, this.row + 1, this.column);
-		//this.bomb= new Bomb(this.row+1, this.column);
-		return bomb;
-	}*/
 	
 	
 	public void enableBomb() {
@@ -50,14 +42,10 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	
 
 	public void hurt() {
-		super.live--;
+		super.life--;
 	}
 	
-	/*
-	public boolean equalsbomb(Bomb bomb) {
-		return this.bomb==bomb;
-	}*/
-	
+	@SuppressWarnings("static-access")
 	@Override
 	public void onDelete() {
 		super.REMAINING_ALIENS--;
@@ -68,8 +56,8 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	}
 	
 	public String stringify() {
-		String s = this.draw + "," + this.x + "," + this.y+ ";" + this.live 
-				+ ";";/* + this.game.cyclesNextAlien + this.dir;*/
+		String s = this.draw + "," + super.x + "," + super.y+ ";" + super.life 
+				+ ";" + super.cyclesToMove + super.dir.toString();
 		return s;
 	}
 

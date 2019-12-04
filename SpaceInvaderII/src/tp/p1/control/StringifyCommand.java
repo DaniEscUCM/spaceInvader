@@ -5,7 +5,7 @@ import tp.p1.logic.Game;
 public class StringifyCommand extends Command{
 
 	private final static String name = "stringify";
-	private final static String shortcut = "ST";
+	private final static String shortcut = "Z";
 	private final static String detail = " [St]ringify";
 	private final static String help = ": Starts a new game.";
 

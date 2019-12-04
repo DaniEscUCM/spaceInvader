@@ -5,14 +5,14 @@ import tp.p1.logic.Game;
 public abstract class GameObject implements IAttack {
 	protected int x;
 	protected int y;
-	protected int live;//la profesora dice quitarlo pq no todos tienen vida
+	protected int life;//la profesora dice quitarlo pq no todos tienen vida
 	protected Game game;
 	
 	public GameObject( Game game, int x, int y, int life) {
 		this. x = x;
 		this. y = y;
 		this. game = game;
-		this.live = life;
+		this.life = life;
 	}	
 
 	public int getX() {
@@ -24,11 +24,11 @@ public abstract class GameObject implements IAttack {
 	}
 	
 	public boolean isAlive() {//se pondria en los que tienen vida
-		return this.live > 0;
+		return this.life > 0;
 	}
 	
 	public int getLive() {//se pondria en los que tienen vida
-		return this.live;
+		return this.life;
 	}
 	
 	public boolean isOnPosition(int x, int y) {
@@ -36,7 +36,7 @@ public abstract class GameObject implements IAttack {
 	}
 	
 	public void getDamage (int damage) {
-		this.live = damage >= this.live ? 0 : this.live - damage;
+		this.life = damage >= this.life ? 0 : this.life - damage;
 	}
 	
 	public boolean isOut() {//metodos move, si se sale del tablero
@@ -54,20 +54,20 @@ public abstract class GameObject implements IAttack {
 	public abstract String stringify();
 	
 	public boolean receiveMissileAttack(int damage) {
-		this.live-=damage;
+		this.life-=damage;
 		return true;
 		}
 	public boolean receiveBombAttack(int damage) {
-		this.live-=damage;
+		this.life-=damage;
 		return true;
 		}
 	public boolean receiveShockWaveAttack(int damage) {
-		this.live-=damage;
+		this.life-=damage;
 		return true;
 		}
 	
 	public boolean receiveExplosiveAttack(int damage) {
-		 this.live-=damage;
+		 this.life-=damage;
 		 return true;
 		 }
 	

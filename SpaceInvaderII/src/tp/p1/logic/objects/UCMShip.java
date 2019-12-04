@@ -2,17 +2,14 @@ package tp.p1.logic.objects;
 
 import exceptions.OffWorldException;
 import tp.p1.logic.Game;
-//import tp.p1.logic.Move;
 
 public class UCMShip extends Ship{
 	
 
-	private static final String strfy = "P";
+	private final String strfy = "P";
 	private static int life=3;
-	//private int column=4;
 	private String draw= "^__^";
 	private String losedraw="!xx!";
-	//private final int row=7;//nunca se mueve de la ultima fila
 	private static int points=0;
 	private boolean hasShockWave;//segun diapositivas
 	private boolean canShootLaser;//no se si boolean o laser
@@ -23,8 +20,9 @@ public class UCMShip extends Ship{
 		return numofSuper;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setNumofSuper() {
-		this.points-=20;
+		super.points-=20;
 		this.numofSuper++;
 	}
 	
@@ -59,26 +57,15 @@ public class UCMShip extends Ship{
 	}
 	
 	
+	@SuppressWarnings("static-access")
 	public void receivePoints(int points) {
-		this.points+=points;
+		super.points+=points;
 	}
 
+	@SuppressWarnings("static-access")
 	public boolean move (int steps) throws OffWorldException{//ver direccion, tal vez enumerado, Move direction, como ya no nos dan direcci�n se cambiara a -/+ segun la dirccecion
 		boolean ret = false;
 		if((x + steps)<game.DIM_X && (x + steps) >= 0) {x+=steps;ret=true;}//no va a dejar dar mas pasos de los que necesita
-		/*
-		if (direction == Move.RIGHT && ((column + steps) < 8)) {
-			column+=steps;
-		}
-		else if (direction == Move.RIGHT && ((column + steps) >= 8)) {
-			column = 8; 
-		}
-		else if (direction == Move.LEFT && ((column - steps) >= 0)) {
-			column-=steps;
-		}
-		else if (direction == Move.LEFT && ((column - steps) < 0)) {
-			column = 0; 
-		}*/
 		else {
 			OffWorldException ex= new OffWorldException();
 			throw ex;
@@ -87,15 +74,15 @@ public class UCMShip extends Ship{
 	}
 	
 	public void hurt() {
-		life--;
+		super.life--;
 	}
 	
 	public int getLife() {
-		return life;
+		return super.life;
 	}
 	
 	public String toString() {
-		if( super.live==0 || AlienShip.haveLanded()) {
+		if( super.life==0 || AlienShip.haveLanded()) {
 			return this.losedraw;
 		}
 		return draw;
@@ -112,12 +99,12 @@ public class UCMShip extends Ship{
 	}
 
 	public String stateToString() {	
-		return "Life: "+this.live+"\n"+"Points: "+points+"\n";//he puesto points en ship
+		return "Life: "+super.life+"\n"+"Points: "+super.points+"\n";//he puesto points en ship
 	}
 	
 	public String stringify() {
-		String s = this.strfy + ";" + this.x + "," + this.y + ";" + this.live + ";"
-				+ points + ";" + this.canShootLaser + this.numofSuper;
+		String s = this.strfy + ";" + super.x + "," + super.y + ";" + super.life + ";"
+				+ points + ";" + this.canShootLaser + ";" + this.numLasers;
 	
 		return s;
 	}

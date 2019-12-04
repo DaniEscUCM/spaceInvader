@@ -1,6 +1,5 @@
 package tp.p1.control;
 
-import exceptions.CommandExecuteException;
 import exceptions.MissileInFlightException;
 import exceptions.NoShockwaveException;
 import exceptions.NoSuperMissileAvaible;

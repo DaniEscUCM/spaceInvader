@@ -9,7 +9,7 @@ public class SuperMisil extends Weapon {
 	
 	private static int life = 1;
 	private static final int harm=2;
-	private static String strfy = "X";
+	private final String strfy = "X";
 	private final String draw= "^";
 
 	public SuperMisil(Game game, int x, int y) {
@@ -19,7 +19,7 @@ public class SuperMisil extends Weapon {
 	public void move() {
 		super.y--;
 		if(isOut()) {//is out no funciona?
-			super.live=0;
+			super.life=0;
 		}
 	}	
 	
@@ -31,7 +31,7 @@ public class SuperMisil extends Weapon {
 		boolean resul=false;
 		if(other.isOnPosition(super.getX(), super.getY())&& other!=this) {
 			resul=other.receiveMissileAttack(super.getHarm());
-			super.live--;
+			super.life--;
 		}		
 		return resul;
 	}
@@ -41,8 +41,7 @@ public class SuperMisil extends Weapon {
 	}
 	
 	public String stringify() {
-		String s = this.strfy + "," + this.x + "," + this.y+ ";" + this.live 
-				+ ";";/* + this.game.cyclesNextAlien + this.dir;*/
+		String s = this.strfy + "," + super.x + "," + super.y;
 		return s;
 	}
 

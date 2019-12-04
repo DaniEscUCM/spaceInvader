@@ -1,7 +1,6 @@
 package tp.p1.logic.objects;
 
 import tp.p1.logic.Game;
-import tp.p1.logic.Move;
 
 public class RegularShip extends AlienShip{
 	
@@ -13,13 +12,14 @@ public class RegularShip extends AlienShip{
 	public RegularShip(Game game, int x, int y) {
 		super(game, x, y, life, points);
 	}
-	public int getLife() {//tal vez con herencia, ya que todos tienen vida
-		return life;
+	public int getLife() {
+		return super.life;
 	}
 	
 	public void computerAction() {
 		if(IExecuteRandomActions.canGenerateRandomExplosiv(game)) {
-			ExplosivShip explosiv = new ExplosivShip(this.game, super.x, super.y, super.live, this.getcyclesToMove(),this.getSHIPS_ON_BORDER(),this.dir);
+			@SuppressWarnings("static-access")
+			ExplosivShip explosiv = new ExplosivShip(this.game, super.x, super.y, super.life, this.getcyclesToMove(),this.getSHIPS_ON_BORDER(),this.dir);
 			this.game.addObject(explosiv);
 			this.game.deleteOnlist(this);
 			super.setREMAINING_ALIENS();
@@ -27,13 +27,14 @@ public class RegularShip extends AlienShip{
 	}
 	
 	public void hurt() {
-		super.live--;
+		super.life--;
 	}
 	
 	public String toString(){
-		return this.draw+"[" + super.live + "]";
+		return this.draw+"[" + super.life + "]";
 	}
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public void onDelete() {
 		super.REMAINING_ALIENS--;
@@ -44,8 +45,8 @@ public class RegularShip extends AlienShip{
 	}
 	
 	public String stringify() {
-		String s = this.draw + ";" + this.x + "," + this.y + ";" + this.live 
-				+ ";";/* + this.game.cyclesNextAlien + this.dir;*/
+		String s = this.draw + ";" + super.x + "," + super.y + ";" + super.life 
+				+ ";" + super.cyclesToMove + super.dir.toString();
 		return s;
 	}
 

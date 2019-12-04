@@ -1,7 +1,6 @@
 package tp.p1.control;
 
 import exceptions.CommandExecuteException;
-import exceptions.CommandParseException;
 import exceptions.NoEnoughPoints;
 import tp.p1.logic.Game;
 
@@ -18,19 +17,22 @@ public class BuySuper extends Command {
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException{
-		try{game.update();
-		return game.buyMissile();}
+		boolean exec = false;
+		try{
+		exec = game.buyMissile();
+		if(exec) game.update();
+		}
 		catch(NoEnoughPoints mife) {
 			 throw new CommandExecuteException(mife.getCause() + ": " + mife.getMessage());
 		}
+		return exec;
 	}
 
 	@Override
 	public Command parse(String[] commandWords) {
 		Command cm=null;
 		if(matchCommandName(commandWords[0])) {
-			cm=new BuySuper();		
-			
+			cm=new BuySuper();			
 		}
 		return cm;
 	}

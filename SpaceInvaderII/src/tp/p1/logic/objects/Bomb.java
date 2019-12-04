@@ -7,7 +7,7 @@ public class Bomb extends Weapon{
 	private final String draw = ".";//tendra un destroyer
 	private DestroyerShip destroyer;
 	private static final int harm=1;
-	private static String strfy = "B";
+	private final String strfy = "B";
 	boolean move = false;
 
 
@@ -26,7 +26,7 @@ public class Bomb extends Weapon{
 		if(move) {
 			super.y++;
 			if(isOut()) {
-				super.live=0;
+				super.life=0;
 			}
 		}
 		else this.move = true;
@@ -50,15 +50,14 @@ public class Bomb extends Weapon{
 		boolean resul=false;
 		if(other.isOnPosition(this.getX(), this.getY())&& other!=this) {
 			resul=other.receiveBombAttack(super.getHarm());
-			super.live--;
+			super.life--;
 		}
 		
 		return resul;
 	}
 	
 	public String stringify() {
-		String s = this.strfy + "," + this.x + "," + this.y+ ";" + this.live 
-				+ ";";/* + this.game.cyclesNextAlien + this.dir;*/
+		String s = this.strfy + "," + super.x + "," + super.y;
 		return s;
 	}
 

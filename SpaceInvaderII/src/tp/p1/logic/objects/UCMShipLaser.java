@@ -1,6 +1,5 @@
 package tp.p1.logic.objects;
 
-import exceptions.MissileInFlightException;
 import tp.p1.logic.Game;
 
 public class UCMShipLaser extends Weapon{
@@ -9,7 +8,7 @@ public class UCMShipLaser extends Weapon{
 	private int row, column;
 	private static final int harm=1;//herencia?
 	private final String draw= "oo";
-	private static String strfy = "M";
+	private final String strfy = "M";
 	
 	public UCMShipLaser(Game game, int x, int y) {
 		super(game, x, y, life,harm);
@@ -21,7 +20,7 @@ public class UCMShipLaser extends Weapon{
 		super.y--;
 		this.row --;
 		if(isOut()) {//is out no funciona?
-			super.live=0;
+			super.life=0;
 		}
 	}	
 	
@@ -41,7 +40,7 @@ public class UCMShipLaser extends Weapon{
 		boolean resul=false;
 		if(other.isOnPosition(super.getX(), super.getY())&& other!=this) {
 			resul=other.receiveMissileAttack(super.getHarm());
-			super.live--;
+			super.life--;
 		}		
 		return resul;
 	}
@@ -51,7 +50,7 @@ public class UCMShipLaser extends Weapon{
 	}
 	
 	public String stringify() {
-		String s = this.strfy + "," + this.x + "," + this.y;
+		String s = this.strfy + "," + super.x + "," + super.y;
 		return s;
 	}
 

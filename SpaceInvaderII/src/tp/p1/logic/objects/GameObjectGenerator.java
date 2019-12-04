@@ -1,9 +1,9 @@
 package tp.p1.logic.objects;
 
-import tp.p1.logic.Game;
 
 public class GameObjectGenerator {
 
+	@SuppressWarnings("unused")
 	private static GameObject[] availableGameObjects = {
 			new UCMShip(null, 0, 0),
 			new Ovni(null),

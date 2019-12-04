@@ -1,7 +1,6 @@
 package tp.p1.logic;
-import java.util.Random;
 
-import exceptions.CommandExecuteException;
+import java.util.Random;
 import exceptions.MissileInFlightException;
 import exceptions.NoEnoughPoints;
 import exceptions.NoShockwaveException;
@@ -22,8 +21,8 @@ import tp.p1.logic.objects.UCMShipLaser;
 
 public class Game implements IPlayerController{
 	
-		public final static int DIM_X = 9;//9
-		public final static int DIM_Y = 8;//8
+		public final static int DIM_X = 9;
+		public final static int DIM_Y = 8;
 		private int currentCycle;
 		private Random rand;
 		private Level level;
@@ -31,7 +30,6 @@ public class Game implements IPlayerController{
 		private UCMShip player;
 		private boolean doExit;
 		private BoardInitializer initializer ;
-		//private BoardPrinter gamePrinter;
 		private boolean shockWave = false;
 		
 		private static Ship[] availableShips = {
@@ -207,7 +205,7 @@ public class Game implements IPlayerController{
 		}
 
 		public boolean buyMissile() throws NoEnoughPoints {
-			if(player.getPoints()%20==0) {player.setNumofSuper();return true;}
+			if(player.getPoints() >= 20) {player.setNumofSuper();return true;}
 			else{
 				NoEnoughPoints miExc = new NoEnoughPoints(); 
 				throw miExc;

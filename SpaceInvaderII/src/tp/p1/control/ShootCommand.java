@@ -22,19 +22,16 @@ public class ShootCommand extends Command{
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
-		/*if(!game.thereisLaser()) {
-			game.shoot();
-			game.update();
-			game.computerAction();
-			}*/
+		boolean exec = false;
 		try {
-			game.update();
-			if(superm) {return game.shootSuperMis();}
-			else {	return game.shootMissile();		}
+			if(superm) {exec = game.shootSuperMis();}
+			else {	exec = game.shootMissile();}
+			if(exec) game.update(); // si el update se hace antes, corre ciclo y hace update sin comprobar nada
 		}
 		catch( MissileInFlightException | NoSuperMissileAvaible mife) {
 		      throw new CommandExecuteException(mife.getMessage());
 		  }
+		return exec;
 	}
 
 	@Override

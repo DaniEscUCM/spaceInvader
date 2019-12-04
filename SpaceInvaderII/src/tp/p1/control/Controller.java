@@ -15,6 +15,7 @@ public class Controller {
 	private final String unknownCommandMsg="UNKNOWN COMMAND";
 	private GamePrinter printer;
 	
+	@SuppressWarnings("static-access")
 	public Controller(Game game, Scanner in) {
 		super();
 		this.game = game;
@@ -22,6 +23,7 @@ public class Controller {
 		this.printer = new BoardPrinter(game, game.DIM_X ,game.DIM_Y);
 	}
 	
+	@SuppressWarnings("static-access")
 	public void run() {
 		printGame();
 		while(!game.isFinished()) {

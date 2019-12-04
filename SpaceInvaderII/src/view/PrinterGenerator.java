@@ -9,7 +9,13 @@ public class PrinterGenerator {
 	};
 	
 	public static GamePrinter parseGamePrinter(PrinterTypes typePrinter) {
-		
-		return typePrinter.getObject();
+		GamePrinter gm = null;
+		for(GamePrinter gameprinter:availableGamePrinters) {
+			gm = typePrinter.getObject();
+			if(gm== gameprinter) {
+				return gm;
+			}
+		}
+		return gm;
 	}
 }

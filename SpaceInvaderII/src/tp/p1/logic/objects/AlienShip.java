@@ -23,7 +23,6 @@ public class AlienShip extends EnemyShip{
 			cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();
 	
 		}
-				//cycleToMove se inicializa con el numero ciclos(segun level) en el que se mueve, en move decrece
 	}
 	
 	public static void setREMAINING_ALIENS() {
@@ -48,6 +47,7 @@ public class AlienShip extends EnemyShip{
 		return REMAINING_ALIENS==0;
 	}
 	
+	@SuppressWarnings("static-access")
 	public void move() {//no sobre escribe si se quita ship
 		if(cyclesToMove==0) {
 			cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();			
@@ -66,20 +66,9 @@ public class AlienShip extends EnemyShip{
 					
 			}
 		else cyclesToMove--;
-		/*
-		  	Si (cyclesToMove == 0)
-				Actualizar cyclesToMove
-				Hacer el movimiento a la izquierda o a la derecha
-				Actualizar IS_IN_FINAL_ROW
-				Si está en el borde, SHIPS_ON_BORDER = REMAINING_ALIENS
-			Sino si (SHIPS_ON_BORDER > 0) y !IS_IN_FINAL_ROW
-				Aumentar la fila
-				Cambiar el sentido del movimiento
-				SHIPS_ON_BORDER -= 1
-			Sino cyclesToMove--
-		 */
 	}
 	
+	@SuppressWarnings("static-access")
 	public void border() {
 		if((dir==Move.LEFT && x==0)||(dir==Move.RIGHT && x==game.DIM_X-1)) {
 			SHIPS_ON_BORDER=REMAINING_ALIENS;
@@ -96,4 +85,5 @@ public class AlienShip extends EnemyShip{
 	
 	public boolean receiveBombAttack(int damage) {return false;};
 
+	
 }

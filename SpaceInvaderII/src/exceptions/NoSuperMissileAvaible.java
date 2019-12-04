@@ -1,5 +1,6 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class NoSuperMissileAvaible extends Exception {
 
 	private static String message="Failed to shoot super missile"+"Cause of Exception:\r\n" +  

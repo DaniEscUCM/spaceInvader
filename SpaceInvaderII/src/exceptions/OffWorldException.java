@@ -1,8 +1,9 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class OffWorldException extends Exception {
 	
-//tal vez se le pueda aplicar a las demás naves, aunque no deberían salirse del board
+//tal vez se le pueda aplicar a las demï¿½s naves, aunque no deberï¿½an salirse del board
 	private static String message="Failed to move\r\n"+"Cause of Exception:\r\n" + 
 			"exceptions.OffWorldException: Cannot perform move: ship too near border";//preguntar si seria asi el mensaje
 
