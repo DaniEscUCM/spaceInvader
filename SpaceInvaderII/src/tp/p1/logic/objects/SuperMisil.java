@@ -18,7 +18,7 @@ public class SuperMisil extends Weapon {
 
 	public void move() {
 		super.y--;
-		if(isOut()) {//is out no funciona?
+		if(isOut()) {
 			super.life=0;
 		}
 	}	

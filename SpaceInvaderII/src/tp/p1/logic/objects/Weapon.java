@@ -10,8 +10,6 @@ public class Weapon extends GameObject{
 		super(game, x, y, life);
 		this.harm=harm;
 	}
-	
-	//metodo abstracto que se implemente de forma diferente en laser y bomb, algo con check attack y receive attack
 
 	@Override
 	public void computerAction() {
@@ -35,7 +33,6 @@ public class Weapon extends GameObject{
 
 	@Override
 	public String stringify() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

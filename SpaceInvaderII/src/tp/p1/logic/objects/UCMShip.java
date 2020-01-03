@@ -11,8 +11,8 @@ public class UCMShip extends Ship{
 	private String draw= "^__^";
 	private String losedraw="!xx!";
 	private static int points=0;
-	private boolean hasShockWave;//segun diapositivas
-	private boolean canShootLaser;//no se si boolean o laser
+	private boolean hasShockWave;
+	private boolean canShootLaser;
 	private int numofSuper;
 	private int numLasers;
 	
@@ -20,7 +20,6 @@ public class UCMShip extends Ship{
 		return numofSuper;
 	}
 
-	@SuppressWarnings("static-access")
 	public void setNumofSuper() {
 		super.points-=20;
 		this.numofSuper++;
@@ -57,19 +56,18 @@ public class UCMShip extends Ship{
 	}
 	
 	
-	@SuppressWarnings("static-access")
 	public void receivePoints(int points) {
 		super.points+=points;
 	}
 
 	@SuppressWarnings("static-access")
-	public boolean move (int steps) throws OffWorldException{//ver direccion, tal vez enumerado, Move direction, como ya no nos dan direcci�n se cambiara a -/+ segun la dirccecion
+	public boolean move (int steps) throws OffWorldException{
 		boolean ret = false;
 		if((x + steps)<game.DIM_X && (x + steps) >= 0) {x+=steps;ret=true;}//no va a dejar dar mas pasos de los que necesita
 		else {
 			OffWorldException ex= new OffWorldException();
 			throw ex;
-			}
+		}
 		return ret;
 	}
 	

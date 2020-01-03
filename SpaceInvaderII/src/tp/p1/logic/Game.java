@@ -22,8 +22,8 @@ import tp.p1.logic.objects.UCMShipLaser;
 
 public class Game implements IPlayerController{
 	
-		public final static int DIM_X = 9;
-		public final static int DIM_Y = 8;
+		public final static int DIM_X = 9;//columnas
+		public final static int DIM_Y = 8;//filas
 		private int currentCycle;
 		private Random rand;
 		private Level level;
@@ -34,13 +34,12 @@ public class Game implements IPlayerController{
 		private boolean shockWave = false;
 		private boolean serializing = false;
 		
-		private static Ship[] availableShips = {
+		private static Ship[] availableShips = {//si se agregan naves se debe que agregar aqui
 				new ExplosivShip(null, 0, 0, 2, 0, 0, null),
 				new RegularShip(null, 0, 0),
 				new DestroyerShip(null, 0, 0),
 				new Ovni(null),
 				new UCMShip(null, 0, 0)
-				
 		};
 		
 		public Game (Level level, Random random){
@@ -53,7 +52,7 @@ public class Game implements IPlayerController{
 		public void initGame () {
 			currentCycle = 0;
 			board = initializer.initialize(this, level );
-			player = new UCMShip(this,DIM_X / 2 ,DIM_Y - 1 );
+			player = new UCMShip(this,DIM_X / 2 ,DIM_Y - 1 );//en la mitad de la ultima fila
 			board.add(player);
 		}
 		
@@ -102,7 +101,7 @@ public class Game implements IPlayerController{
 			doExit = true;
 		}
 			
-		public String infoToString() {
+		public String infoToString() {//tope que sale encima del tablero
 			return "Cycles: " + currentCycle + "\n" +
 			player.stateToString() +
 			"Remaining aliens: "+ (AlienShip.getRemainingAliens()) + "\n" +
@@ -110,17 +109,18 @@ public class Game implements IPlayerController{
 			"SuperMissile: "+this.player.getNumofSuper()	;
 		}
 			
-		public String getWinnerMessage () {
+		/*public String getWinnerMessage () {
 			if (playerWin()) return "Player win!";
 			else if (aliensWin()) return "Aliens win!";
 			else if (doExit) return "Player exits the game";
 			else return "This should not happen";
-		}
+		}*/
 		
 		@Override
 		public boolean move (int numCells) throws OffWorldException {			
 			return this.player.move(numCells);
 		}
+		
 		@Override
 		public boolean shootMissile() throws MissileInFlightException{
 			if(this.player.isCanShootLaser()) {
@@ -133,6 +133,7 @@ public class Game implements IPlayerController{
 				throw miExc;
 			}
 		}
+		
 		@Override
 		public boolean shootSuperMis() throws MissileInFlightException, NoSuperMissileAvaible {
 			if(this.player.isCanShootLaser() ) {
@@ -151,6 +152,7 @@ public class Game implements IPlayerController{
 				throw miExc;
 			}
 		}
+		
 		@Override
 		public boolean shockWave() throws NoShockwaveException {
 			if(this.shockWave) {
@@ -168,28 +170,32 @@ public class Game implements IPlayerController{
 		public void receivePoints(int points) {
 			this.player.receivePoints(points);		
 		}
+		
 		@Override
 		public void enableShockWave() {
 			this.shockWave = true;
 		}
+		
 		@Override
 		public void enableMissile() {
 			this.player.setCanShootLaser();
 		}
+		
 		public void enableMissileSup() {
 			this.player.setCanShootLaser();
 			this.player.useSuper();
 		}
+		
 		public String toStringObjectAt(int i, int j) {			
 			return this.board.toString(i,j);
 		}
 		
-		public void showList() {//ni ideade harm
+		public void showList() {
 			String s="";
 			for(Ship e:availableShips) {
 				s+=e.toString();
 				s+=" Points: "+e.getPoints();
-				s+=" - Shields: "+e.getLive();//ucm ship tiene una funcion que hace esto, seria ponerlo en ship
+				s+=" - Shields: "+e.getLive();
 				s+="\n";
 			}
 			System.out.println(s);
@@ -198,8 +204,6 @@ public class Game implements IPlayerController{
 		public String toString() {
 			String draw="";
 			draw+=this.infoToString();
-			//this.gamePrinter=new BoardPrinter(this,this.DIM_Y ,this.DIM_X );
-			//draw+=this.gamePrinter.toString();
 			return draw;
 		}
 

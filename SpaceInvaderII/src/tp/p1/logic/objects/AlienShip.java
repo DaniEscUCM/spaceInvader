@@ -9,10 +9,10 @@ public class AlienShip extends EnemyShip{
 	
 
 	private static boolean IS_IN_FINAL_ROW;
-	protected static int SHIPS_ON_BORDER;//antes estaba en private y lo cambie a protected
+	protected static int SHIPS_ON_BORDER;
 	
 	protected int cyclesToMove;
-	protected Move dir;//antes estaba en private y lo cambie a protected
+	protected Move dir;
 
 	public AlienShip(Game game, int x, int y, int life, int points) {
 		super(game, x, y, life, points);
@@ -38,32 +38,30 @@ public class AlienShip extends EnemyShip{
 		return REMAINING_ALIENS;
 	}
 
-	public static boolean haveLanded() {//hacen falta en main
-	
+	public static boolean haveLanded() {
 		return IS_IN_FINAL_ROW;
 	}
 
-	public static boolean allDead() {//hacen falta en main
+	public static boolean allDead() {
 		return REMAINING_ALIENS==0;
 	}
 	
 	@SuppressWarnings("static-access")
-	public void move() {//no sobre escribe si se quita ship
+	public void move() {
 		if(cyclesToMove==0) {
 			cyclesToMove=game.getLevel().getNumCyclesToMoveOneCell();			
 			if(dir==Move.RIGHT) {this.x++;}
 			else if(dir==Move.LEFT) {this.x--;}	
 			this.border();						
 		}
-		else if(SHIPS_ON_BORDER>0) { //&& !IS_IN_FINAL_ROW
+		else if(SHIPS_ON_BORDER>0) {
 				this.y++;
 				if(dir==Move.RIGHT) {dir=Move.LEFT;}
 				else if(dir==Move.LEFT) {dir=Move.RIGHT;}
 				SHIPS_ON_BORDER --;
 				if(!IS_IN_FINAL_ROW && y==game.DIM_Y-1) {
 					IS_IN_FINAL_ROW=true;
-					}
-					
+				}					
 			}
 		else cyclesToMove--;
 	}

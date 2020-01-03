@@ -4,7 +4,7 @@ import exceptions.CommandParseException;
 
 public class CommandGenerator {
 	
-	private static Command[] availableCommands = {
+	private static Command[] availableCommands = {//si hay comando nuevo, se debe agregar
 			new MoveCommand(0),
 			new ShootCommand(false),
 			new ShockWaveCommand(),

@@ -10,21 +10,21 @@ public class GameObjectBoard {//es la superlista
 	private int currentObjects;
 	
 	
-	public GameObjectBoard (int width, int height) {//lista con objetos de tamaï¿½o de width*height; cont=0
+	public GameObjectBoard (int width, int height) {//lista con objetos de tamano de width*height; cont=0
 		this.objects= new GameObject[width*height];
 		this.currentObjects = 0;
 	}
+	
 	@SuppressWarnings("unused")
 	private int getCurrentObjects () {
 		return currentObjects;
 	}
 	
-	public void add (GameObject object) { // inserta si ese objeto no esta en la lista
-		//if(getIndex(object.getX(), object.getY()) == -1){
-			this.objects[this.currentObjects] = object;
-			this.currentObjects++;
-		//}
+	public void add (GameObject object) { //se puede insertar en la misma posicion
+		this.objects[this.currentObjects] = object;
+		this.currentObjects++;
 	}
+	
 	private GameObject getObjectInPosition (int x, int y) {//usa getIndex, devuelve el objeto en esa posicion
 		int index = getIndex(x, y);
 		if(index > -1) {
@@ -32,7 +32,8 @@ public class GameObjectBoard {//es la superlista
 		}
 		else return null;
 	}
-	private int getIndex(int x, int y) { // busca y devuelve el indice
+	
+	private int getIndex(int x, int y) { // busca con posicion en tablero y devuelve el indice en la lista
 		int ret = -1;
 		int i = 0; 
 		boolean found = false;
@@ -47,7 +48,6 @@ public class GameObjectBoard {//es la superlista
 	}
 	
 	private void remove (int i ) {//getIndex y desplazamos a la izquierda
-	
 		for(; i < this.currentObjects; i++) {
 			this.objects[i] = this.objects[i + 1];
 		}
@@ -56,7 +56,6 @@ public class GameObjectBoard {//es la superlista
 		
 	
 	public void update() {//(1)recorre y hace move de todos los objetos,(2)check attack,(3) remove dead
-		
 		for (int i = 0; i < this.currentObjects; i++) {
 			this.objects[i].move();
 			this.checkAttacks(this.objects[i]);
@@ -64,7 +63,7 @@ public class GameObjectBoard {//es la superlista
 		this.removeDead();
 	}
 	
-	private void checkAttacks(GameObject object) {//perfomeattack other recibe daï¿½o
+	private void checkAttacks(GameObject object) {//perfomeattack other recibe dano
 		//llama a perfomeAttack en la interfa iAttack sobre other y recibe el ataque. lo recibe de getDamage
 		int i=0;
 		while(!object.performAttack(this.objects[i])&& i<this.currentObjects-1) {
@@ -89,7 +88,7 @@ public class GameObjectBoard {//es la superlista
 			}
 			else {i++;}
 		}
-		if(hecho) {removeDead();}
+		if(hecho) {removeDead();}//si se ha elimanado muertos se vuelve a revisar por si ha habido algun explosive
 		
 	}
 	
@@ -120,7 +119,7 @@ public class GameObjectBoard {//es la superlista
 		return s;
 	}
 	
-	public void explosiveDeath(int x, int y) {
+	public void explosiveDeath(int x, int y) {//hace daño a todos los que esten al rededor del explosive muerto
 		ExplosivShip ex=(ExplosivShip) getObjectInPosition(x, y);
 		for(int j=y-1;j<=y+1;j++) {
 			for(int i=x-1;i<=x+1;i++) {

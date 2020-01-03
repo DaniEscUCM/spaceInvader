@@ -12,7 +12,7 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		Level level = null;
 		boolean ok = true; // para controlar errores de argumentos
-		Long seed = (long) new Random().nextInt(-(int) System.currentTimeMillis());// semilla por defecto
+		Long seed = (long) new Random().nextInt((int) System.currentTimeMillis());// semilla por defecto
 		
 		if(args.length > 0 && args.length <= 2) {
 			if(args[0].equalsIgnoreCase("EASY")) {
@@ -21,14 +21,14 @@ public class Main {
 				level = Level.HARD;
 			}else if(args[0].equalsIgnoreCase("INSANE") ) {
 				level = Level.INSANE;
-			}else {
+			}else {//nivel no identificado
 				System.out.println("Usage: Main <EASY|HARD|INSANE> [seed]: level must be one of: EASY, HARD, INSANE");
 				ok = false;
 			}		
 			
 			if(args.length > 1) {
 				
-				if (!Character.isDigit(args[1].charAt(0))) {
+				if (!Character.isDigit(args[1].charAt(0))) {//error de semilla
 					System.out.println("Incorrect parameters. Seed is a number");
 					ok = false;
 				}	
@@ -46,8 +46,9 @@ public class Main {
 			}
 		}
 		
-		else
+		else {//numero de parametros incorrecta
 			System.out.println("Usage: Main <EASY|HARD|INSANE> [seed]");
+			}
 		
 	}
 	

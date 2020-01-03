@@ -24,7 +24,7 @@ public class ShockWaveCommand extends Command {
 		}
 		catch(NoShockwaveException mife) {
 		      throw new CommandExecuteException(mife.getMessage());
-		  }
+		}
 		return exec;
 	}
 
@@ -41,7 +41,6 @@ public class ShockWaveCommand extends Command {
 
 	@Override
 	protected boolean printGame() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

@@ -30,7 +30,6 @@ public class StringifyCommand extends Command{
 
 	@Override
 	protected boolean printGame() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -30,7 +30,7 @@ public class ShootCommand extends Command{
 		}
 		catch( MissileInFlightException | NoSuperMissileAvaible mife) {
 		      throw new CommandExecuteException(mife.getMessage());
-		  }
+		 }
 		return exec;
 	}
 
@@ -39,14 +39,13 @@ public class ShootCommand extends Command{
 		Command cm=null;
 		superm=false;
 		if(matchCommandName(commandWords[0])) {
-			if(commandWords.length>1) {
+			if(commandWords.length>1) {//con mas de un parametro tiene que ser super
 				if(this.shortcutSuper.equalsIgnoreCase(commandWords[1])||this.nameSuper.equalsIgnoreCase(commandWords[1])) {
 					superm= true;
 				}
 				else {
 					CommandParseException miExc = new CommandParseException("UNKNOWN COMMAND NEXT TO SHOOT COMMAND"); 
 					 throw miExc;
-
 				}
 			}
 			cm=new ShootCommand(superm);
@@ -56,7 +55,6 @@ public class ShootCommand extends Command{
 
 	@Override
 	protected boolean printGame() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

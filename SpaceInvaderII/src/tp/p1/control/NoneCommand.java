@@ -24,13 +24,12 @@ public class NoneCommand extends Command {
 		Command cm=null;	
 		if(matchCommandName(commandWords[0])||commandWords[0].equalsIgnoreCase("")) {
 			cm =new NoneCommand();
-			}
+		}
 		return cm;
 	}
 
 	@Override
 	protected boolean printGame() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

@@ -29,24 +29,23 @@ public class MoveCommand extends Command {
 		}
 		catch(OffWorldException mife) {
 		      throw new CommandExecuteException(mife.getMessage());
-		  }
+		 }
 		return exec;
 	}
 
 	@Override
 	public Command parse(String[] commandWords) throws CommandParseException {
 		Command cm=null;
-		//Move diraux=Move.DOWN;
-		if(matchCommandName(commandWords[0]) && commandWords.length == 3) { 	
-				if(Character.isDigit(commandWords[2].charAt(0))) {			
+		if(matchCommandName(commandWords[0]) && commandWords.length == 3) {//numero de parametros 	
+			if(Character.isDigit(commandWords[2].charAt(0))) {	//move		
 				int i=Integer.parseInt(commandWords[2]);
-				if(i >= 1 && i <= 2) {
-					if(commandWords[1].equalsIgnoreCase("RIGHT")|| commandWords[1].equalsIgnoreCase("R")) {
+				if(i >= 1 && i <= 2) {//numero de pasos
+					if(commandWords[1].equalsIgnoreCase("RIGHT")|| commandWords[1].equalsIgnoreCase("R")) {//dir
 						cm=new MoveCommand(i);
-						}
+					}
 					else if(commandWords[1].equalsIgnoreCase("LEFT")|| commandWords[1].equalsIgnoreCase("L")) {
 						cm=new MoveCommand(-i);
-						}
+					}
 					else {
 						CommandParseException ex= new CommandParseException("UNKNOWN DIRECTION");
 						throw ex;
@@ -54,8 +53,7 @@ public class MoveCommand extends Command {
 				}
 				else {
 					System.out.println("TOO MANY STEPS");
-					}
-			
+				}			
 			}
 		}
 		return cm;
@@ -63,7 +61,6 @@ public class MoveCommand extends Command {
 
 	@Override
 	protected boolean printGame() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
