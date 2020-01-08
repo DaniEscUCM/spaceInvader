@@ -24,13 +24,12 @@ public class HelpCommand extends Command {
 		Command cm=null;
 		if(matchCommandName(commandWords[0])) {
 			cm = new HelpCommand();
-			}		
+		}		
 		return cm;
 	}
 
 	@Override
 	protected boolean printGame() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

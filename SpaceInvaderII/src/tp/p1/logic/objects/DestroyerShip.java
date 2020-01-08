@@ -6,9 +6,7 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	private boolean canShootBomb;
 	private static int points=10;
 	private final String draw = "D";
-	private static int currentSerialNumber;
-	
-	
+	private static int currentSerialNumber;	
 
 	private void initialiseLabelling() {
 		currentSerialNumber = 1;
@@ -19,15 +17,6 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 		currentSerialNumber++;
 		return labelRefSeparator + label;
 	}
-	/*
-	public String serialize() {
-		if (!game.isSerializing()) {
-			game.setSerializing();
-			initialiseLabelling();
-		}
-		return this.stringify() + generateSerializingLabel();
-	}
-	*/
 	
 	public String stringify() {
 		if (!game.isSerializing()) {
@@ -69,8 +58,7 @@ public class DestroyerShip extends AlienShip implements IExecuteRandomActions{
 	
 	public void setCanShootBomb(boolean canShoot) {
 		this.canShootBomb = canShoot;
-	}
-	
+	}	
 
 	public void hurt() {
 		super.life--;

@@ -4,7 +4,7 @@ import tp.p1.logic.Game;
 
 public class EnemyShip extends Ship{
 
-	public EnemyShip(Game game, int x, int y, int life, int points) {//borrar?
+	public EnemyShip(Game game, int x, int y, int life, int points) {
 		super(game, x, y, life, points);
 	}
 

@@ -23,10 +23,9 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 			super.x--;
 			if(isOut()) {
 				this.enable=false;
-				super.x=9;}
-			
-			}
-		
+				super.x=9;
+			}			
+		}		
 	}
 	
 	public String toString() {
@@ -40,7 +39,8 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	
 	public void computerAction() {
 		if(!this.enable && IExecuteRandomActions.canGenerateRandomOvni(game)) {
-			this.enable = true;super.y=0;}
+			this.enable = true;super.y=0;
+		}
 	}
 	
 	public boolean isEnable() {
@@ -67,7 +67,7 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		game.receivePoints(this.getPoints());
 		game.enableShockWave();
 		return true;
-		}
+	}
 	
 	public boolean receiveMissileAttack(int damage) {
 		this.enable=false;
@@ -76,7 +76,7 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		game.receivePoints(this.getPoints());
 		game.enableShockWave();
 		return true;
-		}
+	}
 	
 	public boolean receiveShockWaveAttack(int damage) {
 		this.enable=false;
@@ -86,7 +86,6 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		return false;
 	}
 	
-	@SuppressWarnings("static-access")
 	public String stringify() {
 		String s = this.draw + "," + super.x + "," + super.y + ";"+ super.life;
 		return s;

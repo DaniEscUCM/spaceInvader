@@ -5,7 +5,7 @@ import tp.p1.logic.Game;
 public abstract class GameObject implements IAttack {
 	protected int x;
 	protected int y;
-	protected int life;//la profesora dice quitarlo pq no todos tienen vida
+	protected int life;
 	protected Game game;
 	public static final String labelRefSeparator = " - ";
 	protected int label = 0;
@@ -29,11 +29,11 @@ public abstract class GameObject implements IAttack {
 		return y;
 	}
 	
-	public boolean isAlive() {//se pondria en los que tienen vida
+	public boolean isAlive() {
 		return this.life > 0;
 	}
 	
-	public int getLive() {//se pondria en los que tienen vida
+	public int getLive() {
 		return this.life;
 	}
 	
@@ -53,9 +53,9 @@ public abstract class GameObject implements IAttack {
 		return 0;
 	}
 	
-	public abstract void computerAction();//quien no lo haga se deja vacio
-	public abstract void onDelete();//ej: enable la bomba en destroyer 
-	public abstract void move();//quien no lo haga se deja vacio
+	public abstract void computerAction();
+	public abstract void onDelete();
+	public abstract void move();
 	public abstract String toString();
 	public abstract String stringify();
 	

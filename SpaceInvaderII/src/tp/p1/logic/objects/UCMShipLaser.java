@@ -5,7 +5,7 @@ import tp.p1.logic.Game;
 public class UCMShipLaser extends Weapon{
 	
 	private static int life = 1;
-	private static final int harm=1;//herencia?
+	private static final int harm=1;
 	private final String draw= "oo";
 	private final String strfy = "M";
 	
@@ -15,7 +15,7 @@ public class UCMShipLaser extends Weapon{
 	
 	public void move()  {
 		super.y--;
-		if(isOut()) {//is out no funciona?
+		if(isOut()) {
 			super.life=0;
 		}
 	}	

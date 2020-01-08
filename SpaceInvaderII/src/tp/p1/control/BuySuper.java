@@ -19,11 +19,11 @@ public class BuySuper extends Command {
 	public boolean execute(Game game) throws CommandExecuteException{
 		boolean exec = false;
 		try{
-		exec = game.buyMissile();
-		if(exec) game.update();
-		}
+			exec = game.buyMissile();
+			if(exec) game.update();
+			}
 		catch(NoEnoughPoints mife) {
-			 throw new CommandExecuteException(mife.getMessage());
+			 throw new CommandExecuteException(mife.getMessage());//cambia de NoEnoughPoints a Command
 		}
 		return exec;
 	}

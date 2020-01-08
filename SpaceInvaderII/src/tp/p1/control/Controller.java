@@ -31,20 +31,16 @@ public class Controller {
 			String[] words =  in.nextLine().toLowerCase().trim().split("\\s+");
 			try {
 				
-					Command command = CommandGenerator.parseCommand(words);
-					if (command != null) {
-						if (command.execute(game) && command.printGame()) {
-							this.printer = new BoardPrinter(game, game.DIM_X ,game.DIM_Y);
-							printGame();
-						}
-					}else {
-						System.out.println(unknownCommandMsg);
-	
-				}/*else {
-					System.out.println("Usage: Main  <EASY|HARD|INSANE> [seed]");//la semilla muestra cosas raras
-				}*/
-						
-			}catch(CommandParseException | CommandExecuteException ex) {
+				Command command = CommandGenerator.parseCommand(words);
+				if (command != null) {
+					if (command.execute(game) && command.printGame()) {
+						this.printer = new BoardPrinter(game, game.DIM_X ,game.DIM_Y);
+						printGame();
+					}
+				}else {
+					System.out.println(unknownCommandMsg);
+				}		
+			}catch(CommandParseException | CommandExecuteException ex) {//se trata la excepcion
 				System.out.format(ex.getMessage() + " %n %n");
 			}
 		}

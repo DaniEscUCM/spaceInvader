@@ -24,8 +24,7 @@ public class SaveCommand extends Command {
 	public boolean execute(Game game) throws CommandExecuteException {
 		try(BufferedWriter in= new BufferedWriter(new FileWriter(nameoffile+".dat"))){
 			in.write(game.stringify());
-			System.out.println("Game successfully saved in file "+nameoffile+".dat. ");
-					//+ "Use the load command to reload it");
+			System.out.println("Game successfully saved in file "+nameoffile+".dat");
 			return true;
 		}
 		catch(IOException mife) {

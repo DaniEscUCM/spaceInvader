@@ -9,7 +9,7 @@ public class ListPrintersCommand extends Command{
 	private final static String name = "listPrinters";
 	private final static String shortcut = "P";
 	private final static String detail = " list[P]rinters";
-	private static String help = "";//para algo es la herencia
+	private static String help = ": Print a list of ships";
 	
 	public ListPrintersCommand() {
 		super(name, shortcut, detail, help);
@@ -26,13 +26,12 @@ public class ListPrintersCommand extends Command{
 		Command cm=null;	
 		if(matchCommandName(commandWords[0])) {
 			cm =new ListPrintersCommand();
-			}
+		}
 		return cm;
 	}
 
 	@Override
 	protected boolean printGame() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

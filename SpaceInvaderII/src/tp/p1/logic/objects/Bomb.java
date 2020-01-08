@@ -4,21 +4,15 @@ import tp.p1.logic.Game;
 
 public class Bomb extends Weapon{
 	private static int life = 1;	
-	private final String draw = ".";//tendra un destroyer
+	private final String draw = ".";
 	private DestroyerShip destroyer;
 	private static final int harm=1;
 	private final String strfy = "B";
 	boolean move = false;
 	
-// call to getLabel assumes owner already serialized (so label already generated)
 	public String generateSerialRef() {
 		return labelRefSeparator + destroyer.getLabel();
 	}
-	/*
-	public String serialize() {
-		return this.stringify() + generateSerialRef();
-	}
-*/
 
 	public Bomb(Game game, int x, int y,DestroyerShip destroyer) {
 		super(game, x, y, life,harm);
@@ -41,8 +35,7 @@ public class Bomb extends Weapon{
 		else this.move = true;
 	}
 	
-	public void computerAction() {
-	}
+	public void computerAction() {	}
 	
 	public DestroyerShip getDestroyer() {
 		return destroyer;

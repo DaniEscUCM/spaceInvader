@@ -20,10 +20,12 @@ public class BoardInitializer {
 		initializeDestroyerAliens ();
 		return board;
 	}
+	
 	private void initializeOvni () {
 		GameObject objeto=new Ovni(game);
 		this.board.add(objeto);
 	}
+	
 	private void initializeRegularAliens () {
 		int row=1, col=8;
 		GameObject objeto;
@@ -31,16 +33,16 @@ public class BoardInitializer {
 			objeto=new RegularShip(game,col , row);
 			this.board.add(objeto);
 			col--;
-			if( i!=0 && (i+1)%4==0) {//para los niveles hard e insane2
+			if( i!=0 && (i+1)%4==0) {//para los niveles hard e insane
 				row++;
 				col=8;
 			}			
 		}	
 	}
+	
 	private void initializeDestroyerAliens () {
 		int row=2, col=6;
 		GameObject objeto;
-		//if(level==Level.HARD ||level==Level.INSANE) {row++;}
 		row+=(level.getNumRegularAliens()/4)-1;
 		for(int i=0;i<level.getNumDestroyerAliens();i++) {
 			objeto=new DestroyerShip(game,col, row );
@@ -54,6 +56,5 @@ public class BoardInitializer {
 			}
 		}
 	}
-
 
 }
