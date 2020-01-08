@@ -47,7 +47,7 @@ public class GameObjectBoard {//es la superlista
 		return ret;
 	}
 	
-	private void remove (int i ) {//getIndex y desplazamos a la izquierda
+	private void remove (int i ) {//desplazamos a la izquierda
 		for(; i < this.currentObjects; i++) {
 			this.objects[i] = this.objects[i + 1];
 		}
@@ -77,11 +77,11 @@ public class GameObjectBoard {//es la superlista
 		}
 	}
 	
-	private void removeDead() {//quita los muertos primero delete y llama a remove
+	private void removeDead() {//quita los muertos primero ondelete y llama a remove
 		boolean hecho=false;
 		int i=0;
 		while(i < this.currentObjects) {
-			if(!this.objects[i].isAlive() && ! (this.objects[i] instanceof UCMShip)) {
+			if(!this.objects[i].isAlive()) {
 				this.objects[i].onDelete();
 				this.remove(i);
 				hecho=true;
@@ -100,9 +100,7 @@ public class GameObjectBoard {//es la superlista
 	
 	public void shockWave() {
 		for(int i = 0; i < this.currentObjects; i++) {
-			if(! (this.objects[i] instanceof UCMShip)) {
-				this.objects[i].receiveShockWaveAttack(1);
-			}
+			this.objects[i].receiveShockWaveAttack(1);
 		}
 		this.removeDead();
 	}

@@ -16,7 +16,7 @@ public class ExplosivShip extends AlienShip{
 		cyclesToMove=cy;
 		this.SHIPS_ON_BORDER=shipsOnBorder;
 		this.dir=dir;
-		super.setREMAINING_ALIENS(remainingAliens);
+		super.setREMAINING_ALIENS(remainingAliens+1);
 	}
 	
 	public int getLife() {//tal vez con herencia, ya que todos tienen vida

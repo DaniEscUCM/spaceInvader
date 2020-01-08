@@ -1,6 +1,7 @@
 package tp.p1.logic;
 
 import tp.p1.logic.lists.GameObjectBoard;
+import tp.p1.logic.objects.AlienShip;
 import tp.p1.logic.objects.DestroyerShip;
 import tp.p1.logic.objects.GameObject;
 import tp.p1.logic.objects.Ovni;
@@ -15,6 +16,7 @@ public class BoardInitializer {
 		this.level = level;
 		this. game = game;
 		board = new GameObjectBoard(Game.DIM_X, Game.DIM_Y);
+		AlienShip.setREMAINING_ALIENS(0);
 		initializeOvni ();
 		initializeRegularAliens ();
 		initializeDestroyerAliens ();

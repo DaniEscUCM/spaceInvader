@@ -111,5 +111,13 @@ public class UCMShip extends Ship{
 		return s;
 	}
 	
+	@Override
+	public boolean isAlive() {
+		return true;
+	}
+	
+	@Override
+	public boolean receiveShockWaveAttack(int damage) {return false;};
+	
 
 }
