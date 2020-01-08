@@ -29,6 +29,9 @@ public class AlienShip extends EnemyShip{
 		REMAINING_ALIENS --;
 	}
 
+	public static void setREMAINING_ALIENS(int n) {
+		REMAINING_ALIENS = n;
+	}
 
 	public int getcyclesToMove() {
 		return this.cyclesToMove;

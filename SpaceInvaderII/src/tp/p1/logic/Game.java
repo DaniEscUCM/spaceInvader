@@ -35,7 +35,7 @@ public class Game implements IPlayerController{
 		private boolean serializing = false;
 		
 		private static Ship[] availableShips = {
-				new ExplosivShip(null, 0, 0, 2, 0, 0, null),
+				new ExplosivShip(null, 0, 0, 2, 0, 0, null, 0),
 				new RegularShip(null, 0, 0),
 				new DestroyerShip(null, 0, 0),
 				new Ovni(null),
@@ -223,7 +223,7 @@ public class Game implements IPlayerController{
 					+ "L," + this.level.toString() + "\n"
 					+ board.stringify();
 			return s;
-		}
+		}          
 		
 		public void explosiveDeath(int x, int y) {
 			board.explosiveDeath( x, y);

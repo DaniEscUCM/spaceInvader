@@ -11,11 +11,12 @@ public class ExplosivShip extends AlienShip{
 	private int damage=1;
 	
 	@SuppressWarnings("static-access")
-	public ExplosivShip(Game game, int x, int y, int life,int cy, int shipsOnBorder,  Move dir) {//quite hurt???
+	public ExplosivShip(Game game, int x, int y, int life,int cy, int shipsOnBorder,  Move dir, int remainingAliens) {//quite hurt???
 		super(game, x, y, life, points);
 		cyclesToMove=cy;
 		this.SHIPS_ON_BORDER=shipsOnBorder;
 		this.dir=dir;
+		super.setREMAINING_ALIENS(remainingAliens);
 	}
 	
 	public int getLife() {//tal vez con herencia, ya que todos tienen vida
