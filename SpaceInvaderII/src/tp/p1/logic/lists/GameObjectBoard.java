@@ -2,7 +2,6 @@ package tp.p1.logic.lists;
 
 import tp.p1.logic.objects.ExplosivShip;
 import tp.p1.logic.objects.GameObject;
-import tp.p1.logic.objects.UCMShip;
 
 public class GameObjectBoard {//es la superlista
 
@@ -117,7 +116,7 @@ public class GameObjectBoard {//es la superlista
 		return s;
 	}
 	
-	public void explosiveDeath(int x, int y) {//hace daño a todos los que esten al rededor del explosive muerto
+	public void explosiveDeath(int x, int y) {//hace daï¿½o a todos los que esten al rededor del explosive muerto
 		ExplosivShip ex=(ExplosivShip) getObjectInPosition(x, y);
 		for(int j=y-1;j<=y+1;j++) {
 			for(int i=x-1;i<=x+1;i++) {

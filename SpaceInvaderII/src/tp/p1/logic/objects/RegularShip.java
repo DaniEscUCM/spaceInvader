@@ -16,6 +16,7 @@ public class RegularShip extends AlienShip{
 		return super.life;
 	}
 	
+	@SuppressWarnings("static-access")
 	public void computerAction() {
 		if(IExecuteRandomActions.canGenerateRandomExplosiv(game)) {
 			@SuppressWarnings("static-access")
